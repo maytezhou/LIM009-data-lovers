@@ -49,6 +49,15 @@ console.log(worldBankDataPeru.find(codeSL));
 //Array de Strings con los Indicators Name de Peru
 const arrayWithStringOfIndicatorsName=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.indicatorName);
 console.log(arrayWithStringOfIndicatorsName);
+cont result=arrayWithStringOfIndicatorsName.filter()=
+
+
+
+
+
+
+
+
 
 
 //Array de Strings con la data(objeto con las propiedades años y sus valores) 
