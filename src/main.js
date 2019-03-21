@@ -42,6 +42,9 @@ console.log(worldBankDataPeru[0]);
 function codelabForceWom(codeOfIndicator){return codeOfIndicator.indicatorCode==="SL.TLF.CACT.NE.ZS"};
 console.log(worldBankDataPeru.find(codelabForceWom));
 
+function codeSL(codeOfIndicator1){return codeOfIndicator1.indicatorCode==="SL"};
+console.log(worldBankDataPeru.find(codeSL));
+
 
 //Array de Strings con los Indicators Name de Peru
 const arrayWithStringOfIndicatorsName=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.indicatorName);
@@ -52,9 +55,9 @@ console.log(arrayWithStringOfIndicatorsName);
 const arrayWithStringOfIndicatorsOnlyData=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.data);
 console.log(arrayWithStringOfIndicatorsOnlyData);
 
-//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -Lista DE STRINGS (con cada Indicator Name de Peru)
+//IMPRIME TODOS LOS ELEMENTOS EN UNA LINEA  ES UN STRING -Lista DE STRINGS (con cada Indicator Name de Peru)
 const eachIndicatorNameString=arrayWithStringOfIndicatorsName.forEach(function(element){console.log(element)});
-//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -Lista de Objetos(de data de Peru)
+//IMPRIME TODOS LOS ELEMENTOS EN UNA LINEA -ES UN STRING -Lista de Objetos(de data de Peru)
 const eachDataString=arrayWithStringOfIndicatorsOnlyData.forEach(function(element1){console.log(element1)});
 
 
