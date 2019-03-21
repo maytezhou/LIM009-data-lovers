@@ -10,8 +10,13 @@ console.log(worldBankDataPeru[0],[0]);
 
 //Retorna una lista de todos los objetos anonimos(de todos los indicators de Peru);
 for (let i =0;i<worldBankDataPeru.length;i++){
+    for (let index = 0; index < worldBankDataPeru.length; ++index) {
+        console.log(worldBankDataPeru[index]);}
+    
    console.log(worldBankDataPeru[i]);
 };
+
+
 
 
 
@@ -27,13 +32,11 @@ console.log(worldBankDataPeru[0].data);
 function labForceWom(nameOfIndicator){return nameOfIndicator.indicatorName==="Fuerza laboral con educación intermedia, mujeres (% de la fuerza laboral femenina)"};
 console.log(worldBankDataPeru.find(labForceWom));
 console.log(worldBankDataPeru[0]);
-
-
-
-
-//INTENTO FALLIDO
+//INTENTO FALLIDO utilizando arrow function
 //const resultado=worldBankDataPeru.find(nameOfIndicator1=>nameOfIndicator1.indicatorName==="Fuerza laboral con educación intermedia, mujeres (% de la fuerza laboral femenina");
 //console.log(resultado);
+
+
 
 //Me retorna un objeto anonimo(un indicador completo)el cual es llamado por su indicatorcode
 function codelabForceWom(codeOfIndicator){return codeOfIndicator.indicatorCode==="SL.TLF.CACT.NE.ZS"};
@@ -49,18 +52,12 @@ console.log(arrayWithStringOfIndicatorsName);
 const arrayWithStringOfIndicatorsOnlyData=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.data);
 console.log(arrayWithStringOfIndicatorsOnlyData);
 
-//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -ARRAY DE STRINGS (cada Indicator Name de Peru)
+//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -Lista DE STRINGS (con cada Indicator Name de Peru)
 const eachIndicatorNameString=arrayWithStringOfIndicatorsName.forEach(function(element){console.log(element)});
-//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -ARRAY DE STRINGS (cada objeto data de Peru)
+//IMPRIME TODOS LOS ELEMENTOS PERO CADA ELEMENTO DEL ARRAY EN UNA LINEA -Lista de Objetos(de data de Peru)
 const eachDataString=arrayWithStringOfIndicatorsOnlyData.forEach(function(element1){console.log(element1)});
 
-console.log(eachIndicatorNameString);
+
 //Array de strings con los Indicators Code de Peru
 const arrayWithStringOfIndicatorsCode=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.indicatorCode);
 console.log(arrayWithStringOfIndicatorsCode);
-
-let stringOfIndicatorsCode='';
- for(i=0;i<arrayWithStringOfIndicatorsCode;i++){
-stringOfIndicatorsCode+=arrayWithStringOfIndicatorsCode[i];
- };
- console.log(stringOfIndicatorsCode);
