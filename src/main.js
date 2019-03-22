@@ -79,14 +79,6 @@ for (let prop in onlyDataPeru[i]){
 
 };
 
-
-
-
-
-
-
-
-
    const arrayWithYears=[];
   for (i=0;i<onlyDataPeru.length;i++){
        arrayWithYears.push(Object.keys(onlyDataPeru[i]));
@@ -98,31 +90,6 @@ for (let prop in onlyDataPeru[i]){
           arrayWithNum.push(Object.values(onlyDataPeru[i]));
   };
   console.log(arrayWithNum);
-
-
- //Trabajando con el array de Objetos cada objeto tiene propiedades que son string(años) y los valores que son numeros
-  
-
-   /*const filterByYear = (data,anio) => {
-           if((Object.keys(data))[i]===anio){
-           return Object.values
-
-           }
-           return data.anio
-};    */
-
-
-
-   /* const filterRango = (data, anioInicio,anioFin) => {
-       
-    };    
-    
-    filterRango(worldBankDataPeru[i].data,2006,20015);*/
-
-
-    
-    
-   
 
 
     // FUNCIÓN PARA MOSTRAR DATA EN DOM
