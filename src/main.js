@@ -1,11 +1,147 @@
 
-
-
-
-
 const worldBankDataPeru = window.WORLDBANK.PER.indicators;
-//Retorna  un el primer objeto anonimo (el primer indicador) de los Indicadores de Perú y con su posicion dentro de un array
-console.log(worldBankDataPeru[0],[0]);
+//Retorna  un array de  objetos/Un array con todos los Indicadores de Perú 
+
+//Obteniendo un array por indicador de los keys del Objeto Data
+const newArrayDataKeys=[];
+//Recorriendo cada uno de los indicadores(objetos)
+for(i=0;i<worldBankDataPeru.length;i++){
+ newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
+
+};
+console.log(newArrayDataKeys);
+
+//Obteniendo un array por indicador de los values del Objeto Data
+const newArrayDataValues=[];
+//Recorriendo cada cada Indicador(objetos)
+for(i=0;i<worldBankDataPeru.length;i++){
+newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
+};
+
+console.log(newArrayDataValues);
+
+
+const indicatorCodeSL = (indicador) => {
+        return(indicador.indicatorCode.startsWith('SL.'));
+    };
+    
+    const indicatorCodeSE = (indicador) => {
+        return(indicador.indicatorCode.startsWith('SE.'));
+    };
+    
+    // PROBANDO FILTER
+    
+    
+    const filterBySector = (data, sector) => {
+        let countryNames='';
+        if (sector === 'SL') {
+            countryNames = data.filter(indicatorCodeSL)
+    
+        } else if (sector === 'SE') {
+            countryNames = data.filter(indicatorCodeSE)
+        }
+        return countryNames;
+        
+        
+    };
+    
+    const dataFiltrada = filterBySector(worldBankDataPeru,'SL');
+    console.log(dataFiltrada);
+    
+    console.log(filterBySector(worldBankDataPeru,'SE'));
+
+
+
+      // Retorna un Array de Arrayes
+    //Convertir el objeto Data que tiene como propiedades los años y values el pocrcentaje en un array
+   for(i=0;i<worldBankDataPeru.length;i++){
+    const obj = worldBankDataPeru[i].data;
+    const result = Object.keys(obj).map(function(key) {
+      return [Number(key), obj[key]];
+    });
+    console.log(result);};
+    
+
+
+    //Retorna un array de Objetos(cada objeto es  un indicador.data de un indicador) cada contiene propiedades 
+    //que son los años y sus valores que son los porcentajes
+  const onlyDataPeru=worldBankDataPeru.map((e)=>e.data);
+  console.log(onlyDataPeru);
+
+for(i=0;i<onlyDataPeru.length;i++){
+console.log(onlyDataPeru[i]);
+
+for (let prop in onlyDataPeru[i]){
+        console.log(prop,onlyDataPeru[i][prop]);
+        console.log(prop,onlyDataPeru[i]);
+        
+}
+
+};
+
+
+
+
+
+
+
+
+
+   const arrayWithYears=[];
+  for (i=0;i<onlyDataPeru.length;i++){
+       arrayWithYears.push(Object.keys(onlyDataPeru[i]));
+  };
+  console.log(arrayWithYears);
+
+  const arrayWithNum=[];
+  for(i=0;i<onlyDataPeru.length;i++){
+          arrayWithNum.push(Object.values(onlyDataPeru[i]));
+  };
+  console.log(arrayWithNum);
+
+
+ //Trabajando con el array de Objetos cada objeto tiene propiedades que son string(años) y los valores que son numeros
+  
+
+   /*const filterByYear = (data,anio) => {
+           if((Object.keys(data))[i]===anio){
+           return Object.values
+
+           }
+           return data.anio
+};    */
+
+
+
+   /* const filterRango = (data, anioInicio,anioFin) => {
+       
+    };    
+    
+    filterRango(worldBankDataPeru[i].data,2006,20015);*/
+
+
+    
+    
+   
+
+
+    // FUNCIÓN PARA MOSTRAR DATA EN DOM
+    const showData=document.getElementById("show-data");
+    const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
+    for (let i = 0; i < dataPeru.length; i++) {
+        showData.innerHTML += `
+        <div>
+            <p><strong>Indicador:</strong> ${dataPeru[i].indicatorName}</p>
+            <p><strong>Pais:</strong> ${dataPeru[i].countryName}</p>
+            <p><strong>Data:</strong> ${dataKeysPeru[i]} : ${dataValuesPeru[i]}</p>
+            </br>
+        </div> 
+        `;
+        }
+    };
+   showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
+    
+
 
 
 //Retorna una lista de todos los objetos anonimos(de todos los indicators de Peru);
@@ -49,7 +185,7 @@ console.log(worldBankDataPeru.find(codeSL));
 //Array de Strings con los Indicators Name de Peru
 const arrayWithStringOfIndicatorsName=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.indicatorName);
 console.log(arrayWithStringOfIndicatorsName);
-cont result=arrayWithStringOfIndicatorsName.filter()=
+
 
 
 
@@ -61,7 +197,7 @@ cont result=arrayWithStringOfIndicatorsName.filter()=
 
 
 //Array de Strings con la data(objeto con las propiedades años y sus valores) 
-const arrayWithStringOfIndicatorsOnlyData=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.data);
+arrayWithStringOfIndicatorsOnlyData=worldBankDataPeru.map((worldBankDataPeru)=>worldBankDataPeru.data);
 console.log(arrayWithStringOfIndicatorsOnlyData);
 
 //IMPRIME TODOS LOS ELEMENTOS EN UNA LINEA  ES UN STRING -Lista DE STRINGS (con cada Indicator Name de Peru)
