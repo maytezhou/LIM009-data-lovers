@@ -1,24 +1,8 @@
-/* Manejo de data */
-
-// esta es una función de ejemplo
-// puedes ver como agregamos la función a nuestro objeto global window
-
-// const example = () => {
-//   return 'example';
-// };
-
-// window.example = example;
-
-
 const worldBankDataPeru = window.WORLDBANK.PER.indicators;
 const showData = document.getElementById('show-data');
 const filterIndicatorCode = document.getElementById('filter-indicator-code');
 const filterYears = document.getElementById('filter-years');
 const btnFilter = document.getElementById('btn-filter');
-
-
-
-
 
 // INDICATORS
 // SL - SOCIAL-LABOR
@@ -89,26 +73,17 @@ const filterBySector = (data, sector) => {
       indicatorCodes = data.filter(indicatorCodeSH)
   }
   return indicatorCodes;
-  
-  
-}
-
+};
 
 // FILTER BUTTON
 btnFilter.addEventListener('click', () => {
   let filterIndicatorValue = filterIndicatorCode.value;
-  //let filterByYears = filterYears.value;
   console.log(filterIndicatorValue);
   filterBySector(worldBankDataPeru, filterIndicatorValue);
   const dataFiltrada = filterBySector(worldBankDataPeru, filterIndicatorCode.value);
   console.log(dataFiltrada);
-  // console.log(filterByYears);
 });
 
-
-// SHOW FIRST INDICATOR DATA IN CONSOLE
-// console.log(`${worldBankDataPeru[0].indicatorName} en ${worldBankDataPeru[0].countryName}`);
-// console.log(worldBankDataPeru[0].data);
 
 // TURNING OBJECTS INTO ARRAYS
 const newArrayDataKeys = [];
@@ -122,15 +97,6 @@ for (let i = 0; i < worldBankDataPeru.length; i++) {
     newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
 }
 // console.log(newArrayDataValues);
-
-
-
-// MOSTRAR DATA EN DOM
-// const mostrarData = (año, valor) => {
-//     return `
-//     <li>${año}: ${valor}</li>
-//     `
-// }
   
 // FUNCIÓN PARA MOSTRAR DATA EN DOM
 const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
@@ -149,28 +115,3 @@ const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
   // console.log(dataValuesPeru[0]);
 };
 showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
-
-
-
-
-
-
-
-
-
-
-
-// SHOWING DATA IN DOM
-// const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
-//     for (let i = 0; i < dataPeru.length; i++) {
-//         showData.innerHTML += `
-//         <div>
-//             <p><strong>Indicador:</strong> ${dataPeru[i].indicatorName}</p>
-//             <p><strong>Pais:</strong> ${dataPeru[i].countryName}</p>
-//             <p><strong>Data:</strong> ${dataKeysPeru[i]} : ${dataValuesPeru[i]}</p>
-//             </br>
-//         </div> 
-//         `;
-//         }
-//     };
-//     showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
