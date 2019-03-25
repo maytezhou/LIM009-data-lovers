@@ -50,6 +50,12 @@ const indicatorCodeSH = (indicator) => {
   return(indicator.indicatorCode.startsWith('SH.'));
 }
 
+// ALL
+const indicatorCodeAll = (indicator) => {
+  const sectorOptions = ['SL.', 'SE.', 'HD.', 'DT.', 'IC.', 'SP.', 'MS.', 'SG.','SH.'];
+  return(indicator.indicatorCode.includes(sectorOptions));
+}
+
 // FUNCTION - FILTERED BY INDICATOR CODE
 const filterBySector = (data, sector) => {
   let indicatorCodes;
@@ -71,6 +77,8 @@ const filterBySector = (data, sector) => {
       indicatorCodes = data.filter(indicatorCodeSG)
   } else if (sector === 'SH') {
       indicatorCodes = data.filter(indicatorCodeSH)
+  } else {
+      indicatorCodes = data.filter(indicatorCodeAll)
   }
   return indicatorCodes;
 };
