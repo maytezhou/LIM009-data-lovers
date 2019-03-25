@@ -81,7 +81,13 @@ btnFilter.addEventListener('click', () => {
   console.log(filterIndicatorValue);
   const dataFiltrada = filterBySector(worldBankDataPeru, filterIndicatorCode.value);
   console.log(dataFiltrada);
+  
+ 
 });
+
+
+
+
 
 
 // TURNING OBJECTS INTO ARRAYS
