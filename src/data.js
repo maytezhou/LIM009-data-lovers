@@ -79,7 +79,6 @@ const filterBySector = (data, sector) => {
 btnFilter.addEventListener('click', () => {
   let filterIndicatorValue = filterIndicatorCode.value;
   console.log(filterIndicatorValue);
-  filterBySector(worldBankDataPeru, filterIndicatorValue);
   const dataFiltrada = filterBySector(worldBankDataPeru, filterIndicatorCode.value);
   console.log(dataFiltrada);
 });
