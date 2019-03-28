@@ -89,23 +89,63 @@ btnFilter.addEventListener('click', () => {
 
 
 
-
-// TURNING OBJECTS INTO ARRAYS
+//La lógica //
+// Funcion que tiene como input ////[{},{},{}..]
+//Que retorna  [["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
 const newArrayDataKeys = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
+for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{}..]
     newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
 }
-// console.log(newArrayDataKeys);
+// console.log(newArrayDataKeys);//[["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
+
+
+//Creando una funcion 
+// Funcion que tiene como input //[{},{},{}..]
+//Que retorna  [["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
+const arrOfArrStr=(arrOb)=>{//[{},{},{}..]
+  const arrArrStr=[];
+  for(let q=0;q<arrOb.length;q++){
+    arrArrStr.push(Object.Keys(arrOb[q].data));
+}
+return arrArrStr;//[["","",""...],["","",""...],["","",""...]...];
+}
+
+
+
+
+
+
+//La lógica
+// Funcion que tiene como input ////[{},{},{}..]
+//Que retorna [[num,num,num...],[num,num,num...],[num,num,num...]]
 
 const newArrayDataValues = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
+for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{},{},{}..]
     newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
 }
-// console.log(newArrayDataValues);
+// console.log(newArrayDataValues);//[[num,num,num...],[num,num,num...],[num,num,num...]] percentage Array de arrays (percentage numbers);
   
-// FUNCIÓN PARA MOSTRAR DATA EN DOM
-const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
-  for (let i = 0; i < 1; i++) {
+
+//Creandouna funcion que tiene como input [{},{},{}..]
+//Que retorna [[num,num,num...],[num,num,num...],[num,num,num...]]
+const arrArrNum=(arrObje)=>{//[{},{},{}..]
+  arrObje;
+  const newArrNum=[];
+  for(let w=0;w<arrObje.length;w++){
+newArrNum.push(Object.values(arrObje[w].data));
+  }
+  return newArrNum;//[[num,num,num...],[num,num,num...],[num,num,num...]]
+
+};
+
+
+
+
+
+
+// FUNCIÓN PARA MOSTRAR DATA EN DOM// PROBANDO SOLO CON UNO //COACHING DE DANI
+const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {//[{},{},{},{}] y [["","",""],["","",""],["","";]...] y [[num],[num]...]
+  for (let i = 0; i < 1; i++) {//[{},{},{}...]
   showData.innerHTML += `
       <p><strong>Indicador:</strong> ${dataPeru[0].indicatorName} en ${dataPeru[0].countryName}</p>
       `;
@@ -120,3 +160,24 @@ const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
   // console.log(dataValuesPeru[0]);
 };
 showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
+
+
+
+//Funcion Para Mostar en Dom  años y numbers como lista Funcion para cualquir arraydeObjects
+const showListOfAnyArrayIndicator=(arrayOfIndi,arrDataKeys,arrDataValues)=>{//[{},{},{},{}] y [["","",""...],["","",""...],["","",...],...] y [[num,num,...],[num,num,...]...]
+  arrayOfIndi;
+  arrDataKeys;
+  arrDataValues;
+  for (let t = 0; t<arrayOfIndi.length; t++) {//[{},{},{}...]
+    showData.innerHTML += `
+        <p><strong>Indicador:</strong> ${arrayOfIndi[t].indicatorName} en ${arrayOfIndi[t].countryName}</p>
+        `;
+    }
+    for (let s=0;s<arrDataKeys[t].length;s++){
+      showData.innerHTML += `
+      <li>${dataKeysPeru[t][s]}: ${dataValuesPeru[t][s]}</li>
+      `
+      // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
+  }
+
+}
