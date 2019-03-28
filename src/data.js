@@ -9,11 +9,29 @@
 
 // window.example = example;
 
-
-const worldBankDataPeru = window.WORLDBANK.PER.indicators;
-
-
-
+window.WorldBank = {
+  getIndicatorCodeValues : (array) => {
+    const newArrayStrings = [];
+    for(let i = 0; i < array.length; i++){
+       const string = array[i].indicatorCode.slice(0,3);
+       newArrayStrings.push(string);
+    }
+    console.log('Array con indicators codes: ' + newArrayStrings);
+       return newArrayStrings
+   },
+   
+   getUniqueIndicatorCodeValues : (array) => {
+     const newArrayUniqueValues = [];
+    for(let i = 0; i <array.length; i++){
+      if(newArrayUniqueValues.indexOf(array[i]) === -1){
+        newArrayUniqueValues.push(array[i])
+      }
+    }
+    console.log('Array con valores unicos de indicator codes: ' + newArrayUniqueValues);
+    
+    return newArrayUniqueValues;
+  }
+};
 
 
 // INDICATORS
@@ -90,42 +108,14 @@ const filterBySector = (data, sector) => {
   return indicatorCodes;
   
   
+};
+
+
+const filterByYears = (data, yearStart) => {
+  let years;
+
+    
 }
-
-
-// // FILTER BUTTON
-// btnFilter.addEventListener('click', () => {
-//   let filterIndicatorValue = filterIndicatorCode.value;
-//   //let filterByYears = filterYears.value;
-//   console.log(filterIndicatorValue);
-//   // filterBySector(worldBankDataPeru, filterIndicatorValue);
-//   const dataFiltrada = filterBySector(worldBankDataPeru, filterIndicatorCode.value);
-//   // console.log(filterByYears);
-//   console.log(dataFiltrada);
-//   for (let i = 0; i < dataFiltrada.length; i++) {
-//     showData.innerHTML += `
-//         <ul><li>${dataFiltrada[i].indicatorName} en ${dataFiltrada[i].countryName}</li></ul>
-//         `;
-//     }
-// });
-
-
-// SHOW FIRST INDICATOR DATA IN CONSOLE
-// console.log(`${worldBankDataPeru[0].indicatorName} en ${worldBankDataPeru[0].countryName}`);
-// console.log(worldBankDataPeru[0].data);
-
-// TURNING OBJECTS INTO ARRAYS
-const newArrayDataKeys = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
-    newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
-}
-// console.log(newArrayDataKeys);
-
-const newArrayDataValues = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
-    newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
-}
-// console.log(newArrayDataValues);
 
 
 
@@ -135,46 +125,3 @@ for (let i = 0; i < worldBankDataPeru.length; i++) {
 //     <li>${año}: ${valor}</li>
 //     `
 // }
-  
-// FUNCIÓN PARA MOSTRAR DATA EN DOM
-const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
-  // for (let i = 0; i < dataPeru.length; i++) {
-  // showData.innerHTML += `
-  //     <ul><li>${dataPeru[i].indicatorName} en ${dataPeru[i].countryName}</li></ul>
-  //     `;
-  // }
-  // for (let i=0;i<dataKeysPeru[0].length;i++){
-  //     showData.innerHTML += `
-  //     <li>${dataKeysPeru[0][i]}: ${dataValuesPeru[0][i]}</li>
-  //     `
-      // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
-  // }
-  // console.log(dataKeysPeru[0]);
-  // console.log(dataValuesPeru[0]);
-};
-showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
-
-
-
-
-
-
-
-
-
-
-
-// SHOWING DATA IN DOM
-// const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
-//     for (let i = 0; i < dataPeru.length; i++) {
-//         showData.innerHTML += `
-//         <div>
-//             <p><strong>Indicador:</strong> ${dataPeru[i].indicatorName}</p>
-//             <p><strong>Pais:</strong> ${dataPeru[i].countryName}</p>
-//             <p><strong>Data:</strong> ${dataKeysPeru[i]} : ${dataValuesPeru[i]}</p>
-//             </br>
-//         </div> 
-//         `;
-//         }
-//     };
-//     showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
