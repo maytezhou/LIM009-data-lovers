@@ -90,13 +90,14 @@ btnFilter.addEventListener('click', () => {
 
 
 //La lógica //
-// Funcion que tiene como input ////[{},{},{}..]
-//Que retorna  [["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
+// Funcion que tiene como input ////[{data:{key:value},indicatorCode:"",...},{data:..},{data:...}..]
+//Que retorna  [["keys","",""...],["keys","",""...],["keys","",""...]...]Array de arrays(Strings);
 const newArrayDataKeys = [];
 for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{}..]
     newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
+    //console.log(Object.keys(worldBankDataPeru[i].data));
 }
-// console.log(newArrayDataKeys);//[["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
+ console.log(newArrayDataKeys);//[["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
 
 
 //Creando una funcion 
@@ -128,7 +129,7 @@ for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{},{},{}..]
 
 //Creandouna funcion que tiene como input [{},{},{}..]
 //Que retorna [[num,num,num...],[num,num,num...],[num,num,num...]]
-const arrArrNum=(arrObje)=>{//[{},{},{}..]
+const arrArrNum=(arrObje)=>{//[{data,countryname,..},{},{}..]
   arrObje;
   const newArrNum=[];
   for(let w=0;w<arrObje.length;w++){
@@ -137,13 +138,16 @@ newArrNum.push(Object.values(arrObje[w].data));
   return newArrNum;//[[num,num,num...],[num,num,num...],[num,num,num...]]
 
 };
+arrArrNum(worldBankDataPeru);
+console.log(arrArrNum(worldBankDataPeru));
 
 
 
 
 
 
-// FUNCIÓN PARA MOSTRAR DATA EN DOM// PROBANDO SOLO CON UNO //COACHING DE DANI
+// FUNCIÓN PARA MOSTRAR DATA EN DOM// PROBANDO SOLO CON UNO //COACHING DE DANI//
+//La lógica
 const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {//[{},{},{},{}] y [["","",""],["","",""],["","";]...] y [[num],[num]...]
   for (let i = 0; i < 1; i++) {//[{},{},{}...]
   showData.innerHTML += `
@@ -163,7 +167,7 @@ showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
 
 
 
-//Funcion Para Mostar en Dom  años y numbers como lista Funcion para cualquir arraydeObjects
+//Funcion Para Mostar en Dom  años y numbers como lista// Funcion para cualquier arraydeObjects
 const showListOfAnyArrayIndicator=(arrayOfIndi,arrDataKeys,arrDataValues)=>{//[{},{},{},{}] y [["","",""...],["","",""...],["","",...],...] y [[num,num,...],[num,num,...]...]
   arrayOfIndi;
   arrDataKeys;
