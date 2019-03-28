@@ -1,4 +1,38 @@
-const worldBankDataPeru = window.WORLDBANK.PER.indicators;
+/* Manejo de data */
+
+// esta es una función de ejemplo
+// puedes ver como agregamos la función a nuestro objeto global window
+
+// const example = () => {
+//   return 'example';
+// };
+
+// window.example = example;
+
+window.WorldBank = {
+  getIndicatorCodeValues : (array) => {
+    const newArrayStrings = [];
+    for(let i = 0; i < array.length; i++){
+       const string = array[i].indicatorCode.slice(0,3);
+       newArrayStrings.push(string);
+    }
+    console.log('Array con indicators codes: ' + newArrayStrings);
+       return newArrayStrings
+   },
+   
+   getUniqueIndicatorCodeValues : (array) => {
+     const newArrayUniqueValues = [];
+    for(let i = 0; i <array.length; i++){
+      if(newArrayUniqueValues.indexOf(array[i]) === -1){
+        newArrayUniqueValues.push(array[i])
+      }
+    }
+    console.log('Array con valores unicos de indicator codes: ' + newArrayUniqueValues);
+    
+    return newArrayUniqueValues;
+  }
+};
+
 
 // INDICATORS
 // SL - SOCIAL-LABOR
@@ -72,36 +106,22 @@ const filterBySector = (data, sector) => {
       indicatorCodes = worldBankDataPeru;
   }
   return indicatorCodes;
-};
-
-
-// TURNING OBJECTS INTO ARRAYS
-const newArrayDataKeys = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
-    newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
-}
-// console.log(newArrayDataKeys);
-
-const newArrayDataValues = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {
-    newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
-}
-// console.log(newArrayDataValues);
   
-// FUNCIÓN PARA MOSTRAR DATA EN DOM
-const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {
-  // for (let i = 0; i < dataPeru.length; i++) {
-  // showData.innerHTML += `
-  //     <ul><li>${dataPeru[i].indicatorName} en ${dataPeru[i].countryName}</li></ul>
-  //     `;
-  // }
-  // for (let i=0;i<dataKeysPeru[0].length;i++){
-  //     showData.innerHTML += `
-  //     <li>${dataKeysPeru[0][i]}: ${dataValuesPeru[0][i]}</li>
-  //     `
-      // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
-  // }
-  // console.log(dataKeysPeru[0]);
-  // console.log(dataValuesPeru[0]);
+  
 };
-showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
+
+
+const filterByYears = (data, yearStart) => {
+  let years;
+
+    
+}
+
+
+
+// MOSTRAR DATA EN DOM
+// const mostrarData = (año, valor) => {
+//     return `
+//     <li>${año}: ${valor}</li>
+//     `
+// }
