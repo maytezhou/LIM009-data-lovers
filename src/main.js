@@ -68,3 +68,21 @@ const printIndicatorCodeNames = (array, domElement) => {
   domElement.innerHTML = string;
  }
  printIndicatorCodeNames(arrIndicatorsCodesNames,selectIndicatorCodeElement);
+
+ // FILTER BUTTON
+btnSearch.addEventListener('click', () => {
+  const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+  console.log(selectIndicatorCodeElement.value);
+  showInfoData.innerHTML = '';
+  for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
+    showInfoData.innerHTML =  `
+    <h2>Indicadores de ${filteredIndicatorNamesByCategory[i].countryName} según sector: ${indicatorCodesDescription[selectIndicatorCodeElement.value]}</h2>
+    `
+    for (let j = 0; j < filteredIndicatorNamesByCategory.length; j++){
+      showInfoData.innerHTML +=
+           `
+           <ul><li><a href="#">${filteredIndicatorNamesByCategory[j].indicatorName} en ${filteredIndicatorNamesByCategory[j].countryName}.</a></li></ul>
+           `
+    }
+  }
+});
