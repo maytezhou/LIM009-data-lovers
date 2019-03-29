@@ -9,8 +9,8 @@
 
 // window.example = example;
 
-window.WorldBank = {
-  getIndicatorCodeValues : (array) => {
+window.worldBank = {
+  getInitialsIndicatorCodeValues : (array) => {
     const newArrayStrings = [];
     for(let i = 0; i < array.length; i++){
        const string = array[i].indicatorCode.slice(0,3);
@@ -20,8 +20,8 @@ window.WorldBank = {
        return newArrayStrings
    },
    
-   getUniqueIndicatorCodeValues : (array) => {
-     const newArrayUniqueValues = [];
+   getUniqueInitialsIndicatorCodeValues : (array) => {
+    const newArrayUniqueValues = [];
     for(let i = 0; i <array.length; i++){
       if(newArrayUniqueValues.indexOf(array[i]) === -1){
         newArrayUniqueValues.push(array[i])
@@ -30,11 +30,23 @@ window.WorldBank = {
     console.log('Array con valores unicos de indicator codes: ' + newArrayUniqueValues);
     
     return newArrayUniqueValues;
-  }
+  },
+
+  filterBySector : (arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
+    let str = [];
+    for (let i = 0; i < arrayObj.length; i++) {
+      arrayObj[i]
+        if(arrayObj[i]["indicatorCode"].startsWith(initials)){
+          str.push(arrayObj[i])
+      }
+   }
+   return str;//[{},{},{},{}...]
+   },
 };
 
-
+/*
 // INDICATORS
+
 // SL - SOCIAL-LABOR
 const indicatorCodeSL = (indicator) => {
   return(indicator.indicatorCode.startsWith('SL.'));
@@ -82,34 +94,49 @@ const indicatorCodeSH = (indicator) => {
 
 
 // FUNCTION - FILTERED BY INDICATOR CODE
-const filterBySector = (data, sector) => {
-  let indicatorCodes;
-  if (sector === 'SL') {
-      indicatorCodes = data.filter(indicatorCodeSL)
-  } else if (sector === 'SE') {
-      indicatorCodes = data.filter(indicatorCodeSE)
-  } else if (sector === 'HD') {
-      indicatorCodes = data.filter(indicatorCodeHD)
-  } else if (sector === 'DT') {
-      indicatorCodes = data.filter(indicatorCodeDT)
-  } else if (sector === 'IC') {
-      indicatorCodes = data.filter(indicatorCodeIC)
-  } else if (sector === 'SP') {
-      indicatorCodes = data.filter(indicatorCodeSP)
-  } else if (sector === 'MS') {
-      indicatorCodes = data.filter(indicatorCodeMS)
-  } else if (sector === 'SG') {
-      indicatorCodes = data.filter(indicatorCodeSG)
-  } else if (sector === 'SH') {
-      indicatorCodes = data.filter(indicatorCodeSH)
-  } else {
-      indicatorCodes = worldBankDataPeru;
+window.filter = {
+  filterBySector : (data, sector) => {
+    let indicatorCodes;
+    if (sector === 'SL') {
+        indicatorCodes = data.filter(indicatorCodeSL)
+    } else if (sector === 'SE') {
+        indicatorCodes = data.filter(indicatorCodeSE)
+    } else if (sector === 'HD') {
+        indicatorCodes = data.filter(indicatorCodeHD)
+    } else if (sector === 'DT') {
+        indicatorCodes = data.filter(indicatorCodeDT)
+    } else if (sector === 'IC') {
+        indicatorCodes = data.filter(indicatorCodeIC)
+    } else if (sector === 'SP') {
+        indicatorCodes = data.filter(indicatorCodeSP)
+    } else if (sector === 'MS') {
+        indicatorCodes = data.filter(indicatorCodeMS)
+    } else if (sector === 'SG') {
+        indicatorCodes = data.filter(indicatorCodeSG)
+    } else if (sector === 'SH') {
+        indicatorCodes = data.filter(indicatorCodeSH)
+    } else {
+        indicatorCodes = arrDataWorldBankPeru;
+    }
+    return indicatorCodes;
   }
-  return indicatorCodes;
-  
-  
+};
+*/
+
+/*
+const filterBySector = (data, comparisonList, userSelection) => {
+  let newArray = [];
+  for (let i = 0; i < data.length; i++){
+    for (let j = 0; j < comparisonList.length; i++) {
+      if (userSelection === comparisonList[i]) {
+        newArray.push(data[i].indicatorCode.startsWith(userSelection))
+      }
+    }
+  }
 };
 
+filterBySector()
+*/
 
 const filterByYears = (data, yearStart) => {
   let years;
