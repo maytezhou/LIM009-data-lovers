@@ -1,11 +1,13 @@
-const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;
+const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
 const showInfoData = document.getElementById('show-info-data');
 const showFilteredCategory = document.getElementById('show-filtered-category');
 const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
-const arrUniqueIndicatorCodes = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
-const indicatorCodesDescription = {
+const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
+console.log(arrUniqueInitialsCode);//["","",""...]
+//Creo un {} nuevo donde explico lo que significa cada Inicial
+const initialsDescription = {
   "SL." : 'Laboral',
   "per" : 'Protección Social',
   "HD." : 'Índice de Capital Humano', 
@@ -19,69 +21,42 @@ const indicatorCodesDescription = {
 };
 
 
-// const indicatorCode = (indicator) => {
-//   return(indicator.indicatorCode.startsWith(selectIndicatorCode.value));
-// }; 
-// console.log(indicatorCode);
-
-
-/* TURNING OBJECTS INTO ARRAYS
-{keys:value},{keys:value},{keys:value} to ['keys:value'],['keys:value'],['keys:value'] 
-*/
-let newArrayDataKeys = [];
-for (let i = 0; i < arrDataWorldBankPeru.length; i++) {
-    newArrayDataKeys.push(Object.keys(arrDataWorldBankPeru[i].data));
-}
-// console.log(newArrayDataKeys);
-
-let newArrayDataValues = [];
-for (let i = 0; i < arrDataWorldBankPeru.length; i++) {
-    newArrayDataValues.push(Object.values(arrDataWorldBankPeru[i].data));
-}
-// console.log(newArrayDataValues);
-
-
-
+//Utilizo el {} creado anteriormente para crear [{},{},{}..] c/u de los {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
+//Creando {} o creando Nueva Data
 // INDICATOR CODES + DESCRIPTION
-const arrIndicatorsCodesNames = [];
-/* Me sirve para comparar la longitud de mi array de codigo de indicadores con 
-mi objeto de descripciones.
-*/
-//console.log(arrSectoresUnicos);
-//console.log(Object.keys(descripcionPorSector))
-// RECORRER EL ARRAY
-for(let i = 0; i < arrUniqueIndicatorCodes.length; i++){
-    // console.log(arrSectoresUnicos[i])
-    //console.log(descripcionPorSector[arrSectoresUnicos[i]])
-    arrIndicatorsCodesNames.push({
-       indicador :   arrUniqueIndicatorCodes[i],
-       descripcion : indicatorCodesDescription[arrUniqueIndicatorCodes[i]]
+const arrIndicatorsInitialsAndDescription = [];
+for(let i = 0; i < arrUniqueInitialsCode.length; i++){//["",""...]
+   console.log(arrUniqueInitialsCode[i]);
+    arrIndicatorsInitialsAndDescription.push({
+       indicador :   arrUniqueInitialsCode[i],//Initials of each Indicator
+       descripcion : initialsDescription[arrUniqueInitialsCode[i]]//Description
     });
 };
-console.log(arrIndicatorsCodesNames);
+console.log(arrIndicatorsInitialsAndDescription);//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
 
-const printIndicatorCodeNames = (array, domElement) => {
+//Funcion para Imprimir en el Dom una opcion de selecion con c/u de las descripciones de las Iniciales de los Indicadores.
+const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
   let string = '<option value="Todos">Todos</option>';
   for(let i = 0; i < array.length; i++){
       string += `<option value=${array[i].indicador}>${array[i].descripcion}</option>`
   }
   domElement.innerHTML = string;
  }
- printIndicatorCodeNames(arrIndicatorsCodesNames,selectIndicatorCodeElement);
+ printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
 
  // FILTER BUTTON
 btnSearch.addEventListener('click', () => {
-  const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+  const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
   console.log(selectIndicatorCodeElement.value);
   showInfoData.innerHTML = '';
-  for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
+  for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoData.innerHTML =  `
-    <h2>Indicadores de ${filteredIndicatorNamesByCategory[i].countryName} según sector: ${indicatorCodesDescription[selectIndicatorCodeElement.value]}</h2>
+    <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${arrIndicatorsInitialsAndDescription[selectIndicatorCodeElement.value]}</h2>
     `
-    for (let j = 0; j < filteredIndicatorNamesByCategory.length; j++){
+    for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
       showInfoData.innerHTML +=
            `
-           <ul><li><a href="#">${filteredIndicatorNamesByCategory[j].indicatorName} en ${filteredIndicatorNamesByCategory[j].countryName}.</a></li></ul>
+           <ul><li><a href="#">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</a></li></ul>
            `
     }
   }
