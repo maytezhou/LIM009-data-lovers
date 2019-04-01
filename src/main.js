@@ -43,6 +43,34 @@ if(arrayOfUniqueCountryNames.indexOf(window.WORLDBANK[properties[i]]["indicators
 arrayOfUniqueCountryNames;
 //console.log(arrayOfUniqueCountryNames);
 
+//Creando la funcion Obteniendo los countrynames UNICOS Perú,México,Chile,Brasil
+//Recibira como input un object
+//Retornara countrynames UNICOS Perú,México,Chile,Brasil
+const uniqueCountryNames=(obj)=>{//{}
+arrayOfUniqueCountryNames1=[];
+  const properties2=Object.keys(obj)//["",""...]
+  for(let i=0;i<properties2.length;i++){//["",""...]
+    obj[properties[i]]//{} cada countryObject
+    obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
+    for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
+      obj[properties[i]]["indicators"][j]//{} indicador
+      obj[properties[i]]["indicators"][j]["countryName"]//"" strings 
+      if(arrayOfUniqueCountryNames1.indexOf(obj[properties[i]]["indicators"][j]["countryName"])===-1){
+        arrayOfUniqueCountryNames1.push(obj[properties[i]]["indicators"][j]["countryName"])
+      }
+    }
+  }
+return arrayOfUniqueCountryNames1;
+};
+console.log(uniqueCountryNames(window.WORLDBANK));
+
+
+
+
+
+
+
+
 
 //La lógica Obteniendo los countrycodes PER,MEX,BRA,CHL UNICOS
 window.WORLDBANK;//{}
@@ -67,7 +95,7 @@ if(arrayOfUniqueCountryCodes.indexOf(window.WORLDBANK[properties1[i]]["indicator
 }
 }
 arrayOfUniqueCountryCodes;
-console.log(arrayOfUniqueCountryCodes);
+//console.log(arrayOfUniqueCountryCodes);
 
 
 
