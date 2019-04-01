@@ -32,8 +32,26 @@ const objToArrObj=(obj)=>{//{}
   }
 return arr1;
 }
+
+
+//La logica 
 objToArrObj(window.WORLDBANK);//[{},{},{}..] Array de  Objects c/u representa un país
 console.log(objToArrObj(window.WORLDBANK));//[{},{},{}...] Array de Objects c/u representa un país
+const arrOfCountries=objToArrObj(window.WORLDBANK)
+let arrOfCountryNamesOfAllIndicators=[]
+for(let i=0;i<arrOfCountries.length;i++){
+  arrOfCountries[i] // 1 object one countrie object {}
+arrOfCountries[i].indicators;//Array de Indicadores [{},{},{}...]
+for(let j=0;j<arrOfCountries[i].indicators.length;j++){//[{},{},{}...]
+  arrOfCountries[i].indicators[j]//{} 1 indicador
+  arrOfCountryNamesOfAllIndicators.push(arrOfCountries[i].indicators[j]["countryName"])
+}
+}
+arrOfCountryNamesOfAllIndicators;
+console.log(arrOfCountryNamesOfAllIndicators);//["","",""]//Arr con 556 strings los NOmbres de los Paises de otdos los Indicadores
+worldBank.getUniqueCountryNamesOfAllIndicators(arrOfCountryNamesOfAllIndicators);//["","",""]Array de Str 
+console.log(worldBank.getUniqueCountryNamesOfAllIndicators(arrOfCountryNamesOfAllIndicators));//["","",""]Array de Str con los  unique countryNames
+
 
 
 

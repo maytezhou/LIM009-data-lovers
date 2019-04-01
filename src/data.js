@@ -20,6 +20,17 @@ window.worldBank = {
     
     return newArrayUniqueValues;//["","",""...]
   },
+  getUniqueCountryNamesOfAllIndicators : (array) => {//["","",""...]
+    const newArrayUniqueCountryNames = [];
+    for(let i = 0; i <array.length; i++){
+      if(newArrayUniqueCountryNames.indexOf(array[i]) === -1){
+        newArrayUniqueCountryNames.push(array[i])
+      }
+    }
+    console.log('Array con valores unicos de IndicatorsName: ' + newArrayUniqueCountryNames);
+    
+    return newArrayUniqueCountryNames;//["","",""...]
+  },
 
   filterBySector : (arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
     let str = [];
