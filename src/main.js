@@ -35,11 +35,12 @@ return arr1;
 
 
 //La logica 
+//Creando una funcion que reciba como input //[{},{},{}..] Array de  Objects c/u representa un país
 objToArrObj(window.WORLDBANK);//[{},{},{}..] Array de  Objects c/u representa un país
 console.log(objToArrObj(window.WORLDBANK));//[{},{},{}...] Array de Objects c/u representa un país
 const arrOfCountries=objToArrObj(window.WORLDBANK)
 let arrOfCountryNamesOfAllIndicators=[]
-for(let i=0;i<arrOfCountries.length;i++){
+for(let i=0;i<arrOfCountries.length;i++){//[{},{},{}..] Array de  Objects c/u representa un país
   arrOfCountries[i] // 1 object one countrie object {}
 arrOfCountries[i].indicators;//Array de Indicadores [{},{},{}...]
 for(let j=0;j<arrOfCountries[i].indicators.length;j++){//[{},{},{}...]
@@ -51,6 +52,32 @@ arrOfCountryNamesOfAllIndicators;
 console.log(arrOfCountryNamesOfAllIndicators);//["","",""]//Arr con 556 strings los NOmbres de los Paises de otdos los Indicadores
 worldBank.getUniqueCountryNamesOfAllIndicators(arrOfCountryNamesOfAllIndicators);//["","",""]Array de Str 
 console.log(worldBank.getUniqueCountryNamesOfAllIndicators(arrOfCountryNamesOfAllIndicators));//["","",""]Array de Str con los  unique countryNames
+
+
+//Creando una funcion 
+//Reciba como input un object
+//Que reciba como output un  ["","",""];
+//Dentro de esta funcion estoy utilizando una funcion previa que ya cree .La funcion objToArrObj;
+//Dentro de esta funcion estoy utilizando una funcion previa que ay cree .La funcion se llama getUniqueCountryNamesOfAllIndicators;
+
+const objToArrOfUniqueStr=(obj)=>{//{}
+  arrCountryNamesOfAllIndicators=[];
+  arrOfCountryObjects=objToArrObj(obj);//[{},{},{},{}] Array de Objects c/u representa un país
+   for(let i=0;i<arrOfCountryObjects.length;i++){
+   arrOfCountryObjects[i] //{}
+   arrOfCountryObjects[i]["indicators"]//[{},{},{},]array de objects Array de Indicadores
+   for(let j=0;j<arrOfCountryObjects[i]["indicators"].length;j++){
+    arrOfCountryObjects[i]["indicators"][j]//Object{} cada Indicador
+   arrCountryNamesOfAllIndicators.push(arrOfCountryObjects[i]["indicators"][j]["countryName"]);
+   }
+  };
+  
+ arrCountryNamesOfAllIndicators;//["","",""...] arr con los cuntrynames repetidos
+const arrUniqueCountryNames=worldBank.getUniqueCountryNamesOfAllIndicators(arrCountryNamesOfAllIndicators);
+return arrUniqueCountryNames;
+};
+objToArrOfUniqueStr(window.WORLDBANK);
+console.log(objToArrOfUniqueStr(window.WORLDBANK));
 
 
 
