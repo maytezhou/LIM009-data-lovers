@@ -20,6 +20,38 @@ window.worldBank = {
     
     return newArrayUniqueValues;//["","",""...]
   },
+  uniqueCountryNames:(obj)=>{//{}
+  arrayOfUniqueCountryNames1=[];
+    const properties2=Object.keys(obj)//["",""...]
+    for(let i=0;i<properties2.length;i++){//["",""...]
+      obj[properties[i]]//{} cada countryObject
+      obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
+      for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
+        obj[properties[i]]["indicators"][j]//{} indicador
+        obj[properties[i]]["indicators"][j]["countryName"]//"" strings 
+        if(arrayOfUniqueCountryNames1.indexOf(obj[properties[i]]["indicators"][j]["countryName"])===-1){
+          arrayOfUniqueCountryNames1.push(obj[properties[i]]["indicators"][j]["countryName"])
+        }
+      }
+    }
+  return arrayOfUniqueCountryNames1;//["",""]  array de strings countrynames UNICOS Perú,México,Chile,Brasil
+  },
+  uniqueCountryCodes:(obj)=>{//{}
+  arrayOfUniqueCountryCodes1=[];
+    const properties3=Object.keys(obj)//["",""...]
+    for(let i=0;i<properties3.length;i++){//["",""...]
+      obj[properties3[i]]//{} cada countryObject
+      obj[properties3[i]]["indicators"]//[{},{},{}] array de Indicadores
+      for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
+        obj[properties3[i]]["indicators"][j]//{} indicador
+        obj[properties3[i]]["indicators"][j]["countryCode"]//"" strings 
+        if(arrayOfUniqueCountryCodes1.indexOf(obj[properties3[i]]["indicators"][j]["countryCode"])===-1){
+          arrayOfUniqueCountryCodes1.push(obj[properties3[i]]["indicators"][j]["countryCode"])
+        }
+      }
+    }
+  return arrayOfUniqueCountryCodes1;//["","",""] array de strings countrycodes PER,MEX,BRA,CHL UNICOS
+  },
   objToArrObj:(obj)=>{//{}
   const arr1=[];
   const properties=Object.keys(obj);
