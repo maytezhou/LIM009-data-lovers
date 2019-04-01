@@ -22,8 +22,22 @@ console.log(arrUniqueInitialsCode);//["","",""...]
 window.WORLDBANK;
 console.log(window.WORLDBANK);
 Object.keys(window.WORLDBANK);//Array ["","",""] de STR countrynames
-console.log(Object.keys(window.WORLDBANK));
+console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
+worldBank.objToArrObj(window.WORLDBANK); //un object  {},to an array of Objects [{},{},{}];
+console.log(worldBank.objToArrObj(window.WORLDBANK))//un object  {},to an array of Objects [{},{},{}];
+worldBank.objToArrOfUniqueStr(window.WORLDBANK);//["","",""...] arr con los countrynames unicos
+console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos
 
+
+window.WORLDBANK;
+
+console.log(window.WORLDBANK);//{}
+Object.keys(window.WORLDBANK);//Arr Str strings properties PER,MEX,CHL,BRA
+console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
+const properties=Object.keys(window.WORLDBANK);//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
+for (let i=0;i<properties.length;i++){
+  console.log(window.WORLDBANK[properties[i]]);
+}
 
 
 
@@ -31,7 +45,6 @@ worldBank.objToArrObj(window.WORLDBANK); //un object  {},to an array of Objects 
 console.log(worldBank.objToArrObj(window.WORLDBANK))//un object  {},to an array of Objects [{},{},{}];
 worldBank.objToArrOfUniqueStr(window.WORLDBANK);//["","",""...] arr con los countrynames unicos
 console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos
-
 
 
 
@@ -84,12 +97,6 @@ objectToArr(window.WORLDBANK);//[["",{}],["",{},["",{}]..] Array of Arrays c/arr
 
 
 
-
-
-
-
-
-
 //Creo un {} nuevo donde explico lo que significa cada Inicial
 const initialsDescription = {
   "SL." : 'Laboral',
@@ -129,38 +136,10 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
   domElement.innerHTML = string;
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
+ let string = '<option value="Todos">Todos</option>';
 
 
 
-//Funcion para Imprimir en el Dom ...
-const printIndicatorCountryName = (obj1,domElement) => {//["","",""..]  y DOM element
-  obj1;
-  properties=Object.keys(obj1);
-
-
-for(let i=0;i<properties.length;i++){
-obj1[properties[i]];//{}  country object
-obj1[properties[i]]["indicators"];//[{},{}..] array de Indicadores 
-for(let j=0;j<obj1[properties[i]]["indicators"].length;j++){
-  obj1[properties[i]]["indicators"][j]//{} one indicators
-  const arrStr=obj1[properties[i]]["indicators"][j]["countryName"]
-  const uniqueStr=worldBank.getUniqueCountryNamesOfAllIndicators(arrStr);
-  for(let k=0;k<uniqueStr;k++){
-
-
-  let string = `<option value=${Obj1[properties[i]]}>Todos</option>`;
-  
-      string += `<option value=${properties[i]}>${uniqueStr[k]}</option>`
-  
-  domElement.innerHTML = string;
-
-}
-}
- }
-}
-
-
-printIndicatorCountryName(window.WORLDBANK,selectCountryName); //["","",""] coutrynames unicos y Dom element
 
 
 

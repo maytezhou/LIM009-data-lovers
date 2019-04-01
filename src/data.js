@@ -49,8 +49,7 @@ return arr1;
     arrOfCountryObjects[i]["indicators"][j]//Object{} cada Indicador
    arrCountryNamesOfAllIndicators.push(arrOfCountryObjects[i]["indicators"][j]["countryName"]);
    }
-  };
-  
+  };  
  arrCountryNamesOfAllIndicators;//["","",""...] arr con los cuntrynames repetidos
 const arrUniqueCountryNames=worldBank.getUniqueCountryNamesOfAllIndicators(arrCountryNamesOfAllIndicators);//["","",""...] arr con los contrynames unicos
 return arrUniqueCountryNames;//["","",""...] arr con los countrynames unicos
