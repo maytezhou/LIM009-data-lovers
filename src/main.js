@@ -4,6 +4,8 @@ const showFilteredCategory = document.getElementById('show-filtered-category');
 const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
+const showSelectedIndicatorName = document.getElementById('show-selected-indicator-name');
+const showIndicatorNameKeysValues = document.getElementById('show-indicator-name-keys-values');
 const arrUniqueIndicatorCodes = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
 const indicatorCodesDescription = {
   "SL." : 'Laboral',
@@ -58,7 +60,6 @@ for(let i = 0; i < arrUniqueIndicatorCodes.length; i++){
        descripcion : indicatorCodesDescription[arrUniqueIndicatorCodes[i]]
     });
 };
-console.log(arrIndicatorsCodesNames);
 
 const printIndicatorCodeNames = (array, domElement) => {
   let string = '<option value="Todos">Todos</option>';
@@ -73,16 +74,72 @@ const printIndicatorCodeNames = (array, domElement) => {
 btnSearch.addEventListener('click', () => {
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   console.log(selectIndicatorCodeElement.value);
+  let filteredIndicatorNamesByCategoryKeysArray = [];
+  for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
+    filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorNamesByCategory[i].data));
+  };
+  let filteredIndicatorNamesByCategoryValuesArray = [];
+  for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
+    filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[i].data));
+  };
+  console.log(filteredIndicatorNamesByCategoryKeysArray);
+  console.log(filteredIndicatorNamesByCategoryValuesArray);
   showInfoData.innerHTML = '';
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     showInfoData.innerHTML =  `
-    <h2>Indicadores de ${filteredIndicatorNamesByCategory[i].countryName} según sector: ${indicatorCodesDescription[selectIndicatorCodeElement.value]}</h2>
-    `
-    for (let j = 0; j < filteredIndicatorNamesByCategory.length; j++){
-      showInfoData.innerHTML +=
-           `
-           <ul><li><a href="#">${filteredIndicatorNamesByCategory[j].indicatorName} en ${filteredIndicatorNamesByCategory[j].countryName}.</a></li></ul>
-           `
-    }
+      <h2>Indicadores de ${filteredIndicatorNamesByCategory[i].countryName} según sector: ${indicatorCodesDescription[selectIndicatorCodeElement.value]}</h2>
+      `
+    for (let j = 0; j < filteredIndicatorNamesByCategory.length; j++) {
+      showInfoData.innerHTML +=`
+        <ul><a href="#"><li class="indicator-name-data">${filteredIndicatorNamesByCategory[j].indicatorName} en ${filteredIndicatorNamesByCategory[j].countryName}.</li></a></ul>
+        `   
+      }
+    }       
   }
+);
+
+
+
+// MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
+showInfoData.addEventListener('click', (e) =>{
+  console.log(e.target.innerText);
+  const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+  // console.log(filteredIndicatorNamesByCategory);
+
+  let filteredIndicatorNamesByCategoryValuesArray = [];
+  for (let j = 0;j < filteredIndicatorNamesByCategory.length; j++) {
+    filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[j].data));
+  };
+  showSelectedIndicatorName.innerHTML =
+  `
+  <h2>${e.target.innerText}</h2>
+  `
+  
+  // showIndicatorNameKeysValues.innerHTML = '';
+  // let filteredIndicatorNamesByCategoryKeysArray = [];
+  // for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
+  //   filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorNamesByCategory[i].data));
+  //   let filteredIndicatorNamesByCategoryValuesArray = [];
+  //   for (let j = 0;j < filteredIndicatorNamesByCategory.length; j++) {
+  //     filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[j].data));
+  //     showIndicatorNameKeysValues.innerHTML =
+  //     `
+  //     <li>${filteredIndicatorNamesByCategoryKeysArray[i]} : ${filteredIndicatorNamesByCategoryValuesArray[j]}</li>
+  //     `
+  //   };
+  };
+  console.log(filteredIndicatorNamesByCategoryKeysArray);
+  console.log(filteredIndicatorNamesByCategoryValuesArray);
+  
 });
+
+
+
+
+// const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+// showSelectedIndicatorName.innerHTML = '';
+//   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++){
+//     showSelectedIndicatorName.innerHTML += `
+//       <h2>${filteredIndicatorNamesByCategory[0]}</h2>
+//     `
+//   };

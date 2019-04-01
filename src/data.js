@@ -16,7 +16,6 @@ window.worldBank = {
        const string = array[i].indicatorCode.slice(0,3);
        newArrayStrings.push(string);
     }
-    console.log('Array con indicators codes: ' + newArrayStrings);
        return newArrayStrings
    },
    
@@ -26,9 +25,7 @@ window.worldBank = {
       if(newArrayUniqueValues.indexOf(array[i]) === -1){
         newArrayUniqueValues.push(array[i])
       }
-    }
-    console.log('Array con valores unicos de indicator codes: ' + newArrayUniqueValues);
-    
+    }    
     return newArrayUniqueValues;
   },
 
