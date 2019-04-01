@@ -1,41 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Lovers - World Bank Data</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css" />
+    <title>Data Lovers - World Bank Data</title>
   </head>
   <body>
     <header>
-      <h1>Estadísticas del Banco Mundial</h1>
+        <img src="" alt="">Logo de la empresa.</img>
     </header>
-    <aside>
-      <p><strong>Filtros:</strong></p>
-      <label for="indicator-code"><strong>Sector:</strong></label>
-      <select name="filter-indicator-code" id="filter-indicator-code">
-        <!-- APLICAR 'TODOS' EN FUNCIÓN -->
-        <option value="Todos" selected >Todos</option>
-        <option value="SL">Trabajo</option>
-        <option value="DT">Deuda externa</option>
-        <option value="IC">Inversión</option>
-        <option value="SE">Educación</option>
-        <option value="SP">Población</option>
-        <option value="MS">Estadísticas militares</option>
-        <option value="SG">Género</option>
-        <option value="SH">Salud</option>
-      </select>
-      
-      <button id="btn-filter">Filtrar</button>
-    </aside>
     <main>
-      <p>Se mostrará la data en DOM y consola.</p>
+        <h1>Los principales indicadores socioeconómicos de Latinoamérica en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+        <section>
+            <h3>Selecciona el país o categoría de la data que quieres ver.</h3>
+            <h3>También puedes usar una palabra clave.</h3>
+            <section>
+                <label for="select-country-code"><strong>Pais:</strong></label></br>
+                <select name="select-country-code" id="select-country-code">
+                    <option value="Todos">Todos</option>
+                </select></br>
+                <label for="select-indicator-code"><strong>Categorías:</strong></label></br> 
+                <select name="select-indicator-code" id="select-indicator-code">
+                    <option value="Todos">Todos</option>
+                </select></br>
+                <input type="text" placeholder="Palabra clave" name="search-keyword"></br>
+                <button id="btn-search">Buscar</button>
+            </section>
+            <section>
+                <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
+            </section>
+        </section>
     </main>
-    <p id=show-data></p>
-    <footer>Empresa de Estadísticas Mayte y Fran</footer>
+    <article>
+      <div id="show-info-data"></div>
+      <button>Volver</button>
+    </article>
+    <article>
+        <h2>${nombre del indicador}</h2>
+        <figure>Gráfico correspondiente al indicador seleccionado.</figure>
+        <section>(Filtro para gráfico) Desde:
+            <select name="select-start-year" id="select-start-year">
+                <option value="2000" selected>2000</option>
+                <option value="2001">2001</option>
+            </select>
+                Hasta:
+            <select name="select-end-year" id="select-end-year">
+                <option value="2016">2016</option>
+                <option value="2017" selected>2017</option>
+            </select>
+        </section>
+        <section>
+            <ul>
+                <li><strong>Año - Porcentaje</strong></li>
+                <li>${Data-Key[0]} : ${Data-Value[0]}</li>
+                <li>${Data-Key[1]} : ${Data-Value[1]}</li>
+                <li>${Data-Key[2]} : ${Data-Value[2]}</li>
+            </ul>
+            <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
+        </section>
+        <button>Volver</button>
+    </article>
+    <footer>
+        <p><a href="#">Statistics Inc.</a></p>
+    </footer>
     <script src="./data/worldbank/worldbank.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
   </body>
-  </html>
-  
+</html>

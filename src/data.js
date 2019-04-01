@@ -1,78 +1,36 @@
-const worldBankDataPeru = window.WORLDBANK.PER.indicators;
-const showData = document.getElementById('show-data');
-const filterIndicatorCode = document.getElementById('filter-indicator-code');
-const filterYears = document.getElementById('filter-years');
-const btnFilter = document.getElementById('btn-filter');
+window.worldBank = {
+  getInitialsIndicatorCodeValues : (array) => {//[{},{},{}...]
+    const newArrayStrings = [];
+    for(let i = 0; i < array.length; i++){
+       const string = array[i].indicatorCode.slice(0,3);
+       newArrayStrings.push(string);
+    }
+    console.log('Array con Initials indicatorsCodes: ' + newArrayStrings);
+       return newArrayStrings;//["","",""...]
+   },
+   
+   getUniqueInitialsIndicatorCodeValues : (array) => {//[{},{},{}...]
+    const newArrayUniqueValues = [];
+    for(let i = 0; i <array.length; i++){
+      if(newArrayUniqueValues.indexOf(array[i]) === -1){
+        newArrayUniqueValues.push(array[i])
+      }
+    }
+    console.log('Array con valores unicos de Initials indicatorCodes: ' + newArrayUniqueValues);
+    
+    return newArrayUniqueValues;//["","",""...]
+  },
 
-// INDICATORS
-// SL - SOCIAL-LABOR
-const indicatorCodeSL = (indicator) => {
-  return(indicator.indicatorCode.startsWith('SL.'));
-}
-
-// SE - SOCIAL:EDUCATION
-const indicatorCodeSE = (indicator) => {
-  return(indicator.indicatorCode.startsWith('SE.'));
-}
-
-// HD - 
-const indicatorCodeHD = (indicator) => {
-  return(indicator.indicatorCode.startsWith('HD.'));
-}
-
-// DT - DEBT:EXTERNAL
-const indicatorCodeDT = (indicator) => {
-  return(indicator.indicatorCode.startsWith('DT.'));
-}
-
-// IC - INVESTMENT CLIMATE
-const indicatorCodeIC = (indicator) => {
-  return(indicator.indicatorCode.startsWith('IC.'));
-}
-
-// SP - SOCIAL:POPULATION
-const indicatorCodeSP = (indicator) => {
-  return(indicator.indicatorCode.startsWith('SP.'));
-}
-
-// MS - MILITARY STATISTICS
-const indicatorCodeMS = (indicator) => {
-  return(indicator.indicatorCode.startsWith('MS.'));
-}
-
-// SG - SOCIAL GENDER
-const indicatorCodeSG = (indicator) => {
-  return(indicator.indicatorCode.startsWith('SG.'));
-}
-
-// SH - SOCIAL:HEALTH
-const indicatorCodeSH = (indicator) => {
-  return(indicator.indicatorCode.startsWith('SH.'));
-}
-
-// FUNCTION - FILTERED BY INDICATOR CODE
-const filterBySector = (data, sector) => {
-  let indicatorCodes;
-  if (sector === 'SL') {
-      indicatorCodes = data.filter(indicatorCodeSL)
-  } else if (sector === 'SE') {
-      indicatorCodes = data.filter(indicatorCodeSE)
-  } else if (sector === 'HD') {
-      indicatorCodes = data.filter(indicatorCodeHD)
-  } else if (sector === 'DT') {
-      indicatorCodes = data.filter(indicatorCodeDT)
-  } else if (sector === 'IC') {
-      indicatorCodes = data.filter(indicatorCodeIC)
-  } else if (sector === 'SP') {
-      indicatorCodes = data.filter(indicatorCodeSP)
-  } else if (sector === 'MS') {
-      indicatorCodes = data.filter(indicatorCodeMS)
-  } else if (sector === 'SG') {
-      indicatorCodes = data.filter(indicatorCodeSG)
-  } else if (sector === 'SH') {
-      indicatorCodes = data.filter(indicatorCodeSH)
-  }
-  return indicatorCodes;
+  filterBySector : (arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
+    let str = [];
+    for (let i = 0; i < arrayObj.length; i++) {
+      arrayObj[i]
+        if(arrayObj[i]["indicatorCode"].startsWith(initials)){
+          str.push(arrayObj[i])
+      }
+   }
+   return str;//[{},{},{},{}...]
+   },
 };
 
 // FILTER BUTTON
