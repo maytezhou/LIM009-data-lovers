@@ -31,115 +31,80 @@ window.worldBank = {
    }
    return str;//[{},{},{},{}...]
    },
-};
-
-// FILTER BUTTON
-btnFilter.addEventListener('click', () => {
-  let filterIndicatorValue = filterIndicatorCode.value;
-  console.log(filterIndicatorValue);
-  const dataFiltrada = filterBySector(worldBankDataPeru, filterIndicatorCode.value);
-  console.log(dataFiltrada);
-  
+   obtainingOnlyOneIndicatorData:(arrayPerSector,idOfIndicator)=>{//[{},{},{}...]
+    arrayPerSector;
+    idOfIndicator;
+    let str="";
+    for(let r=0;r<arrayPerSector.length;r++){
+       if(arrayPerSector[r]["indicatorCode"]===idOfIndicator){
+          arrayPerSector[r]
+       }
+   str+=arrayPerSector }
+    return str+=arrayPerSector;//{} data object
+   
+    },
+    arrOfArrStr:(arrOb)=>{//[{},{},{}..]
+   const arrArrStr=[];
+   for(let q=0;q<arrOb.length;q++){
+     arrArrStr.push(Object.keys(arrOb[q].data));
+ }
+ return arrArrStr;//[["","",""...],["","",""...],["","",""...]...];
+ },
+ arrArrNum:(arrObje)=>{//[{data,countryname,..},{},{}..]
+   arrObje;
+   const newArrNum=[];
+   for(let w=0;w<arrObje.length;w++){
+ newArrNum.push(Object.values(arrObje[w].data));
+   }
+   return newArrNum;//[[num,num,num...],[num,num,num...],[num,num,num...]]
  
-});
-
-
-
-
-
-//La lógica //
-// Funcion que tiene como input ////[{data:{key:value},indicatorCode:"",...},{data:..},{data:...}..]
-//Que retorna  [["keys","",""...],["keys","",""...],["keys","",""...]...]Array de arrays(Strings);
-const newArrayDataKeys = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{}..]
-    newArrayDataKeys.push(Object.keys(worldBankDataPeru[i].data));
-    //console.log(Object.keys(worldBankDataPeru[i].data));
-}
- console.log(newArrayDataKeys);//[["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
-
-
-//Creando una funcion 
-// Funcion que tiene como input //[{},{},{}..]
-//Que retorna  [["","",""...],["","",""...],["","",""...]...]Array de arrays(Strings years);
-const arrOfArrStr=(arrOb)=>{//[{},{},{}..]
-  const arrArrStr=[];
-  for(let q=0;q<arrOb.length;q++){
-    arrArrStr.push(Object.Keys(arrOb[q].data));
-}
-return arrArrStr;//[["","",""...],["","",""...],["","",""...]...];
-}
-
-
-
-
-
-
-//La lógica
-// Funcion que tiene como input ////[{},{},{}..]
-//Que retorna [[num,num,num...],[num,num,num...],[num,num,num...]]
-
-const newArrayDataValues = [];
-for (let i = 0; i < worldBankDataPeru.length; i++) {//[{},{},{},{},{}..]
-    newArrayDataValues.push(Object.values(worldBankDataPeru[i].data));
-}
-// console.log(newArrayDataValues);//[[num,num,num...],[num,num,num...],[num,num,num...]] percentage Array de arrays (percentage numbers);
-  
-
-//Creandouna funcion que tiene como input [{},{},{}..]
-//Que retorna [[num,num,num...],[num,num,num...],[num,num,num...]]
-const arrArrNum=(arrObje)=>{//[{data,countryname,..},{},{}..]
-  arrObje;
-  const newArrNum=[];
-  for(let w=0;w<arrObje.length;w++){
-newArrNum.push(Object.values(arrObje[w].data));
-  }
-  return newArrNum;//[[num,num,num...],[num,num,num...],[num,num,num...]]
-
-};
-arrArrNum(worldBankDataPeru);
-console.log(arrArrNum(worldBankDataPeru));
-
-
-
-
-
-
-// FUNCIÓN PARA MOSTRAR DATA EN DOM// PROBANDO SOLO CON UNO //COACHING DE DANI//
-//La lógica
-const showDataPeru = (dataPeru, dataKeysPeru, dataValuesPeru) => {//[{},{},{},{}] y [["","",""],["","",""],["","";]...] y [[num],[num]...]
-  for (let i = 0; i < 1; i++) {//[{},{},{}...]
-  showData.innerHTML += `
-      <p><strong>Indicador:</strong> ${dataPeru[0].indicatorName} en ${dataPeru[0].countryName}</p>
-      `;
-  }
-  for (let i=0;i<dataKeysPeru[0].length;i++){
-      showData.innerHTML += `
-      <li>${dataKeysPeru[0][i]}: ${dataValuesPeru[0][i]}</li>
-      `
-      // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
-  }
-  // console.log(dataKeysPeru[0]);
-  // console.log(dataValuesPeru[0]);
-};
-showDataPeru (worldBankDataPeru,newArrayDataKeys, newArrayDataValues);
-
-
-
-//Funcion Para Mostar en Dom  años y numbers como lista// Funcion para cualquier arraydeObjects
-const showListOfAnyArrayIndicator=(arrayOfIndi,arrDataKeys,arrDataValues)=>{//[{},{},{},{}] y [["","",""...],["","",""...],["","",...],...] y [[num,num,...],[num,num,...]...]
-  arrayOfIndi;
-  arrDataKeys;
-  arrDataValues;
-  for (let t = 0; t<arrayOfIndi.length; t++) {//[{},{},{}...]
-    showData.innerHTML += `
-        <p><strong>Indicador:</strong> ${arrayOfIndi[t].indicatorName} en ${arrayOfIndi[t].countryName}</p>
-        `;
+ },
+ showListOfAnyArrayIndicator:(arrayOfIndi,arrDataKeys,arrDataValues,elementDom)=>{//[{},{},{},{}] y [["","",""...],["","",""...],["","",...],...] y [[num,num,...],[num,num,...]...]
+   arrayOfIndi;
+   arrDataKeys;
+   arrDataValues;
+   for (let t = 0; t<arrayOfIndi.length; t++) {//[{},{},{}...]
+     elementDom.innerHTML += `
+         <p><strong>Indicador:</strong> ${arrayOfIndi[t].indicatorName} en ${arrayOfIndi[t].countryName}</p>
+         `;
+     }
+     for (let s=0;s<arrDataKeys[t].length;s++){
+       elementDom.innerHTML += `
+       <li>${dataKeysPeru[t][s]}: ${dataValuesPeru[t][s]}</li>
+       `
+       // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
+   }
+ 
+ },
+ arrayOfDataObjects:(arrOfOb)=>{//[{},{},{}...]  //Array de Objects -Array de Indicadores
+ arrOfOb;
+ newArrOfObj=[];
+ for(let x=0;x<arrOfOb.length;x++){
+     newArrOfObj.push(arrOfOb[x].data)
+ }
+ return newArrOfObj;//[{},{},{}...] array de Objects/-Array de Data Objects
+ },
+ arrOfStrIndicatorCode:(arrOb)=>{//[{},{},{}...]//Array de Indicadores
+     newArrStr=[];
+     arrOb;
+     for(let b=0;b<arrOb.length;b++){
+         newArrStr.push(arrOb[b].indicatorCode)
+     }
+     newArrStr;//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
+ },
+ findTheUniqueObj:(arrObjects1,arrOfUniqueProperty)=>{//["","",""...] Array de Strings  c/u es el valor String unico de una propiedad  IndicatorName,IndicatorCode
+    arrObjects1;
+    arrOfUniqueProperty;
+    let uniqueOb;
+    for(let i=0;i<arrOfUniqueProperty.length;i++){
+        uniqueOb=arrObjects1.find((e)=>{e[arrOfUniqueProperty[i]]===arrOfUniqueProperty[i]});
     }
-    for (let s=0;s<arrDataKeys[t].length;s++){
-      showData.innerHTML += `
-      <li>${dataKeysPeru[t][s]}: ${dataValuesPeru[t][s]}</li>
-      `
-      // console.log(mostrarData(dataKeysPeru[0][i], dataValuesPeru[0][i]))
-  }
+   return uniqueOb; //retorna un {} Indicador de acuerdo acuerdo a cualquier parametro con valor único
 
 }
+ 
+};
+
+
+
+
