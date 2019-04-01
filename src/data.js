@@ -20,6 +20,14 @@ window.worldBank = {
     
     return newArrayUniqueValues;//["","",""...]
   },
+  objToArrObj:(obj)=>{//{}
+  const arr1=[];
+  const properties=Object.keys(obj);
+  for(let i =0;i<properties.length;i++){
+    arr1.push(obj[properties[i]])
+  }
+return arr1;
+},
   getUniqueCountryNamesOfAllIndicators : (array) => {//["","",""...]
     const newArrayUniqueCountryNames = [];
     for(let i = 0; i <array.length; i++){
@@ -31,6 +39,22 @@ window.worldBank = {
     
     return newArrayUniqueCountryNames;//["","",""...]
   },
+  objToArrOfUniqueStr:(obj)=>{//{}
+  arrCountryNamesOfAllIndicators=[];
+   const arrOfCountryObjects=worldBank.objToArrObj(obj);//[{},{},{},{}] Array de Objects c/u representa un país
+   for(let i=0;i<arrOfCountryObjects.length;i++){
+   arrOfCountryObjects[i] //{}
+   arrOfCountryObjects[i]["indicators"]//[{},{},{},]array de objects Array de Indicadores
+   for(let j=0;j<arrOfCountryObjects[i]["indicators"].length;j++){
+    arrOfCountryObjects[i]["indicators"][j]//Object{} cada Indicador
+   arrCountryNamesOfAllIndicators.push(arrOfCountryObjects[i]["indicators"][j]["countryName"]);
+   }
+  };
+  
+ arrCountryNamesOfAllIndicators;//["","",""...] arr con los cuntrynames repetidos
+const arrUniqueCountryNames=worldBank.getUniqueCountryNamesOfAllIndicators(arrCountryNamesOfAllIndicators);//["","",""...] arr con los contrynames unicos
+return arrUniqueCountryNames;//["","",""...] arr con los countrynames unicos
+},
 
   filterBySector : (arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
     let str = [];
