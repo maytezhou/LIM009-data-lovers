@@ -62,3 +62,18 @@ btnSearch.addEventListener('click', () => {
     }
   }
 });
+
+
+worldBank.arrOfArrStr(arrDataWorldBankPeru);
+console.log(worldBank.arrOfArrStr(arrDataWorldBankPeru));//[["","",""...],["","",""...],["","",""...]...]; keys years
+worldBank.arrArrNum(arrDataWorldBankPeru);
+console.log(worldBank.arrArrNum(arrDataWorldBankPeru));//[[num,num,num...],[num,num,num...],[num,num,num...]] values numbers
+worldBank.arrayOfDataObjects(arrDataWorldBankPeru);
+console.log(worldBank.arrayOfDataObjects(arrDataWorldBankPeru));//[{},{},{}...] array de Objects/-Array de Data Objects
+
+//No funciona
+worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru);
+console.log(worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru));//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
+
+
+

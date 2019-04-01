@@ -31,6 +31,10 @@ window.worldBank = {
    }
    return str;//[{},{},{},{}...]
    },
+   
+   //Falta Probar si las siguientes funciones funcionan:
+
+   //Esto non funciona
    obtainingOnlyOneIndicatorData:(arrayPerSector,idOfIndicator)=>{//[{},{},{}...]
     arrayPerSector;
     idOfIndicator;
@@ -59,6 +63,9 @@ window.worldBank = {
    return newArrNum;//[[num,num,num...],[num,num,num...],[num,num,num...]]
  
  },
+
+
+ //Esta funcion aun no funciona 
  showListOfAnyArrayIndicator:(arrayOfIndi,arrDataKeys,arrDataValues,elementDom)=>{//[{},{},{},{}] y [["","",""...],["","",""...],["","",...],...] y [[num,num,...],[num,num,...]...]
    arrayOfIndi;
    arrDataKeys;
@@ -84,14 +91,18 @@ window.worldBank = {
  }
  return newArrOfObj;//[{},{},{}...] array de Objects/-Array de Data Objects
  },
+
+ //No funciona
  arrOfStrIndicatorCode:(arrOb)=>{//[{},{},{}...]//Array de Indicadores
      newArrStr=[];
      arrOb;
-     for(let b=0;b<arrOb.length;b++){
-         newArrStr.push(arrOb[b].indicatorCode)
+     for(let i=0;i<arrOb.length;i++){
+         newArrStr.push(arrOb[i].indicatorCode)
      }
      newArrStr;//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
  },
+
+ //Esta funcion aun  no funciona 
  findTheUniqueObj:(arrObjects1,arrOfUniqueProperty)=>{//["","",""...] Array de Strings  c/u es el valor String unico de una propiedad  IndicatorName,IndicatorCode
     arrObjects1;
     arrOfUniqueProperty;
