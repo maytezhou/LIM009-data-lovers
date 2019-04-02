@@ -1,4 +1,5 @@
 
+const objectDataWorldBank=window.WORLDBANK;
 const arrDataWorldBankMexico=window.WORLDBANK.MEX.indicators;//[{},{},{}...]
 //console.log(arrDataWorldBankMexico);
 const arrDataWorldBankChile=window.WORLDBANK.CHL.indicators;//[{},{},{}...]
@@ -10,6 +11,7 @@ const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
 
 const showInfoData = document.getElementById('show-info-data');
 const showFilteredCategory = document.getElementById('show-filtered-category');
+const filterOptionsSection=document.getElementById("filter-options-section");
 const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const selectCountryName = document.getElementById('select-country-name');
@@ -26,10 +28,66 @@ console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));
 worldBank.uniqueIndicatorsCode(window.WORLDBANK);//["","",""] array de strings indicatorcodes unicos  139 en total 
 console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));
 
+const filterByCountry=(dataObj,countrySelected)=>{
+  dataObj[countrySelected];//{}, pais seleccionado tiene que ser el valor PER,MEX,BRA,CHL
+  dataObj[countrySelected]["indicators"]//[{},{}{}] aray de Indicadores del País seleccionado
+return  dataObj[countrySelected]["indicators"];//[{},{}{}] aray de Indicadores del País seleccionado
+
+}
+filterByCountry(objectDataWorldBank,"PER");//[{},{}{}] aray de Indicadores del País seleccionado
+console.log(filterByCountry(objectDataWorldBank,"PER"));
+
+const printCountryNames = (obj1,domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
+let string = '<option value="Todos">Todos</option>';
+obj1;
+arrayOfUniqueIndicatorsName1=[];
+  const properties4=Object.keys(obj1)//["",""...]
+  console.log(properties4)
+  for(let i=0;i<properties4.length;i++){//["",""...]
+    obj1[properties4[i]]//{} cada countryObject
+    obj1[properties4[i]]["indicators"]//[{},{},{}] array de Indicadores
+    for(let j=0;j<obj1[properties4[i]]["indicators"].length;j++){
+      obj1[properties4[i]]["indicators"][j]//{} indicador
+      console.log(obj1[properties4[i]]["indicators"][j]);
+      obj1[properties4[i]]["indicators"][j]["countryName"]//"" strings
+      console.log( obj1[properties4[i]]["indicators"][j]["countryName"]) 
+      if(arrayOfUniqueIndicatorsName1.indexOf(obj1[properties4[i]]["indicators"][j]["countryName"])===-1){
+        arrayOfUniqueIndicatorsName1.push(obj1[properties4[i]]["indicators"][j]["countryName"])
+      }
+    }
+    arrayOfUniqueIndicatorsName1;
+    console.log(arrayOfUniqueIndicatorsName1);//["","",""]
+    for(let l=0;l<arrayOfUniqueIndicatorsName1.length;l++){
+      arrayOfUniqueIndicatorsName1[l]
+      console.log(arrayOfUniqueIndicatorsName1[l]);
+      string+=`<option value=${properties4[i]}>${arrayOfUniqueIndicatorsName1[l]}</option>`
+    } 
+  
+  
+  
+  }
+  domElement.innerHTML=string;
+ };
+
+ printCountryNames(objectDataWorldBank,selectCountryName);
+ 
 
 
 
 
+
+filterOptionsSection.addEventListener('click',(e)=>{
+  console.log(e.target)
+  console.log(e.target.value)
+  console.log(objectDataWorldBank[e.target.value]);
+  objectDataWorldBank[e.target.value]
+
+}
+
+);
+
+
+/*
 //En el caso de que aumentara mas propeidades
 window.WORLDBANK;
 console.log(window.WORLDBANK);
@@ -38,14 +96,14 @@ console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings propert
 worldBank.objToArrObj(window.WORLDBANK); //un object  {},to an array of Objects [{},{},{}];
 console.log(worldBank.objToArrObj(window.WORLDBANK))//un object  {},to an array of Objects [{},{},{}];
 worldBank.objToArrOfUniqueStr(window.WORLDBANK);//["","",""...] arr con los countrynames unicos
-console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos
+console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos*/
 
 
 window.WORLDBANK;
 
 console.log(window.WORLDBANK);//{}
 Object.keys(window.WORLDBANK);//Arr Str strings properties PER,MEX,CHL,BRA
-console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
+//console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
 const properties=Object.keys(window.WORLDBANK);//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
 for (let i=0;i<properties.length;i++){
   console.log(window.WORLDBANK[properties[i]]);
@@ -68,7 +126,7 @@ console.log(Object.values(window.WORLDBANK))//[{},{},{}..] c/u objc representa u
 Object.entries(window.WORLDBANK);
 console.log(Object.entries(window.WORLDBANK));//[[],[],[]...] Array de Arrays cada array tiene 2 elementos el nombre del Pais y el objeto.
 
-*/
+
 
 
 
@@ -138,7 +196,7 @@ for(let i = 0; i < arrUniqueInitialsCode.length; i++){//["",""...]
     });
 };
 console.log(arrIndicatorsInitialsAndDescription);//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
-
+arrIndicatorsInitialsAndDescription;
 //Funcion para Imprimir en el Dom una opcion de selecion con c/u de las descripciones de las Iniciales de los Indicadores.
 const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
   let string = '<option value="Todos">Todos</option>';
@@ -148,8 +206,7 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
   domElement.innerHTML = string;
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
- let string = '<option value="Todos">Todos</option>';
-
+ 
 
 
 
@@ -162,7 +219,7 @@ btnSearch.addEventListener('click', () => {
   showInfoData.innerHTML = '';
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoData.innerHTML =  `
-    <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${arrIndicatorsInitialsAndDescription[selectIndicatorCodeElement.value]}</h2>
+    <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}</h2>
     `
     for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
       showInfoData.innerHTML +=
