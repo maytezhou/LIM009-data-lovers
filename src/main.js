@@ -17,16 +17,16 @@ const selectIndicatorCodeElement = document.getElementById('select-indicator-cod
 const selectCountryName = document.getElementById('select-country-name');
 const btnSearch = document.getElementById('btn-search');
 const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
-console.log(arrUniqueInitialsCode);//["","",""...]
+//console.log(arrUniqueInitialsCode);//["","",""...]
 
 worldBank.uniqueCountryNames(window.WORLDBANK);//["",""]  array de strings countryNames UNICOS  Perú,México,Brasil,Chile
-console.log(worldBank.uniqueCountryNames(window.WORLDBANK));
+//console.log(worldBank.uniqueCountryNames(window.WORLDBANK));
 worldBank.uniqueCountryCodes(window.WORLDBANK);//["",""]  array de strings countryCodes UNICOS  PER,MEX,BRA,CHL
-console.log(worldBank.uniqueCountryCodes(window.WORLDBANK));
+//console.log(worldBank.uniqueCountryCodes(window.WORLDBANK));
 worldBank.uniqueIndicatorsName(window.WORLDBANK);//["",""]  array de strings indicatrosName UNICOS  139 en total
-console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));
+//console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));
 worldBank.uniqueIndicatorsCode(window.WORLDBANK);//["","",""] array de strings indicatorcodes unicos  139 en total 
-console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));
+//console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));
 
 const filterByCountry=(dataObj,countrySelected)=>{
   dataObj[countrySelected];//{}, pais seleccionado tiene que ser el valor PER,MEX,BRA,CHL
@@ -48,9 +48,9 @@ arrayOfUniqueIndicatorsName1=[];
     obj1[properties4[i]]["indicators"]//[{},{},{}] array de Indicadores
     for(let j=0;j<obj1[properties4[i]]["indicators"].length;j++){
       obj1[properties4[i]]["indicators"][j]//{} indicador
-      console.log(obj1[properties4[i]]["indicators"][j]);
+      //console.log(obj1[properties4[i]]["indicators"][j]);
       obj1[properties4[i]]["indicators"][j]["countryName"]//"" strings
-      console.log( obj1[properties4[i]]["indicators"][j]["countryName"]) 
+     // console.log( obj1[properties4[i]]["indicators"][j]["countryName"]) 
       if(arrayOfUniqueIndicatorsName1.indexOf(obj1[properties4[i]]["indicators"][j]["countryName"])===-1){
         arrayOfUniqueIndicatorsName1.push(obj1[properties4[i]]["indicators"][j]["countryName"])
       }
@@ -60,7 +60,7 @@ arrayOfUniqueIndicatorsName1=[];
     for(let l=0;l<arrayOfUniqueIndicatorsName1.length;l++){
       arrayOfUniqueIndicatorsName1[l]
       console.log(arrayOfUniqueIndicatorsName1[l]);
-      string+=`<option value=${properties4[i]}>${arrayOfUniqueIndicatorsName1[l]}</option>`
+      string+=`<option value=${[properties4[i]]}>${arrayOfUniqueIndicatorsName1[l]}</option>`
     } 
   
   
@@ -77,19 +77,37 @@ arrayOfUniqueIndicatorsName1=[];
 
 
 filterOptionsSection.addEventListener('click',(e)=>{
-  //console.log(e.target)
- // console.log(e.target.value)
-  //console.log(objectDataWorldBank[e.target.value]);
-  //objectDataWorldBank[e.target.value]
+  e.preventDefault();
+  console.log(e.target)
+  console.log(e.target.value)
+ console.log(objectDataWorldBank[e.target.value]);
+ objectDataWorldBank[e.target.value];
 
-}
-
-);
+});
 
 
 showInfoData.addEventListener('click',(e)=>{
+  e.preventDefault();
   console.log(e.target)
-  console.log(e.target.value)
+  console.log(e.target.id)
+  const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+  let indicatorIdSelectedByUser = e.target.id;
+  console.log(indicatorIdSelectedByUser);
+  for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
+    if (filteredIndicatorsByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
+      console.log(filteredIndicatorsByCategory[i]);
+      let indicatorDataKeys = Object.keys(filteredIndicatorsByCategory[i].data);
+      console.log(indicatorDataKeys);
+      for ( let j = 0; j <indicatorDataKeys.length; j++){
+        console.log(indicatorDataKeys[j]);
+        console.log(filteredIndicatorsByCategory[i].data[indicatorDataKeys[j]]);
+        
+        
+      }
+      
+      
+    }
+  }
 
 });
 
@@ -231,7 +249,7 @@ btnSearch.addEventListener('click', () => {
     for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
       showInfoData.innerHTML +=
            `
-           <ul><li><a href="#">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</a></li></ul>
+           <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}</li></a></ul>
            `
     }
   }
@@ -239,15 +257,15 @@ btnSearch.addEventListener('click', () => {
 
 
 worldBank.arrOfArrStr(arrDataWorldBankPeru);
-console.log(worldBank.arrOfArrStr(arrDataWorldBankPeru));//[["","",""...],["","",""...],["","",""...]...]; keys years
+//console.log(worldBank.arrOfArrStr(arrDataWorldBankPeru));//[["","",""...],["","",""...],["","",""...]...]; keys years
 worldBank.arrArrNum(arrDataWorldBankPeru);
-console.log(worldBank.arrArrNum(arrDataWorldBankPeru));//[[num,num,num...],[num,num,num...],[num,num,num...]] values numbers
+//console.log(worldBank.arrArrNum(arrDataWorldBankPeru));//[[num,num,num...],[num,num,num...],[num,num,num...]] values numbers
 worldBank.arrayOfDataObjects(arrDataWorldBankPeru);
-console.log(worldBank.arrayOfDataObjects(arrDataWorldBankPeru));//[{},{},{}...] array de Objects/-Array de Data Objects
+//console.log(worldBank.arrayOfDataObjects(arrDataWorldBankPeru));//[{},{},{}...] array de Objects/-Array de Data Objects
 
 //No funciona
 worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru);
-console.log(worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru));//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
+//console.log(worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru));//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
 
 
 
