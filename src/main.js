@@ -120,6 +120,7 @@ showInfoData.addEventListener('click', (e) =>{
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
       console.log(indicatorDataKeys);
       for ( let j = 0; j <indicatorDataKeys.length; j++){
+        if (filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]] != ''){
         showIndicatorNameKeysValues.innerHTML += 
         `
         <table>
@@ -135,6 +136,7 @@ showInfoData.addEventListener('click', (e) =>{
         `
         console.log(indicatorDataKeys[j]);
         console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+        }
       }
     }
   };
