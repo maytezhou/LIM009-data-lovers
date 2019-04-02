@@ -42,24 +42,7 @@ arrayOfUniqueIndicatorsName;//["",""]  array de strings indicatrosName UNICOS
 //console.log(arrayOfUniqueIndicatorsName);//["",""]  array de strings indicatrosName UNICOS 
 
 
-//Creando la funcion 
-const uniqueIndicatorsName=(obj)=>{//{}
-arrayOfUniqueIndicatorsName1=[];
-  const properties2=Object.keys(obj)//["",""...]
-  for(let i=0;i<properties2.length;i++){//["",""...]
-    obj[properties[i]]//{} cada countryObject
-    obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
-    for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
-      obj[properties[i]]["indicators"][j]//{} indicador
-      obj[properties[i]]["indicators"][j]["indicatorName"]//"" strings 
-      if(arrayOfUniqueIndicatorsName1.indexOf(obj[properties[i]]["indicators"][j]["indicatorName"])===-1){
-        arrayOfUniqueIndicatorsName1.push(obj[properties[i]]["indicators"][j]["indicatorName"])
-      }
-    }
-  }
-return arrayOfUniqueIndicatorsName1;//["",""]  array de strings indicatrosName UNICOS 
-};
-//console.log(uniqueIndicatorsName(window.WORLDBANK));//["",""]  array de strings indicatrosName UNICOS 
+//console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));//["",""]  array de strings indicatrosName UNICOS 
 
 
 
@@ -90,23 +73,8 @@ arrayOfUniqueIndicatorCode;//["","",""] array de strings indicatorcodes unicos
 
 
 //Creando la funcion 
-const uniqueIndicatorsCode=(obj)=>{//{}
-arrayOfUniqueIndicatorsCode1=[];
-  const properties2=Object.keys(obj)//["",""...]
-  for(let i=0;i<properties2.length;i++){//["",""...]
-    obj[properties[i]]//{} cada countryObject
-    obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
-    for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
-      obj[properties[i]]["indicators"][j]//{} indicador
-      obj[properties[i]]["indicators"][j]["indicatorCode"]//"" strings 
-      if(arrayOfUniqueIndicatorsCode1.indexOf(obj[properties[i]]["indicators"][j]["indicatorCode"])===-1){
-        arrayOfUniqueIndicatorsCode1.push(obj[properties[i]]["indicators"][j]["indicatorCode"])
-      }
-    }
-  }
-return arrayOfUniqueIndicatorsCode1;//["","",""] array de strings indicatorcodes unicos  
-};
-console.log(uniqueIndicatorsCode(window.WORLDBANK));//["","",""] array de strings indicatorcodes unicos  
+
+console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));//["","",""] array de strings indicatorcodes unicos  
 
 
 
