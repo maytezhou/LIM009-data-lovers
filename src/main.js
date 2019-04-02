@@ -113,25 +113,6 @@ showInfoData.addEventListener('click',(e)=>{
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Creo un {} nuevo donde explico lo que significa cada Inicial
 const initialsDescription = {
   "SL." : 'Laboral',
