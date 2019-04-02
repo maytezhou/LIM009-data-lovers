@@ -37,6 +37,7 @@ return  dataObj[countrySelected]["indicators"];//[{},{}{}] aray de Indicadores d
 filterByCountry(objectDataWorldBank,"PER");//[{},{}{}] aray de Indicadores del País seleccionado
 console.log(filterByCountry(objectDataWorldBank,"PER"));
 
+
 const printCountryNames = (obj1,domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
 let string = '<option value="Todos">Todos</option>';
 obj1;
@@ -69,14 +70,13 @@ arrayOfUniqueIndicatorsName1=[];
   domElement.innerHTML=string;
  };
 
+
+ 
+
  printCountryNames(objectDataWorldBank,selectCountryName);
  
 
-
-
-
-
-filterOptionsSection.addEventListener('click',(e)=>{
+ filterOptionsSection.addEventListener('click',(e)=>{
   e.preventDefault();
   console.log(e.target)
   console.log(e.target.value)
@@ -84,6 +84,7 @@ filterOptionsSection.addEventListener('click',(e)=>{
  objectDataWorldBank[e.target.value];
 
 });
+
 
 
 showInfoData.addEventListener('click',(e)=>{
