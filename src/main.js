@@ -17,124 +17,19 @@ const btnSearch = document.getElementById('btn-search');
 const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
 console.log(arrUniqueInitialsCode);//["","",""...]
 
-
-//La lógica Obteniendo los indicatrosName UNICOS 
-window.WORLDBANK;//{}
-//console.log(window.WORLDBANK);//{}
-const properties=Object.keys(window.WORLDBANK);
-arrayOfUniqueIndicatorsName=[];
-for(let i=0;i<properties.length;i++){
-  console.log(window.WORLDBANK[properties[i]])//{} c/u country 
-  window.WORLDBANK[properties[i]];
-  window.WORLDBANK[properties[i]]["indicators"]//[{},{},{}]array de objects
-//console.log(window.WORLDBANK[properties[i]]["indicators"])
-for(let j=0;j<window.WORLDBANK[properties[i]]["indicators"].length;j++){//[{},{},{}]array de objects
-  window.WORLDBANK[properties[i]]["indicators"][j]//{} 1 object 1 indicator
-//console.log(window.WORLDBANK[properties[i]]["indicators"][j])//{} 1 object 1 indicator
-window.WORLDBANK[properties[i]]["indicators"][j]["indicatorName"]
-//console.log(window.WORLDBANK[properties[i]]["indicators"][j]["indicatorName"])//"" strings
-if(arrayOfUniqueIndicatorsName.indexOf(window.WORLDBANK[properties[i]]["indicators"][j]["indicatorName"])===-1){
-  arrayOfUniqueIndicatorsName.push(window.WORLDBANK[properties[i]]["indicators"][j]["indicatorName"])
-}
-}
-}
-arrayOfUniqueIndicatorsName;//["",""]  array de strings indicatrosName UNICOS 
-//console.log(arrayOfUniqueIndicatorsName);//["",""]  array de strings indicatrosName UNICOS 
-
-
-//console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));//["",""]  array de strings indicatrosName UNICOS 
-
-
-
-//La lógica Obteniendo los indicatorcodes unicos  
-window.WORLDBANK;//{}
-//console.log(window.WORLDBANK);//{}
-const properties1=Object.keys(window.WORLDBANK);
-arrayOfUniqueIndicatorCode=[];
-for(let i=0;i<properties1.length;i++){
-  console.log(window.WORLDBANK[properties[i]])//{} c/u country 
-  window.WORLDBANK[properties1[i]];
-  window.WORLDBANK[properties1[i]]["indicators"]//[{},{},{}]array de objects
-//console.log(window.WORLDBANK[properties[i]]["indicators"])
-for(let j=0;j<window.WORLDBANK[properties1[i]]["indicators"].length;j++){//[{},{},{}]array de objects
-  window.WORLDBANK[properties1[i]]["indicators"][j]//{} 1 object 1 indicator
-//console.log(window.WORLDBANK[properties[i]]["indicators"][j])//{} 1 object 1 indicator
-window.WORLDBANK[properties1[i]]["indicators"][j]["indicatorCode"]
-//console.log(window.WORLDBANK[properties[i]]["indicators"][j]["indicatorCode"])//"" strings
-if(arrayOfUniqueIndicatorCode.indexOf(window.WORLDBANK[properties1[i]]["indicators"][j]["indicatorCode"])===-1){
-  arrayOfUniqueIndicatorCode.push(window.WORLDBANK[properties1[i]]["indicators"][j]["indicatorCode"])
-
-}
-
-}
-}
-arrayOfUniqueIndicatorCode;//["","",""] array de strings indicatorcodes unicos  
-//console.log(arrayOfUniqueIndicatorCode);//["","",""] array de strings indicatorcodes unicos  
-
-
-//Creando la funcion 
-
-console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));//["","",""] array de strings indicatorcodes unicos  
+worldBank.uniqueCountryNames(window.WORLDBANK);//["",""]  array de strings countryNames UNICOS  Perú,México,Brasil,Chile
+console.log(worldBank.uniqueCountryNames(window.WORLDBANK));
+worldBank.uniqueCountryCodes(window.WORLDBANK);//["",""]  array de strings countryCodes UNICOS  PER,MEX,BRA,CHL
+console.log(worldBank.uniqueCountryCodes(window.WORLDBANK));
+worldBank.uniqueIndicatorsName(window.WORLDBANK);//["",""]  array de strings indicatrosName UNICOS  139 en total
+console.log(worldBank.uniqueIndicatorsName(window.WORLDBANK));
+worldBank.uniqueIndicatorsCode(window.WORLDBANK);//["","",""] array de strings indicatorcodes unicos  139 en total 
+console.log(worldBank.uniqueIndicatorsCode(window.WORLDBANK));
 
 
 
 
 
-
-
-
-//Creando la funcion Obteniendo los countrycodes UNICOS PER,MEX,CHL,BRA
-//Recibira como input un object
-//Retornara countrynames UNICOS Perú,México,Chile,Brasil
-
-//console.log(worldBank.uniqueCountryCodes(window.WORLDBANK));//["","",""] array de strings countrycodes PER,MEX,BRA,CHL UNICOS
-
-
-
-
-
-
-
-
-const objToArrOfUniqueStr=(obj)=>{//{}
-  arrCountryNamesOfAllIndicators=[];
-  const properties=Object.keys(obj)
-  for(let i=0;i<properties.length;i++){
-   Objproperties[i]
-  }
-  
-   
- 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 //En el caso de que aumentara mas propeidades
 window.WORLDBANK;
 console.log(window.WORLDBANK);

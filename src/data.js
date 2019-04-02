@@ -24,13 +24,13 @@ window.worldBank = {
   arrayOfUniqueCountryNames1=[];
     const properties2=Object.keys(obj)//["",""...]
     for(let i=0;i<properties2.length;i++){//["",""...]
-      obj[properties[i]]//{} cada countryObject
-      obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
-      for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
-        obj[properties[i]]["indicators"][j]//{} indicador
-        obj[properties[i]]["indicators"][j]["countryName"]//"" strings 
-        if(arrayOfUniqueCountryNames1.indexOf(obj[properties[i]]["indicators"][j]["countryName"])===-1){
-          arrayOfUniqueCountryNames1.push(obj[properties[i]]["indicators"][j]["countryName"])
+      obj[properties2[i]]//{} cada countryObject
+      obj[properties2[i]]["indicators"]//[{},{},{}] array de Indicadores
+      for(let j=0;j<obj[properties2[i]]["indicators"].length;j++){
+        obj[properties2[i]]["indicators"][j]//{} indicador
+        obj[properties2[i]]["indicators"][j]["countryName"]//"" strings 
+        if(arrayOfUniqueCountryNames1.indexOf(obj[properties2[i]]["indicators"][j]["countryName"])===-1){
+          arrayOfUniqueCountryNames1.push(obj[properties2[i]]["indicators"][j]["countryName"])
         }
       }
     }
@@ -42,7 +42,7 @@ window.worldBank = {
     for(let i=0;i<properties3.length;i++){//["",""...]
       obj[properties3[i]]//{} cada countryObject
       obj[properties3[i]]["indicators"]//[{},{},{}] array de Indicadores
-      for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
+      for(let j=0;j<obj[properties3[i]]["indicators"].length;j++){
         obj[properties3[i]]["indicators"][j]//{} indicador
         obj[properties3[i]]["indicators"][j]["countryCode"]//"" strings 
         if(arrayOfUniqueCountryCodes1.indexOf(obj[properties3[i]]["indicators"][j]["countryCode"])===-1){
@@ -54,8 +54,8 @@ window.worldBank = {
   },
   uniqueIndicatorsName:(obj)=>{//{}
 arrayOfUniqueIndicatorsName1=[];
-  const properties2=Object.keys(obj)//["",""...]
-  for(let i=0;i<properties2.length;i++){//["",""...]
+  const properties=Object.keys(obj)//["",""...]
+  for(let i=0;i<properties.length;i++){//["",""...]
     obj[properties[i]]//{} cada countryObject
     obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
     for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
@@ -70,8 +70,8 @@ return arrayOfUniqueIndicatorsName1;//["",""]  array de strings indicatrosName U
 },
 uniqueIndicatorsCode:(obj)=>{//{}
 arrayOfUniqueIndicatorsCode1=[];
-  const properties2=Object.keys(obj)//["",""...]
-  for(let i=0;i<properties2.length;i++){//["",""...]
+  const properties=Object.keys(obj)//["",""...]
+  for(let i=0;i<properties.length;i++){//["",""...]
     obj[properties[i]]//{} cada countryObject
     obj[properties[i]]["indicators"]//[{},{},{}] array de Indicadores
     for(let j=0;j<obj[properties[i]]["indicators"].length;j++){
@@ -90,7 +90,7 @@ return arrayOfUniqueIndicatorsCode1;//["","",""] array de strings indicatorcodes
   for(let i =0;i<properties.length;i++){
     arr1.push(obj[properties[i]])
   }
-return arr1;
+return arr1;//[{},{},{},]
 },
   getUniqueCountryNamesOfAllIndicators : (array) => {//["","",""...]
     const newArrayUniqueCountryNames = [];
