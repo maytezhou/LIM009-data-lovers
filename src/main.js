@@ -77,14 +77,21 @@ arrayOfUniqueIndicatorsName1=[];
 
 
 filterOptionsSection.addEventListener('click',(e)=>{
-  console.log(e.target)
-  console.log(e.target.value)
-  console.log(objectDataWorldBank[e.target.value]);
-  objectDataWorldBank[e.target.value]
+  //console.log(e.target)
+ // console.log(e.target.value)
+  //console.log(objectDataWorldBank[e.target.value]);
+  //objectDataWorldBank[e.target.value]
 
 }
 
 );
+
+
+showInfoData.addEventListener('click',(e)=>{
+  console.log(e.target)
+  console.log(e.target.value)
+
+});
 
 
 /*
