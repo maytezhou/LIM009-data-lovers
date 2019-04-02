@@ -107,7 +107,10 @@ btnSearch.addEventListener('click', () => {
 // MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
 showInfoData.addEventListener('click', (e) =>{
   console.log(e.target); 
-  console.log(e.target.innerText);
+  showSelectedIndicatorName.innerHTML =
+  `
+  <h2>${e.target.innerText}</h2>
+  `
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = e.target.id;
   console.log(indicatorIdSelectedByUser);
@@ -117,33 +120,27 @@ showInfoData.addEventListener('click', (e) =>{
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
       console.log(indicatorDataKeys);
       for ( let j = 0; j <indicatorDataKeys.length; j++){
+        showIndicatorNameKeysValues.innerHTML += 
+        `
+        <table>
+          <tr>
+            <th>Año</th>
+            <th>Porcentaje</th>
+          </tr>
+          <tr>
+            <td>${indicatorDataKeys[j]}</td>
+            <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
+          </tr>
+        </table>
+        `
         console.log(indicatorDataKeys[j]);
         console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
-        
-        
       }
-      
-      
     }
-  }
-  
-  
+  };
   
 
-  // let filteredIndicatorNamesByCategoryValuesArray = [];
-  // for (let j = 0;j < filteredIndicatorNamesByCategory.length; j++) {
-  //   filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[j].data));
-  // };
-  // console.log(filteredIndicatorNamesByCategoryValuesArray);
-  
-  showSelectedIndicatorName.innerHTML =
-  `
-  <h2>${e.target.innerText}</h2>
-  `
-  showIndicatorNameKeysValues.innerHTML = 
-  `
-  <p>DATOS TABLA AQUÍ</p>
-  `
+
 
 
 });
