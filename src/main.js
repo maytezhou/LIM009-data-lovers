@@ -112,44 +112,6 @@ showInfoData.addEventListener('click',(e)=>{
 });
 
 
-/*
-//En el caso de que aumentara mas propeidades
-window.WORLDBANK;
-console.log(window.WORLDBANK);
-Object.keys(window.WORLDBANK);//Array ["","",""] de STR countrynames
-console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
-worldBank.objToArrObj(window.WORLDBANK); //un object  {},to an array of Objects [{},{},{}];
-console.log(worldBank.objToArrObj(window.WORLDBANK))//un object  {},to an array of Objects [{},{},{}];
-worldBank.objToArrOfUniqueStr(window.WORLDBANK);//["","",""...] arr con los countrynames unicos
-console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos*/
-
-
-window.WORLDBANK;
-
-console.log(window.WORLDBANK);//{}
-Object.keys(window.WORLDBANK);//Arr Str strings properties PER,MEX,CHL,BRA
-//console.log(Object.keys(window.WORLDBANK));//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
-const properties=Object.keys(window.WORLDBANK);//["","",""]  Arr Str strings properties PER,MEX,CHL,BRA
-for (let i=0;i<properties.length;i++){
-  console.log(window.WORLDBANK[properties[i]]);
-}
-
-
-
-worldBank.objToArrObj(window.WORLDBANK); //un object  {},to an array of Objects [{},{},{}];
-console.log(worldBank.objToArrObj(window.WORLDBANK))//un object  {},to an array of Objects [{},{},{}];
-worldBank.objToArrOfUniqueStr(window.WORLDBANK);//["","",""...] arr con los countrynames unicos
-console.log(worldBank.objToArrOfUniqueStr(window.WORLDBANK));//["","",""...] arr con los countrynames unicos
-
-
-
-
-
-
-Object.values(window.WORLDBANK);
-console.log(Object.values(window.WORLDBANK))//[{},{},{}..] c/u objc representa una país-Array de Objects
-Object.entries(window.WORLDBANK);
-console.log(Object.entries(window.WORLDBANK));//[[],[],[]...] Array de Arrays cada array tiene 2 elementos el nombre del Pais y el objeto.
 
 
 
@@ -162,33 +124,10 @@ console.log(Object.entries(window.WORLDBANK));//[[],[],[]...] Array de Arrays ca
 
 
 
-//Creando un arra y de arrays de toda la data de worldbank  Cada array contiene un Object
-const arrayOfArraysOfObjects=(obj)=>{//{}
-  const arr=[];
-  const properties=Object.keys(obj);
-  for(let i =0;i<properties.length;i++){
-    arr.push([obj[properties[i]]])
-  }
-return arr;
-}
-arrayOfArraysOfObjects(window.WORLDBANK);//[[{}],[{}],[{}]...] Array de Arrays Cada array contiene un Object
-//console.log(arrayOfArraysOfObjects(window.WORLDBANK));//[[{}],[{}],[{}]...] Array de Arrays Cada array contiene un Object
 
 
-//Creando una funcion 
-//Recibe como input un objeto {} window.WORLDBANK
-//Retorna como output un [] array 2d
-//Igual a Object.entries
-const objectToArr=(obj)=>{//{}
-  const newArr=[];
-  const properties=Object.keys(obj);
-  for(let i =0;i<properties.length;i++){
-    newArr.push([properties[i],obj[properties[i]]])
-  }
-return newArr;
-}
-objectToArr(window.WORLDBANK);//[["",{}],["",{},["",{}]..] Array of Arrays c/arraY tiene string (PER,MEX,...)y un objeto
-//console.log(objectToArr(window.WORLDBANK));//[["",{}],["",{},["",{}]..]  Array Of Arrays
+
+
 
 
 
@@ -255,17 +194,6 @@ btnSearch.addEventListener('click', () => {
   }
 });
 
-
-worldBank.arrOfArrStr(arrDataWorldBankPeru);
-//console.log(worldBank.arrOfArrStr(arrDataWorldBankPeru));//[["","",""...],["","",""...],["","",""...]...]; keys years
-worldBank.arrArrNum(arrDataWorldBankPeru);
-//console.log(worldBank.arrArrNum(arrDataWorldBankPeru));//[[num,num,num...],[num,num,num...],[num,num,num...]] values numbers
-worldBank.arrayOfDataObjects(arrDataWorldBankPeru);
-//console.log(worldBank.arrayOfDataObjects(arrDataWorldBankPeru));//[{},{},{}...] array de Objects/-Array de Data Objects
-
-//No funciona
-worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru);
-//console.log(worldBank.arrOfStrIndicatorCode(arrDataWorldBankPeru));//["","",""...] Array de Strings  c/u es el varlo de IndicatorCode
 
 
 
