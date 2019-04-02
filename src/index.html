@@ -38,29 +38,31 @@
       <button>Volver</button>
     </article>
     <article>
+      <section id="show-selected-indicator-name">
         <h2>${nombre del indicador}</h2>
-        <figure>Gráfico correspondiente al indicador seleccionado.</figure>
-        <section>(Filtro para gráfico) Desde:
-            <select name="select-start-year" id="select-start-year">
-                <option value="2000" selected>2000</option>
-                <option value="2001">2001</option>
-            </select>
-                Hasta:
-            <select name="select-end-year" id="select-end-year">
-                <option value="2016">2016</option>
-                <option value="2017" selected>2017</option>
-            </select>
-        </section>
-        <section>
-            <ul>
-                <li><strong>Año - Porcentaje</strong></li>
-                <li>${Data-Key[0]} : ${Data-Value[0]}</li>
-                <li>${Data-Key[1]} : ${Data-Value[1]}</li>
-                <li>${Data-Key[2]} : ${Data-Value[2]}</li>
-            </ul>
-            <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
-        </section>
-        <button>Volver</button>
+      </section>
+      <!-- <figure>Gráfico correspondiente al indicador seleccionado.</figure>
+      <section>(Filtro para gráfico) Desde:
+          <select name="select-start-year" id="select-start-year">
+              <option value="2000" selected>2000</option>
+              <option value="2001">2001</option>
+          </select>
+              Hasta:
+          <select name="select-end-year" id="select-end-year">
+              <option value="2016">2016</option>
+              <option value="2017" selected>2017</option>
+          </select>
+      </section> -->
+      <section id="show-indicator-name-keys-values">
+          <ul>
+              <li><strong>Año - Porcentaje</strong></li>
+              <li>${Data-Key[0]} : ${Data-Value[0]}</li>
+              <li>${Data-Key[1]} : ${Data-Value[1]}</li>
+              <li>${Data-Key[2]} : ${Data-Value[2]}</li>
+          </ul>
+          <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
+      </section>
+      <button>Volver</button>
     </article>
     <footer>
         <p><a href="#">Statistics Inc.</a></p>
