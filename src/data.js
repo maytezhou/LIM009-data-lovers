@@ -5,7 +5,7 @@ window.worldBank = {
        const string = array[i].indicatorCode.slice(0,3);
        newArrayStrings.push(string);
     }
-    console.log('Array con Initials indicatorsCodes: ' + newArrayStrings);
+    // console.log('Array con Initials indicatorsCodes: ' + newArrayStrings);
        return newArrayStrings;//["","",""...]
    },
    
@@ -16,7 +16,7 @@ window.worldBank = {
         newArrayUniqueValues.push(array[i])
       }
     }
-    console.log('Array con valores unicos de Initials indicatorCodes: ' + newArrayUniqueValues);
+    // console.log('Array con valores unicos de Initials indicatorCodes: ' + newArrayUniqueValues);
     
     return newArrayUniqueValues;//["","",""...]
   },
