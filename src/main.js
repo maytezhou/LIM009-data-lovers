@@ -73,9 +73,24 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
  
 
+ const orderIndicatorNamesByAlphabet=(arrObject,userSortOrder)=>{
+  if(userSortOrder==="ascendant"){
+  arrObject.sort(function (a,b) {
+    return a.indicatorName.localeCompare(b.indicatorName)})
+}
+else if(userSortOrder==="descendant"){
+  arrObject.sort(function (b,a) {
+    return a.indicatorName.localeCompare(b.indicatorName)})
+}
+};
+
+
+
+
  // FILTER BUTTON
 btnSearch.addEventListener('click', () => {
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
+  
   console.log(selectIndicatorCodeElement.value);
   
   showInfoData.innerHTML = '';
@@ -90,43 +105,59 @@ btnSearch.addEventListener('click', () => {
         <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
         `
     }
-  }
+  }console.log(orderIndicatorNamesByAlphabet(filteredIndicatorsByCategory,"descendant"));
 });
 
 const listOfIndicatorsShowed=document.querySelectorAll('li.list');
 console.log(listOfIndicatorsShowed);
 
-const orderIndicatorByIndicatorName = (arrObj) => {//[{},{},{}]
-  let orderByIndicatorName = arrObj.sort((prev, next) => {
-    if (prev.indicatorName > next.indicatorName) {
-      return 1;
-    } else if (prev.indicatorName < next.indicatorName) {
-      return -1;
-    } else {
-      return 0;
-    }
+
+
+
+/*const orderIndicatorByIndicatorName = (arrObj) => {//[{},{},{}]
+  let orderByIndicatorName = arrObj.sort((a,b) => {
+    indicatorA=a.indicatorName.toUpperCase();
+    indicatorB=b.indicatorName.toUpperCase();
+    return (indicatorA<indicatorB)?-1:(indicatorA>indicatorB)?1:0;
   });
   return orderByIndicatorName; //[{},{},{}]
 };
-console.log(orderIndicatorByIndicatorName(arrDataWorldBankPeru));//[{},{},{}]
+console.log(orderIndicatorByIndicatorName(arrDataWorldBankPeru));//[{},{},{}]*/
 
-
-
-
-
-const orderIndicatorByIndicatorCode = (arrObj) => {//[{},{},{}]
-  let orderByIndicatorCode = arrObj.sort((prev, next) => {
-    if (prev.indicatorCode > next.indicatorCode) {
-      return 1;
-    } else if (prev.indicatorCode < next.indicatorCode) {
-      return -1;
-    } else {
-      return 0;
-    }
+/*const orderIndicatorByIndicatorCode = (arrObj) => {//[{},{},{}]
+  let orderByIndicatorCode = arrObj.sort((a,b) => {
+    indicatorA=a.indicatorCode.toUpperCase();
+    indicatorB=b.indicatorCode.toUpperCase();
+    return (indicatorA<indicatorB)?-1:(indicatorA>indicatorB)?1:0;
   });
   return orderByIndicatorCode; //[{},{},{}]
 };
-console.log(orderIndicatorByIndicatorCode(arrDataWorldBankPeru));//[{},{},{}]
+console.log(orderIndicatorByIndicatorCode(arrDataWorldBankPeru));//[{},{},{}]*/
+
+
+
+
+
+
+
+
+//Ordena de A -Z
+/*arrDataWorldBankPeru.sort(function (a, b) {
+  return a.indicatorName.localeCompare(b.indicatorName);
+});
+console.log(arrDataWorldBankPeru.sort(function (a, b) {
+  return a.indicatorName.localeCompare(b.indicatorName);
+}));*/
+
+/*Ordena de Z-A
+arrDataWorldBankPeru.sort(function (b,a) {
+  return a.indicatorName.localeCompare(b.indicatorName);
+});
+console.log(arrDataWorldBankPeru.sort(function (b,a) {
+  return a.indicatorName.localeCompare(b.indicatorName);
+}));*/
+
+
 
 
 
