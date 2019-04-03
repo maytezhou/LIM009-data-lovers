@@ -11,7 +11,7 @@
     <header>
         <img src="" alt="">Logo de la empresa.</img>
     </header>
-    <main>
+    <main id="first-screen">
         <h1>Los principales indicadores socioeconómicos de Latinoamérica en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
         <section>
             <h3>Selecciona el país o categoría de la data que quieres ver.</h3>
@@ -33,25 +33,26 @@
             </section>
         </section>
     </main>
-    <article>
+    <article id="second-screen">
+        <div id="order-selectors">
+            <select name="select-order" id="select-order">
+                <option value="ascendant">A-Z</option>
+                <option value="descendant">Z-A</option>
+            </select></br> 
+        </div>
+        <div id="show-title"></div>
       <div id="show-info-data"></div>
       <button>Volver</button>
     </article>
-    <article>
+    <article id="third-screen">
       <section id="show-selected-indicator-name">
         <h2>${nombre del indicador}</h2>
       </section>
       <section id="show-indicator-name-keys-values">
-          <ul>
-              <li><strong>Año - Porcentaje</strong></li>
-              <li>${Data-Key[0]} : ${Data-Value[0]}</li>
-              <li>${Data-Key[1]} : ${Data-Value[1]}</li>
-              <li>${Data-Key[2]} : ${Data-Value[2]}</li>
-          </ul>
-          <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
       </section>
       <button>Volver</button>
-    </article>
+      <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
+    </article >
     <footer>
         <p><a href="#">Statistics Inc.</a></p>
     </footer>
