@@ -47,6 +47,8 @@ return str;// imrprimir {}
 };
 
 
+
+
 //Utilizo el {} creado anteriormente para crear [{},{},{}..] c/u de los {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
 //Creando {} o creando Nueva Data
 // INDICATOR CODES + DESCRIPTION
@@ -90,6 +92,44 @@ btnSearch.addEventListener('click', () => {
     }
   }
 });
+
+const listOfIndicatorsShowed=document.querySelectorAll('li.list');
+console.log(listOfIndicatorsShowed);
+
+const orderIndicatorByIndicatorName = (arrObj) => {//[{},{},{}]
+  let orderByIndicatorName = arrObj.sort((prev, next) => {
+    if (prev.indicatorName > next.indicatorName) {
+      return 1;
+    } else if (prev.indicatorName < next.indicatorName) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return orderByIndicatorName; //[{},{},{}]
+};
+console.log(orderIndicatorByIndicatorName(arrDataWorldBankPeru));//[{},{},{}]
+
+
+
+
+
+const orderIndicatorByIndicatorCode = (arrObj) => {//[{},{},{}]
+  let orderByIndicatorCode = arrObj.sort((prev, next) => {
+    if (prev.indicatorCode > next.indicatorCode) {
+      return 1;
+    } else if (prev.indicatorCode < next.indicatorCode) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return orderByIndicatorCode; //[{},{},{}]
+};
+console.log(orderIndicatorByIndicatorCode(arrDataWorldBankPeru));//[{},{},{}]
+
+
+
 
 
 
