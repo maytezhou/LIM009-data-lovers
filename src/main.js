@@ -71,24 +71,11 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
  
 
-
-
-
-
  // FILTER BUTTON
 btnSearch.addEventListener('click', () => {
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
   console.log(selectIndicatorCodeElement.value);
-  // let filteredIndicatorNamesByCategoryKeysArray = [];
-  // for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorsByCategory[i].data));
-  // };
-  // let filteredIndicatorNamesByCategoryValuesArray = [];
-  // for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorsByCategory[i].data));
-  // };
-  // console.log(filteredIndicatorNamesByCategoryKeysArray);
-  // console.log(filteredIndicatorNamesByCategoryValuesArray);
+  
   showInfoData.innerHTML = '';
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoData.innerHTML =
@@ -103,21 +90,6 @@ btnSearch.addEventListener('click', () => {
     }
   }
 });
-
-
-// const shownIndicatorsNames = document.querySelectorAll('.shown-indicators-names');
-// for (let i = 0; i < shownIndicatorsNames.length; i++) {
-//   shownIndicatorsNames[i].addEventListener('click', showIndicatorData);
-// };
-
-// function showIndicatorData() {
-//   console.log('hello');
-  
-  
-// };
-
-
-
 
 
 
@@ -137,57 +109,28 @@ showInfoData.addEventListener('click', (e) =>{
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
       console.log(indicatorDataKeys);
       for ( let j = 0; j <indicatorDataKeys.length; j++){
-        showIndicatorNameKeysValues.innerHTML += 
-        `
-        <table>
-          <tr>
-            <th>Año</th>
-            <th>Porcentaje</th>
-          </tr>
-          <tr>
-            <td>${indicatorDataKeys[j]}</td>
-            <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
-          </tr>
-        </table>
-        `
-        console.log(indicatorDataKeys[j]);
-        console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+        if(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]!=''){  
+          showIndicatorNameKeysValues.innerHTML += 
+          `
+          <table>
+            <tr>
+              <th>Año</th>
+              <th>Porcentaje</th>
+            </tr>
+            <tr>
+              <td>${indicatorDataKeys[j]}</td>
+              <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
+            </tr>
+          </table>
+          `
+          console.log(indicatorDataKeys[j]);
+          console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+
+        }
+      
       }
     }
   };
-  
-
-
-
-
 });
   
-  // showIndicatorNameKeysValues.innerHTML = '';
-  // let filteredIndicatorNamesByCategoryKeysArray = [];
-  // for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorNamesByCategory[i].data));
-  //   let filteredIndicatorNamesByCategoryValuesArray = [];
-  //   for (let j = 0;j < filteredIndicatorNamesByCategory.length; j++) {
-  //     filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[j].data));
-  //     showIndicatorNameKeysValues.innerHTML =
-  //     `
-  //     <li>${filteredIndicatorNamesByCategoryKeysArray[i]} : ${filteredIndicatorNamesByCategoryValuesArray[j]}</li>
-  //     `
-  //   };
-  // };
-  // console.log(filteredIndicatorNamesByCategoryKeysArray);
-  // console.log(filteredIndicatorNamesByCategoryValuesArray);
   
-
-
-
-
-
-
-// const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-// showSelectedIndicatorName.innerHTML = '';
-//   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++){
-//     showSelectedIndicatorName.innerHTML += `
-//       <h2>${filteredIndicatorNamesByCategory[0]}</h2>
-//     `
-//   };
