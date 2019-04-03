@@ -106,19 +106,19 @@ btnSearch.addEventListener('click', () => {
 
 // MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
 showInfoData.addEventListener('click', (e) =>{
-  console.log(e.target); 
+  const dataSource = window.WORLDBANK.PER.dataSource;
+  const lastUpdated = window.WORLDBANK.PER.lastUpdated;
+  const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+  let indicatorIdSelectedByUser = e.target.id;
   showSelectedIndicatorName.innerHTML =
   `
   <h2>${e.target.innerText}</h2>
   `
-  const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-  let indicatorIdSelectedByUser = e.target.id;
-  console.log(indicatorIdSelectedByUser);
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
       console.log(filteredIndicatorNamesByCategory[i]);
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
-      console.log(indicatorDataKeys);
+      console.log(indicatorDataKeys);      
       for ( let j = 0; j <indicatorDataKeys.length; j++){
         if (filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]] != ''){
         showIndicatorNameKeysValues.innerHTML += 
@@ -136,15 +136,14 @@ showInfoData.addEventListener('click', (e) =>{
         `
         console.log(indicatorDataKeys[j]);
         console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
-        }
-      }
-    }
+        };
+      };
+    };
   };
-  
-
-
-
-
+  showIndicatorNameKeysValues.innerHTML +=
+  `
+  <h5><strong>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</strong></h5>
+  `
 });
   
   // showIndicatorNameKeysValues.innerHTML = '';
