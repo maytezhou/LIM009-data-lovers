@@ -78,7 +78,7 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
  
 //Funcion  sort creada para ordenar nombre de indicadores alfabeticamente A-Z o Z-A
- const orderIndicatorNamesByAlphabet=(arrObject,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
+ const orderIndicatorNameOfAnObjectByAlphabet=(arrObject,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
   if(userSortOrder==="ascendant"){
   arrObject.sort(function (a,b) {
     return a.indicatorName.localeCompare(b.indicatorName)})
@@ -87,6 +87,19 @@ else if(userSortOrder==="descendant"){
   arrObject.sort(function (b,a) {
     return a.indicatorName.localeCompare(b.indicatorName)})
 }
+};
+
+//Funcion  sort creada para ordenar nombre de indicadores alfabeticamente A-Z o Z-A
+const orderIndicatorNameStrByAlphabet=(arrStr,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
+if(userSortOrder==="ascendant"){
+arrStr.sort(function (a,b) {
+  return a.localeCompare(b)
+})
+}
+else if (userSortOrder==="descendant"){
+arrStr.sort(function (b,a) {
+  return a.localeCompare(b)
+})}
 };
 
 
@@ -125,11 +138,14 @@ btnSearch.addEventListener('click', () => {
    console.log(listOfIndicatorsShowed);
    
    orderSelector.addEventListener('change',(e)=>{
-   let valueSelected=e.target.value;
-   console.log(e.target.value);
-   orderIndicatorNamesByAlphabet(filteredIndicatorsByCategory,valueSelected);
-   console.log(orderIndicatorNamesByAlphabet(filteredIndicatorsByCategory,valueSelected));
+    let valueSelected=e.target.value;
+    console.log(e.target.value);
+     showInfoData.innerHTML='';
+     listOfIndicatorsOrderedByAlphabet='';
+    
+    
    
+  
 
 }
 
@@ -181,6 +197,20 @@ showInfoData.addEventListener('click', (e) =>{
     }
   };
 });
+
+
+/*
+//Ordena de A -Z
+arrStrings.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+
+//Ordena de la Z-A
+arrStrings.sort(function (a, b) {
+  return a.localeCompare(b);
+});*/
+
+
 
 
 
