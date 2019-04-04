@@ -102,6 +102,96 @@ arrStr.sort(function (b,a) {
 })}
 };
 
+filterBySector=(arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
+    let str = [];
+    for (let i = 0; i < arrayObj.length; i++) {
+      arrayObj[i]
+        if(arrayObj[i]["indicatorCode"].startsWith(initials)){
+          str.push(arrayObj[i])
+      }
+   }
+   return str;//[{},{},{},{}...]
+   };
+
+const filterByCountryAndCategory=(data,countryValueSelected,initialsCategory)=>{//{},PER,MEX,BRA,CHL Y per,SL.,..
+  const datafilteredByCountry=(data[countryValueSelected].indicators);
+  let indicatorsFilteredByCountryAndCategory=[];
+  for(let i=0;i<datafilteredByCountry.length;i++){
+    datafilteredByCountry[i]
+    if(datafilteredByCountry[i]["indicatoCode"].startsWith(initialsCategory)){
+
+    indicatorsFilteredByCountryAndCategory.push(datafilteredByCountry[i])}
+  }
+return indicatorsFilteredByCountryAndCategory
+};
+//console.log(filterByCountryAndCategory(objectDataWorldBank,"PER","SL."));
+
+
+const printCountryNames = (obj1,domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
+let string = '<option value="Todos">Todos</option>';
+obj1;
+arrayOfUniqueIndicatorsName1=[];
+  const properties4=Object.keys(obj1)//["",""...]
+  console.log(properties4)
+  for(let i=0;i<properties4.length;i++){//["",""...]
+    obj1[properties4[i]]//{} cada countryObject
+    obj1[properties4[i]]["indicators"]//[{},{},{}] array de Indicadores
+    for(let j=0;j<obj1[properties4[i]]["indicators"].length;j++){
+      obj1[properties4[i]]["indicators"][j]//{} indicador
+      //console.log(obj1[properties4[i]]["indicators"][j]);
+      obj1[properties4[i]]["indicators"][j]["countryName"]//"" strings
+     // console.log( obj1[properties4[i]]["indicators"][j]["countryName"]) 
+      if(arrayOfUniqueIndicatorsName1.indexOf(obj1[properties4[i]]["indicators"][j]["countryName"])===-1){
+        arrayOfUniqueIndicatorsName1.push(obj1[properties4[i]]["indicators"][j]["countryName"])
+      }
+    }
+    arrayOfUniqueIndicatorsName1;
+    console.log(arrayOfUniqueIndicatorsName1);//["","",""]
+    for(let l=0;l<arrayOfUniqueIndicatorsName1.length;l++){
+      arrayOfUniqueIndicatorsName1[l]
+      console.log(arrayOfUniqueIndicatorsName1[l]);
+      string+=`<option value=${[properties4[i]]}>${arrayOfUniqueIndicatorsName1[l]}</option>`
+    } 
+  
+  
+  
+  }
+  domElement.innerHTML=string;
+ };
+
+ printCountryNames(objectDataWorldBank,selectCountryName);
+ 
+
+
+
+
+
+filterOptionsSection.addEventListener('click',(e)=>{
+  e.preventDefault();
+  console.log(e.target)
+  console.log(e.target.value)
+ console.log(objectDataWorldBank[e.target.value]);
+ objectDataWorldBank[e.target.value];
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
