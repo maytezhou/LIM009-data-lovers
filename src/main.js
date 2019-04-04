@@ -84,6 +84,8 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
 
 const showTitle=document.getElementById("show-title");
 const orderSelector=document.getElementById("order-selectors");
+const averageBtn=document.getElementById("average-btn");
+const showAverageResult=document.getElementById("show-average-result");
 
  // FILTER BUTTON es un  boton dentro de la primera pantalla
 btnSearch.addEventListener('click', () => {
@@ -137,6 +139,24 @@ btnSearch.addEventListener('click', () => {
 
 
 });
+averageBtn.addEventListener('click',()=>{
+  
+}
+
+);
+
+//La logica
+const arrOfNum=[1,2,3]
+let contador=0;
+for(let i=0;i<arrOfNum.length;i++){
+contador+=arrOfNum[i];
+ 
+}
+contador/arrOfNum.length
+console.log(contador/arrOfNum.length);
+
+
+
 
 
 // MOSTRAR  LA LISTA CON LOS NOMBRES DE INDICADORES FILTRADOS POR CATEGORIA  EN LA SEGUNDA PANTALLA
