@@ -1,16 +1,17 @@
 const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
-const showInfoData = document.getElementById('show-info-data');
 const showFilteredCategory = document.getElementById('show-filtered-category');
 const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
-const selectSortOrder = document.getElementById('select-sort');
+const selectSort = document.getElementById('select-sort');
+const showInfoTitle = document.getElementById('show-info-title'); 
+const showInfoData = document.getElementById('show-info-data');
 const backBtn1 = document.getElementById('back-btn-1');
 const backBtn2 = document.getElementById('back-btn-2');
 const showSelectedIndicatorName = document.getElementById('show-selected-indicator-name');
 const showIndicatorNameKeysValues = document.getElementById('show-indicator-name-keys-values');
+const showAverageResult = document.getElementById('show-average-result');
 const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
-
 
 //Creo un {} nuevo donde explico lo que significa cada Inicial
 const initialsDescription = {
@@ -25,17 +26,6 @@ const initialsDescription = {
   "IC." : 'Inversion', 
   "DT." : 'Deuda Extena'
 };
-
-// const obtainingOneIndicatorById=(arrOb,indicatorId)=>{//[{},{}] y indicatorId
-//   let str="";
-//   for(let i=0;i<arrOb.length;i++){
-//     if(arrOb[i].indicatorCode===indicatorId){
-//       str=arrOb[i].data;//{}
-//   }
-
-// }
-// return str;// imrprimir {} 
-// };
 
 // INDICATOR CODES + DESCRIPTION
 const arrIndicatorsInitialsAndDescription = [];
@@ -56,88 +46,98 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
 
- // SEARCH BUTTON
+// SEARCH BUTTON
 btnSearch.addEventListener('click', () => {
-
-  selectSortOrder.addEventListener('click', (e) => {
-    let userSortOrder = e.target.value;
-    console.log(userSortOrder);
-    console.log(worldBank.orderIndicatorNamesByAlphabet(arrDataWorldBankPeru,userSortOrder));
-    console.log(arrDataWorldBankPeru);
-  })
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
-  console.log(filteredIndicatorsByCategory);
-  document.getElementById('main-container').style.display = "none";
-  document.getElementById('info-container').style.display = "block";
-  showInfoData.innerHTML = '';
+  document.getElementById('first-screen').style.display = "none";
+  document.getElementById('second-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "block";
+  document.getElementById('third-screen').style.display = "none";
+  showInfoTitle.innerHTML = '';
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
-    showInfoData.innerHTML =
+    showInfoTitle.innerHTML =
     `
     <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}</h2>
     `
-    for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
-      showInfoData.innerHTML +=
-        `
-        <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
-        `
+  };
+  showInfoData.innerHTML = '';
+  for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
+    showInfoData.innerHTML +=
+      `
+      <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
+      `
+  };
+  selectSort.addEventListener('change',(e)=>{
+    const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+    let orderValueSelected = e.target.value;
+    let arrSortedIndicators = worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected);
+    showInfoData.innerHTML = '';
+    for (let k = 0; k < arrSortedIndicators.length; k++ ) {
+      showInfoData.innerHTML += 
+      `
+      <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}</li></a></ul>
+      `
     }
-  }
-  
+  });
 });
 
-
-
 backBtn1.addEventListener('click', () => {
-  document.getElementById('info-container').style.display = "none";
-  document.getElementById('main-container').style.display = "block";
+  document.getElementById('second-screen').style.display = "none";
+  document.getElementById('first-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "none";
 });
 
 // MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
 showInfoData.addEventListener('click', (e) =>{
+  document.getElementById('second-screen').style.display = "none";
+  document.getElementById('third-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "none";
   const dataSource = window.WORLDBANK.PER.dataSource;
   const lastUpdated = window.WORLDBANK.PER.lastUpdated;
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = e.target.id;
-  document.getElementById('info-container').style.display = "none";
-  document.getElementById('data-info-container').style.display = "block";
   showSelectedIndicatorName.innerHTML =
   `
   <h2>${e.target.innerText}</h2>
   `
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
-      console.log(filteredIndicatorNamesByCategory[i]);
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
-      console.log(indicatorDataKeys);  
       showIndicatorNameKeysValues.innerHTML =
       `
         <tr>
           <th>Año</th>
           <th>Porcentaje</th>
         </tr>
-      `    
+      `
+      let indicatorsValuePercentage = [];    
       for ( let j = 0; j <indicatorDataKeys.length; j++){
         if (filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]] != ''){
-        showIndicatorNameKeysValues.innerHTML += 
+          indicatorsValuePercentage.push(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+          showIndicatorNameKeysValues.innerHTML += 
         `
           <tr>
             <td><strong>${indicatorDataKeys[j]}</strong></td>
             <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
           </tr>
         `
-        console.log(indicatorDataKeys[j]);
-        console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+        document.getElementById('source-data').innerHTML =
+        `
+        Fuente: ${dataSource}. Última actualización: ${lastUpdated}
+        `
+        const averageResult = worldBank.getAverage(indicatorsValuePercentage);
+        showAverageResult.innerHTML =
+        `
+        El promedio de <em>${e.target.innerText}</em> es de: <strong>${averageResult.toFixed(2)}.</strong>
+        `
         };
       };
     };
   };
-  document.getElementById('source-data').innerHTML =
-  `
-  <strong>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</strong>
-  `
 });
 
 backBtn2.addEventListener('click', () => {
-  document.getElementById('data-info-container').style.display = "none";
-  document.getElementById('info-container').style.display = "block";
+  document.getElementById('third-screen').style.display = "none";
+  document.getElementById('second-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "block";
 });

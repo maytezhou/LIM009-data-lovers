@@ -5,7 +5,6 @@ window.worldBank = {
        const string = array[i].indicatorCode.slice(0,3);
        newArrayStrings.push(string);
     }
-    // console.log('Array con Initials indicatorsCodes: ' + newArrayStrings);
        return newArrayStrings;//["","",""...]
    },
    
@@ -16,7 +15,6 @@ window.worldBank = {
         newArrayUniqueValues.push(array[i])
       }
     }
-    // console.log('Array con valores unicos de Initials indicatorCodes: ' + newArrayUniqueValues);
     
     return newArrayUniqueValues;//["","",""...]
   },
@@ -32,15 +30,24 @@ window.worldBank = {
    return str;//[{},{},{},{}...]
    },
 
-   orderIndicatorNamesByAlphabet : (arrObject,userSortOrder) => {
-    if (userSortOrder === "ascendant") {
-    arrObject.sort(function (a,b) {
-      return a.indicatorName.localeCompare(b.indicatorName)})
+  orderIndicatorNameOfAnObjectByAlphabet : (arrObject,userSortOrder) => {//[{},{},{}] y value de la opcion seleccionada por el usuario
+    if(userSortOrder === "ascendant"){
+      arrObject.sort(function (a,b) {
+        return a.indicatorName.localeCompare(b.indicatorName)})
   }
-  else if(userSortOrder === "descendant") {
-    arrObject.sort(function (b,a) {
-      return a.indicatorName.localeCompare(b.indicatorName)})
+    else if(userSortOrder === "descendant"){
+      arrObject.sort(function (b,a) {
+        return a.indicatorName.localeCompare(b.indicatorName)})
   }
+    return arrObject;
+  },
+
+  getAverage : (arrOfNum) => {
+    let sumTotal=0;
+    for (let i = 0; i < arrOfNum.length; i++) {
+      sumTotal += arrOfNum[i]
+    }
+    return (sumTotal) / (arrOfNum.length);
   }
 };
 
