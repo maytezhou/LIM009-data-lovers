@@ -4,10 +4,14 @@ const showFilteredCategory = document.getElementById('show-filtered-category');
 const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
+const selectSortOrder = document.getElementById('select-sort');
+const backBtn1 = document.getElementById('back-btn-1');
+const backBtn2 = document.getElementById('back-btn-2');
 const showSelectedIndicatorName = document.getElementById('show-selected-indicator-name');
 const showIndicatorNameKeysValues = document.getElementById('show-indicator-name-keys-values');
 const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
-// console.log(arrUniqueInitialsCode);//["","",""...]
+
+
 //Creo un {} nuevo donde explico lo que significa cada Inicial
 const initialsDescription = {
   "SL." : 'Laboral',
@@ -22,35 +26,29 @@ const initialsDescription = {
   "DT." : 'Deuda Extena'
 };
 
+// const obtainingOneIndicatorById=(arrOb,indicatorId)=>{//[{},{}] y indicatorId
+//   let str="";
+//   for(let i=0;i<arrOb.length;i++){
+//     if(arrOb[i].indicatorCode===indicatorId){
+//       str=arrOb[i].data;//{}
+//   }
 
-const obtainingOneIndicatorById=(arrOb,indicatorId)=>{//[{},{}] y indicatorId
-  let str="";
-  for(let i=0;i<arrOb.length;i++){
-    if(arrOb[i].indicatorCode===indicatorId){
-      str=arrOb[i].data;//{}
-  }
+// }
+// return str;// imrprimir {} 
+// };
 
-}
-return str;// imrprimir {} 
-};
-
-
-//Utilizo el {} creado anteriormente para crear [{},{},{}..] c/u de los {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
-//Creando {} o creando Nueva Data
 // INDICATOR CODES + DESCRIPTION
 const arrIndicatorsInitialsAndDescription = [];
 for(let i = 0; i < arrUniqueInitialsCode.length; i++){//["",""...]
-  //  console.log(arrUniqueInitialsCode[i]);
     arrIndicatorsInitialsAndDescription.push({
        indicador :   arrUniqueInitialsCode[i],//Initials of each Indicator
        descripcion : initialsDescription[arrUniqueInitialsCode[i]]//Description
     });
 };
-// console.log(arrIndicatorsInitialsAndDescription);//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
 
 //Funcion para Imprimir en el Dom una opcion de selecion con c/u de las descripciones de las Iniciales de los Indicadores.
 const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
-  let string = '<option value="Todos">Todos</option>';
+  let string = '<option>Seleccionar</option>';
   for(let i = 0; i < array.length; i++){
       string += `<option value=${array[i].indicador}>${array[i].descripcion}</option>`
   }
@@ -58,20 +56,19 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
 
- // FILTER BUTTON
+ // SEARCH BUTTON
 btnSearch.addEventListener('click', () => {
+
+  selectSortOrder.addEventListener('click', (e) => {
+    let userSortOrder = e.target.value;
+    console.log(userSortOrder);
+    console.log(worldBank.orderIndicatorNamesByAlphabet(arrDataWorldBankPeru,userSortOrder));
+    console.log(arrDataWorldBankPeru);
+  })
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
-  console.log(selectIndicatorCodeElement.value);
-  // let filteredIndicatorNamesByCategoryKeysArray = [];
-  // for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorsByCategory[i].data));
-  // };
-  // let filteredIndicatorNamesByCategoryValuesArray = [];
-  // for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorsByCategory[i].data));
-  // };
-  // console.log(filteredIndicatorNamesByCategoryKeysArray);
-  // console.log(filteredIndicatorNamesByCategoryValuesArray);
+  console.log(filteredIndicatorsByCategory);
+  document.getElementById('main-container').style.display = "none";
+  document.getElementById('info-container').style.display = "block";
   showInfoData.innerHTML = '';
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoData.innerHTML =
@@ -85,24 +82,15 @@ btnSearch.addEventListener('click', () => {
         `
     }
   }
+  
 });
 
 
-// const shownIndicatorsNames = document.querySelectorAll('.shown-indicators-names');
-// for (let i = 0; i < shownIndicatorsNames.length; i++) {
-//   shownIndicatorsNames[i].addEventListener('click', showIndicatorData);
-// };
 
-// function showIndicatorData() {
-//   console.log('hello');
-  
-  
-// };
-
-
-
-
-
+backBtn1.addEventListener('click', () => {
+  document.getElementById('info-container').style.display = "none";
+  document.getElementById('main-container').style.display = "block";
+});
 
 // MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
 showInfoData.addEventListener('click', (e) =>{
@@ -110,6 +98,8 @@ showInfoData.addEventListener('click', (e) =>{
   const lastUpdated = window.WORLDBANK.PER.lastUpdated;
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = e.target.id;
+  document.getElementById('info-container').style.display = "none";
+  document.getElementById('data-info-container').style.display = "block";
   showSelectedIndicatorName.innerHTML =
   `
   <h2>${e.target.innerText}</h2>
@@ -118,21 +108,22 @@ showInfoData.addEventListener('click', (e) =>{
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
       console.log(filteredIndicatorNamesByCategory[i]);
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
-      console.log(indicatorDataKeys);      
+      console.log(indicatorDataKeys);  
+      showIndicatorNameKeysValues.innerHTML =
+      `
+        <tr>
+          <th>Año</th>
+          <th>Porcentaje</th>
+        </tr>
+      `    
       for ( let j = 0; j <indicatorDataKeys.length; j++){
         if (filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]] != ''){
         showIndicatorNameKeysValues.innerHTML += 
         `
-        <table>
           <tr>
-            <th>Año</th>
-            <th>Porcentaje</th>
-          </tr>
-          <tr>
-            <td>${indicatorDataKeys[j]}</td>
+            <td><strong>${indicatorDataKeys[j]}</strong></td>
             <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
           </tr>
-        </table>
         `
         console.log(indicatorDataKeys[j]);
         console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
@@ -140,38 +131,13 @@ showInfoData.addEventListener('click', (e) =>{
       };
     };
   };
-  showIndicatorNameKeysValues.innerHTML +=
+  document.getElementById('source-data').innerHTML =
   `
-  <h5><strong>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</strong></h5>
+  <strong>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</strong>
   `
 });
-  
-  // showIndicatorNameKeysValues.innerHTML = '';
-  // let filteredIndicatorNamesByCategoryKeysArray = [];
-  // for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
-  //   filteredIndicatorNamesByCategoryKeysArray.push(Object.keys(filteredIndicatorNamesByCategory[i].data));
-  //   let filteredIndicatorNamesByCategoryValuesArray = [];
-  //   for (let j = 0;j < filteredIndicatorNamesByCategory.length; j++) {
-  //     filteredIndicatorNamesByCategoryValuesArray.push(Object.values(filteredIndicatorNamesByCategory[j].data));
-  //     showIndicatorNameKeysValues.innerHTML =
-  //     `
-  //     <li>${filteredIndicatorNamesByCategoryKeysArray[i]} : ${filteredIndicatorNamesByCategoryValuesArray[j]}</li>
-  //     `
-  //   };
-  // };
-  // console.log(filteredIndicatorNamesByCategoryKeysArray);
-  // console.log(filteredIndicatorNamesByCategoryValuesArray);
-  
 
-
-
-
-
-
-// const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-// showSelectedIndicatorName.innerHTML = '';
-//   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++){
-//     showSelectedIndicatorName.innerHTML += `
-//       <h2>${filteredIndicatorNamesByCategory[0]}</h2>
-//     `
-//   };
+backBtn2.addEventListener('click', () => {
+  document.getElementById('data-info-container').style.display = "none";
+  document.getElementById('info-container').style.display = "block";
+});

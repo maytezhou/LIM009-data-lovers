@@ -2,3 +2,7 @@ table, th, td {
     width: 20%;
     border: 1px solid black;
   }
+
+.info-container, .data-info-container {
+  display: none;
+}

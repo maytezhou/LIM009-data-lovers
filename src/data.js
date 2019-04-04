@@ -31,5 +31,16 @@ window.worldBank = {
    }
    return str;//[{},{},{},{}...]
    },
+
+   orderIndicatorNamesByAlphabet : (arrObject,userSortOrder) => {
+    if (userSortOrder === "ascendant") {
+    arrObject.sort(function (a,b) {
+      return a.indicatorName.localeCompare(b.indicatorName)})
+  }
+  else if(userSortOrder === "descendant") {
+    arrObject.sort(function (b,a) {
+      return a.indicatorName.localeCompare(b.indicatorName)})
+  }
+  }
 };
 
