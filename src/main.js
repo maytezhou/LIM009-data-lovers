@@ -120,14 +120,14 @@ btnSearch.addEventListener('click', () => {
     console.log(orderValueSelected);
     let arrSortedIndicators=worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected);
     console.log(worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected));
-    showTitle.innerHTML='';
+    showInfoData.innerHTML='';
     let indicatorsListOrderedByAlphabet='';
     for(let k=0;k<arrSortedIndicators.length;k++){
       indicatorsListOrderedByAlphabet+= `
       <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}.</li></a></ul>
       `
     }
-    showTitle.innerHTML=indicatorsListOrderedByAlphabet;
+    showInfoData.innerHTML=indicatorsListOrderedByAlphabet;
     //listOfIndicatorsOrderedByAlphabet='';
     
     
