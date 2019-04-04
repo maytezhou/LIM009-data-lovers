@@ -84,7 +84,6 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
 
 const showTitle=document.getElementById("show-title");
 const orderSelector=document.getElementById("order-selectors");
-const averageBtn=document.getElementById("average-btn");
 const showAverageResult=document.getElementById("show-average-result");
 
  // FILTER BUTTON es un  boton dentro de la primera pantalla
@@ -139,34 +138,6 @@ btnSearch.addEventListener('click', () => {
 
 
 });
-averageBtn.addEventListener('click',()=>{
-  
-}
-
-);
-
-//La logica
-const arrOfNum1=[1,2,3]
-let contador=0;
-for(let i=0;i<arrOfNum1.length;i++){
-contador+=arrOfNum1[i];
- 
-}
-contador/arrOfNum1.length
-console.log(contador/arrOfNum1.length);
-
-
-//CERANDO LA FUNCION AVERAGE
-const arrOfNum2=[1,2,3,4,5,6]
-const getAverage=(arrOfNum)=>{
-  let sumTotal=0;
- for(let i=0;i<arrOfNum.length;i++){
-sumTotal+=arrOfNum[i]
- }
- return sumTotal/arrOfNum.length
-};
-getAverage(arrOfNum2);
-console.log(getAverage(arrOfNum2));
 
 
 
@@ -184,13 +155,15 @@ showInfoData.addEventListener('click', (e) =>{
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = e.target.id;
   console.log(indicatorIdSelectedByUser);
+  let indicatorsValuePercentage=[];
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
       console.log(filteredIndicatorNamesByCategory[i]);
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
       console.log(indicatorDataKeys);
       for ( let j = 0; j <indicatorDataKeys.length; j++){
-        if(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]!=''){  
+       if(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]!=''){  
+         indicatorsValuePercentage.push(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
           showIndicatorNameKeysValues.innerHTML += 
           `
           <table>
@@ -212,6 +185,12 @@ showInfoData.addEventListener('click', (e) =>{
       }
     }
   };
+  
+  console.log(indicatorsValuePercentage);
+  const averageResult=worldBank.getAverage(indicatorsValuePercentage);
+  console.log(worldBank.getAverage(indicatorsValuePercentage));
+  showAverageResult.innerHTML+= `<p>${averageResult.toFixed(3)}</p>`
+
 });
 
 

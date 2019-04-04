@@ -31,6 +31,13 @@ else if(userSortOrder==="descendant"){
 }
 return arrObject;
 },
+getAverage:(arrOfNum)=>{
+  let sumTotal=0;
+ for(let i=0;i<arrOfNum.length;i++){
+sumTotal+=arrOfNum[i]
+ }
+ return (sumTotal)/(arrOfNum.length);
+},
   uniqueCountryNames:(obj)=>{//{}
   arrayOfUniqueCountryNames1=[];
     const properties2=Object.keys(obj)//["",""...]
