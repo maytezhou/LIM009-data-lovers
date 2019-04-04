@@ -3,6 +3,6 @@ table, th, td {
     border: 1px solid black;
   }
 
-.info-container, .data-info-container {
+.second-screen, .third-screen, .select-sort {
   display: none;
 }
