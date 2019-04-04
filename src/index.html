@@ -11,53 +11,48 @@
     <header>
         <img src="" alt="">Logo de la empresa.</img>
     </header>
-    <main>
-        <h1>Los principales indicadores socioeconómicos de Latinoamérica en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+    <div id="main-container">
+        <main>
+            <h1>Los principales indicadores socioeconómicos de Perú en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+            <aside>
+                <h3>Selecciona la categoría de la data que quieres ver.</h3>
+                <section>
+                    <label for="select-indicator-code"><strong>Categorías:</strong></label></br> 
+                    <select name="select-indicator-code" id="select-indicator-code"></select>
+                    <button id="btn-search">Buscar</button></br>
+                </section>
+                <section>
+                    <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
+                </section>
+            </aside>
+        </main>
+    </div>
+    <div id="info-container" class="info-container">
         <section>
-            <h3>Selecciona el país o categoría de la data que quieres ver.</h3>
-            <h3>También puedes usar una palabra clave.</h3>
-            <section>
-                <label for="select-country-code"><strong>Pais:</strong></label></br>
-                <select name="select-country-code" id="select-country-code">
-                    <option value="Todos">Todos</option>
-                </select></br>
-                <label for="select-indicator-code"><strong>Categorías:</strong></label></br> 
-                <select name="select-indicator-code" id="select-indicator-code">
-                    <option value="Todos">Todos</option>
-                </select></br>
-                <input type="text" placeholder="Palabra clave" name="search-keyword"></br>
-                <button id="btn-search">Buscar</button>
-            </section>
-            <section>
-                <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
-            </section>
-        </section>
-    </main>
-    <article>
-      <div id="show-info-data"></div>
-      <button>Volver</button>
-    </article>
-    <article>
-      <section id="show-selected-indicator-name">
-        <h2>${nombre del indicador}</h2>
-      </section>
-      <!-- <figure>Gráfico correspondiente al indicador seleccionado.</figure>
-      <section>(Filtro para gráfico) Desde:
-          <select name="select-start-year" id="select-start-year">
-              <option value="2000" selected>2000</option>
-              <option value="2001">2001</option>
-          </select>
-              Hasta:
-          <select name="select-end-year" id="select-end-year">
-              <option value="2016">2016</option>
-              <option value="2017" selected>2017</option>
-          </select>
-      </section> -->
-      <section id="show-indicator-name-keys-values">
-          <p>Fuente: ${dataSource}. Última actualización: ${lastUpdated}</p>
-      </section>
-      <button>Volver</button>
-    </article>
+            <label for="select-sort"><strong>Ordenar:</strong></label></br> 
+            <select name="select-sort" id="select-sort">
+              <option>Seleccionar</option>
+              <option value="ascendant">Ordenar A-Z</option>
+              <option value="descendant">Ordenar Z-A</option>
+            </select>
+          </section>
+        <article>
+          <div id="show-info-data"></div>
+          <button id="back-btn-1">Volver</button>
+        </article>
+    </div>
+    <div id="data-info-container" class="data-info-container">
+        <article>
+          <section id="show-selected-indicator-name">
+          </section>
+          <section>
+              <table id="show-indicator-name-keys-values">
+              </table>
+              <h4 id="source-data"></h4>
+          </section>
+          <button id="back-btn-2">Volver</button>
+        </article>
+    </div>
     <footer>
         <p><a href="#">Statistics Inc.</a></p>
     </footer>
