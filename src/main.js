@@ -1,4 +1,3 @@
-
 const objectDataWorldBank=window.WORLDBANK;
 const arrDataWorldBankMexico=window.WORLDBANK.MEX.indicators;//[{},{},{}...]
 //console.log(arrDataWorldBankMexico);
@@ -53,7 +52,6 @@ return str;// imrprimir {}
 
 
 
-
 //Utilizo el {} creado anteriormente para crear [{},{},{}..] c/u de los {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
 //Creando {} o creando Nueva Data
 // INDICATOR CODES + DESCRIPTION
@@ -77,118 +75,6 @@ const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
  
-//Funcion  sort creada para ordenar nombre de indicadores alfabeticamente A-Z o Z-A
- const orderIndicatorNameOfAnObjectByAlphabet=(arrObject,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
-  if(userSortOrder==="ascendant"){
-  arrObject.sort(function (a,b) {
-    return a.indicatorName.localeCompare(b.indicatorName)})
-}
-else if(userSortOrder==="descendant"){
-  arrObject.sort(function (b,a) {
-    return a.indicatorName.localeCompare(b.indicatorName)})
-}
-};
-
-//Funcion  sort creada para ordenar nombre de indicadores alfabeticamente A-Z o Z-A
-const orderIndicatorNameStrByAlphabet=(arrStr,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
-if(userSortOrder==="ascendant"){
-arrStr.sort(function (a,b) {
-  return a.localeCompare(b)
-})
-}
-else if (userSortOrder==="descendant"){
-arrStr.sort(function (b,a) {
-  return a.localeCompare(b)
-})}
-};
-
-filterBySector=(arrayObj,initials) => {//[{},{}...] y domElementSelectedValue with 3 Initials
-    let str = [];
-    for (let i = 0; i < arrayObj.length; i++) {
-      arrayObj[i]
-        if(arrayObj[i]["indicatorCode"].startsWith(initials)){
-          str.push(arrayObj[i])
-      }
-   }
-   return str;//[{},{},{},{}...]
-   };
-
-const filterByCountryAndCategory=(data,countryValueSelected,initialsCategory)=>{//{},PER,MEX,BRA,CHL Y per,SL.,..
-  const datafilteredByCountry=(data[countryValueSelected].indicators);
-  let indicatorsFilteredByCountryAndCategory=[];
-  for(let i=0;i<datafilteredByCountry.length;i++){
-    datafilteredByCountry[i]
-    if(datafilteredByCountry[i]["indicatoCode"].startsWith(initialsCategory)){
-
-    indicatorsFilteredByCountryAndCategory.push(datafilteredByCountry[i])}
-  }
-return indicatorsFilteredByCountryAndCategory
-};
-//console.log(filterByCountryAndCategory(objectDataWorldBank,"PER","SL."));
-
-
-const printCountryNames = (obj1,domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
-let string = '<option value="Todos">Todos</option>';
-obj1;
-arrayOfUniqueIndicatorsName1=[];
-  const properties4=Object.keys(obj1)//["",""...]
-  console.log(properties4)
-  for(let i=0;i<properties4.length;i++){//["",""...]
-    obj1[properties4[i]]//{} cada countryObject
-    obj1[properties4[i]]["indicators"]//[{},{},{}] array de Indicadores
-    for(let j=0;j<obj1[properties4[i]]["indicators"].length;j++){
-      obj1[properties4[i]]["indicators"][j]//{} indicador
-      //console.log(obj1[properties4[i]]["indicators"][j]);
-      obj1[properties4[i]]["indicators"][j]["countryName"]//"" strings
-     // console.log( obj1[properties4[i]]["indicators"][j]["countryName"]) 
-      if(arrayOfUniqueIndicatorsName1.indexOf(obj1[properties4[i]]["indicators"][j]["countryName"])===-1){
-        arrayOfUniqueIndicatorsName1.push(obj1[properties4[i]]["indicators"][j]["countryName"])
-      }
-    }
-    arrayOfUniqueIndicatorsName1;
-    console.log(arrayOfUniqueIndicatorsName1);//["","",""]
-    for(let l=0;l<arrayOfUniqueIndicatorsName1.length;l++){
-      arrayOfUniqueIndicatorsName1[l]
-      console.log(arrayOfUniqueIndicatorsName1[l]);
-      string+=`<option value=${[properties4[i]]}>${arrayOfUniqueIndicatorsName1[l]}</option>`
-    } 
-  
-  
-  
-  }
-  domElement.innerHTML=string;
- };
-
- printCountryNames(objectDataWorldBank,selectCountryName);
- 
-
-
-
-
-
-filterOptionsSection.addEventListener('click',(e)=>{
-  e.preventDefault();
-  console.log(e.target)
-  console.log(e.target.value)
- console.log(objectDataWorldBank[e.target.value]);
- objectDataWorldBank[e.target.value];
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -204,8 +90,8 @@ btnSearch.addEventListener('click', () => {
   firstScreen.style.display='none';
   secondScreen.style.display='block';
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
-  console.log(filteredIndicatorsByCategory);
-  console.log(selectIndicatorCodeElement.value);
+  console.log(filteredIndicatorsByCategory);//[{},{}..]Array  de Indicadores filtered by category
+  console.log(selectIndicatorCodeElement.value);//sector elegido por el usuario
   let titleOfIndicatorsList='';
   let indicatorsList='';
   
@@ -224,19 +110,27 @@ btnSearch.addEventListener('click', () => {
     }
     showTitle.innerHTML=titleOfIndicatorsList;
     showInfoData.innerHTML=indicatorsList;
-    const listOfIndicatorsShowed=document.querySelectorAll('li.list');
+    const listOfIndicatorsShowed=document.querySelectorAll('li.list');//Lista de Indicators Code
    console.log(listOfIndicatorsShowed);
    
    orderSelector.addEventListener('change',(e)=>{
-    let valueSelected=e.target.value;
+    const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
+    let orderValueSelected=e.target.value;
     console.log(e.target.value);
-     showInfoData.innerHTML='';
-     listOfIndicatorsOrderedByAlphabet='';
+    console.log(orderValueSelected);
+    let arrSortedIndicators=worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected);
+    console.log(worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected));
+    showTitle.innerHTML='';
+    let indicatorsListOrderedByAlphabet='';
+    for(let k=0;k<arrSortedIndicators.length;k++){
+      indicatorsListOrderedByAlphabet+= `
+      <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}.</li></a></ul>
+      `
+    }
+    showTitle.innerHTML=indicatorsListOrderedByAlphabet;
+    //listOfIndicatorsOrderedByAlphabet='';
     
     
-   
-  
-
 }
 
 );

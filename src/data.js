@@ -20,6 +20,17 @@ window.worldBank = {
     
     return newArrayUniqueValues;//["","",""...]
   },
+  orderIndicatorNameOfAnObjectByAlphabet:(arrObject,userSortOrder)=>{//[{},{},{}] y value de la opcion seleccionada por el usuario
+  if(userSortOrder==="ascendant"){
+  arrObject.sort(function (a,b) {
+    return a.indicatorName.localeCompare(b.indicatorName)})
+}
+else if(userSortOrder==="descendant"){
+  arrObject.sort(function (b,a) {
+    return a.indicatorName.localeCompare(b.indicatorName)})
+}
+return arrObject;
+},
   uniqueCountryNames:(obj)=>{//{}
   arrayOfUniqueCountryNames1=[];
     const properties2=Object.keys(obj)//["",""...]
@@ -213,7 +224,3 @@ return arrUniqueCountryNames;//["","",""...] arr con los countrynames unicos
 }
  
 };
-
-
-
-
