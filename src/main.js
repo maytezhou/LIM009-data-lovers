@@ -146,15 +146,27 @@ averageBtn.addEventListener('click',()=>{
 );
 
 //La logica
-const arrOfNum=[1,2,3]
+const arrOfNum1=[1,2,3]
 let contador=0;
-for(let i=0;i<arrOfNum.length;i++){
-contador+=arrOfNum[i];
+for(let i=0;i<arrOfNum1.length;i++){
+contador+=arrOfNum1[i];
  
 }
-contador/arrOfNum.length
-console.log(contador/arrOfNum.length);
+contador/arrOfNum1.length
+console.log(contador/arrOfNum1.length);
 
+
+//CERANDO LA FUNCION AVERAGE
+const arrOfNum2=[1,2,3,4,5,6]
+const getAverage=(arrOfNum)=>{
+  let sumTotal=0;
+ for(let i=0;i<arrOfNum.length;i++){
+sumTotal+=arrOfNum[i]
+ }
+ return sumTotal/arrOfNum.length
+};
+getAverage(arrOfNum2);
+console.log(getAverage(arrOfNum2));
 
 
 
