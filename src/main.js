@@ -65,7 +65,7 @@ btnSearch.addEventListener('click', () => {
   for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
     showInfoData.innerHTML +=
       `
-      <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
+      <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}</li></a></ul>
       `
   }
   selectSort.addEventListener('change',(e)=>{
