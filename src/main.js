@@ -111,9 +111,7 @@ btnSearch.addEventListener('click', () => {
     }
     showTitle.innerHTML=titleOfIndicatorsList;
     showInfoData.innerHTML=indicatorsList;
-    const listOfIndicatorsShowed=document.querySelectorAll('li.list');//Lista de Indicators Code
-   console.log(listOfIndicatorsShowed);
-   
+    
    orderSelector.addEventListener('change',(e)=>{
     const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
     let orderValueSelected=e.target.value;
@@ -129,8 +127,7 @@ btnSearch.addEventListener('click', () => {
       `
     }
     showInfoData.innerHTML=indicatorsListOrderedByAlphabet;
-    //listOfIndicatorsOrderedByAlphabet='';
-    
+   
     
 }
 
@@ -138,6 +135,21 @@ btnSearch.addEventListener('click', () => {
 
 
 });
+
+
+// NUEVA FUNCION PRIN COUNTRYNAMES
+/*
+ const printCountryNamesSelector=(obj1,domElement)=>{
+  const countryNames=worldBank.uniqueCountryNames(obj1);
+  const countryCodes=worldBank.uniqueCountryCodes(obj1);
+  for(){}
+
+
+
+ }
+ console.log(worldBank.uniqueCountryNames(objectDataWorldBank));
+ console.log(worldBank.uniqueCountryCodes(objectDataWorldBank));*/
+
 
 
 
@@ -193,59 +205,6 @@ showInfoData.addEventListener('click', (e) =>{
 
 });
 
-
-/*
-//Ordena de A -Z
-arrStrings.sort(function (a, b) {
-  return a.localeCompare(b);
-});
-
-//Ordena de la Z-A
-arrStrings.sort(function (a, b) {
-  return a.localeCompare(b);
-});*/
-
-
-
-
-
-//La lógica para crear la funcion orderIndicatorNamesByAlphabet
-//Ordena de A -Z
-/*arrDataWorldBankPeru.sort(function (a, b) {
-  return a.indicatorName.localeCompare(b.indicatorName);
-});
-console.log(arrDataWorldBankPeru.sort(function (a, b) {
-  return a.indicatorName.localeCompare(b.indicatorName);
-}));*/
-
-/*Ordena de Z-A
-arrDataWorldBankPeru.sort(function (b,a) {
-  return a.indicatorName.localeCompare(b.indicatorName);
-});
-console.log(arrDataWorldBankPeru.sort(function (b,a) {
-  return a.indicatorName.localeCompare(b.indicatorName);
-}));*/
-
-
-/*const orderIndicatorByIndicatorName = (arrObj) => {//[{},{},{}]
-  let orderByIndicatorName = arrObj.sort((a,b) => {
-    indicatorA=a.indicatorName.toUpperCase();
-    indicatorB=b.indicatorName.toUpperCase();
-    return (indicatorA<indicatorB)?-1:(indicatorA>indicatorB)?1:0;
-  });
-  return orderByIndicatorName; //[{},{},{}]
-};
-console.log(orderIndicatorByIndicatorName(arrDataWorldBankPeru));//[{},{},{}]*/
-
-/*const orderIndicatorByIndicatorCode = (arrObj) => {//[{},{},{}]
-  let orderByIndicatorCode = arrObj.sort((a,b) => {
-    indicatorA=a.indicatorCode.toUpperCase();
-    indicatorB=b.indicatorCode.toUpperCase();
-    return (indicatorA<indicatorB)?-1:(indicatorA>indicatorB)?1:0;
-  });
-  return orderByIndicatorCode; //[{},{},{}]
-};
-console.log(orderIndicatorByIndicatorCode(arrDataWorldBankPeru));//[{},{},{}]*/
 
 
   
