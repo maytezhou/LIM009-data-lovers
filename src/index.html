@@ -9,57 +9,56 @@
   </head>
   <body>
     <header>
-        <img src="" alt="">Logo de la empresa.</img>
+      <img src="https://fondoaccion.org/wp-content/uploads/2018/04/grupobancomundial.png" alt="Logo-Banco-Mundial">
     </header>
     <div id="first-screen">
-        <main>
-            <h1>Los principales indicadores socioeconómicos de Perú en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
-        </main>
+      <main>
+        <h1>Los principales indicadores socioeconómicos de Perú en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+      </main>
     </div>
     <div id="sidebar-container" class="sidebar-container">
       <aside>
-          <h3>Selecciona la categoría de la data que quieres ver.</h3>
-          <section>
-              <label for="select-indicator-code"><strong>Categorías:</strong></label></br> 
-              <select name="select-indicator-code" id="select-indicator-code"></select>
-              <button id="btn-search">Buscar</button></br>
-          </section>
-          <section class="select-sort" id="select-sort">
-              <label for="select-sort-order"><strong>Ordenar:</strong></label></br> 
-              <select name="select-sort-order" id="select-sort-order">
-                <option value="--">Seleccionar</option>
-                <option value="ascendant">Ordenar A-Z</option>
-                <option value="descendant">Ordenar Z-A</option>
-              </select>
-          </section>
+        <h3>Selecciona la categoría de la data que quieres ver.</h3>
+        <section>
+          <label for="select-indicator-code"><strong>Categorías:</strong></label>
+          <select name="select-indicator-code" id="select-indicator-code"></select>
+          <button id="btn-search">Buscar</button>
+        </section>
+        <section class="select-sort" id="select-sort">
+          <h3>Ordenar:</h3>
+          <!-- <label for="select-sort-order"><strong>Ordenar:</strong></label>  -->
+          <select name="select-sort-order" id="select-sort-order">
+            <option value="--">Seleccionar</option>
+            <option value="ascendant">Ordenar A-Z</option>
+            <option value="descendant">Ordenar Z-A</option>
+          </select>
+        </section>
       </aside>
     </div>
     <div id="second-screen" class="second-screen">
-        <article>
-          <div id="show-info">
-            <section id="show-info-title"></section>
-            <section id="show-info-data"></section>
-          </div>
-          <button id="back-btn-1">Volver</button>
-        </article>
+      <article>
+        <div id="show-info">
+          <section id="show-info-title"></section>
+          <section id="show-info-data"></section>
+        </div>
+        <button id="back-btn-1">Volver</button>
+      </article>
     </div>
     <div id="third-screen" class="third-screen">
-        <article>
-          <section id="show-selected-indicator-name">
-          </section>
-          <section>
-              <table id="show-indicator-name-keys-values">
-              </table>
-              <h4 id="source-data"></h4>
-          </section>
-          <p id="show-average-result"></p>
-          <button id="back-btn-2">Volver</button>
-        </article>
+      <article>
+        <section id="show-selected-indicator-name"></section>
+        <section>
+          <table id="show-indicator-name-keys-values"></table>
+          <h4 id="source-data"></h4>
+        </section>
+        <p id="show-average-result"></p>
+        <button id="back-btn-2">Volver</button>
+      </article>
     </div>
-    <footer>
+      <footer>
         <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
         <p><a href="#">Statistics Inc.</a></p>
-    </footer>
+      </footer>
     <script src="./data/worldbank/worldbank.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
