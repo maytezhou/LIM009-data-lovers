@@ -1,16 +1,16 @@
 global.window = global;
-global.assert = require('chai').assert;
 require('../src/data');
 require('./data.spec.js');
+const input =arrDataWorldBankPeru;
+const output=worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru);
 
-
-describe('example', () => {
+describe('getInitialsIndicatorCodeValues', () => {
   
   it('debería ser una función', () => {
-    assert.equal(typeof example, 'function');
+    expect(typeof worldBank.getInitialsIndicatorCodeValues).toBe('function');
   });
 
   it('debería retornar "example"', () => {
-    assert.equal(example(), 'example');
+    expect(worldBank.getInitialsIndicatorCodeValues(input)).toEqual(output);
   });
 })

@@ -1,5 +1,5 @@
 window.worldBank = {
-  getInitialsIndicatorCodeValues : (array) => {//[{},{},{}...]
+ getInitialsIndicatorCodeValues : (array) => {//[{},{},{}...]
     const newArrayStrings = [];
     for(let i = 0; i < array.length; i++){
        const string = array[i].indicatorCode.slice(0,3);

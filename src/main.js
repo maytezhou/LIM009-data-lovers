@@ -1,6 +1,7 @@
 const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
-const showFilteredCategory = document.getElementById('show-filtered-category');
-const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
+console.log(arrDataWorldBankPeru);
+// const showFilteredCategory = document.getElementById('show-filtered-category');
+// const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
 const selectSort = document.getElementById('select-sort');
@@ -34,7 +35,7 @@ for(let i = 0; i < arrUniqueInitialsCode.length; i++){//["",""...]
        indicador :   arrUniqueInitialsCode[i],//Initials of each Indicator
        descripcion : initialsDescription[arrUniqueInitialsCode[i]]//Description
     });
-};
+}
 
 //Funcion para Imprimir en el Dom una opcion de selecion con c/u de las descripciones de las Iniciales de los Indicadores.
 const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
@@ -59,14 +60,14 @@ btnSearch.addEventListener('click', () => {
     `
     <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}</h2>
     `
-  };
+  }
   showInfoData.innerHTML = '';
   for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
     showInfoData.innerHTML +=
       `
       <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
       `
-  };
+  }
   selectSort.addEventListener('change',(e)=>{
     const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
     let orderValueSelected = e.target.value;
@@ -130,10 +131,10 @@ showInfoData.addEventListener('click', (e) =>{
         `
         El promedio de <em>${e.target.innerText}</em> es de: <strong>${averageResult.toFixed(2)}.</strong>
         `
-        };
-      };
-    };
-  };
+        }
+      }
+    }
+  }
 });
 
 backBtn2.addEventListener('click', () => {
