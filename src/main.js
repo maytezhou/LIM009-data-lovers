@@ -1,7 +1,5 @@
 const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
 console.log(arrDataWorldBankPeru);
-// const showFilteredCategory = document.getElementById('show-filtered-category');
-// const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
 const selectSort = document.getElementById('select-sort');
@@ -58,7 +56,7 @@ btnSearch.addEventListener('click', () => {
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoTitle.innerHTML =
     `
-    <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}</h2>
+    Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}
     `
   }
   showInfoData.innerHTML = '';
@@ -99,7 +97,7 @@ showInfoData.addEventListener('click', (e) =>{
   let indicatorIdSelectedByUser = e.target.id;
   showSelectedIndicatorName.innerHTML =
   `
-  <h2>${e.target.innerText}</h2>
+  ${e.target.innerText}
   `
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
@@ -119,7 +117,7 @@ showInfoData.addEventListener('click', (e) =>{
         `
           <tr>
             <td><strong>${indicatorDataKeys[j]}</strong></td>
-            <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
+            <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]].toFixed(2)}</td>
           </tr>
         `
         document.getElementById('source-data').innerHTML =

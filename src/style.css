@@ -1,6 +1,7 @@
 table, th, td {
     width: 20%;
     border: 1px solid black;
+    text-align: center;
   }
 
 .second-screen, .third-screen, .select-sort {
