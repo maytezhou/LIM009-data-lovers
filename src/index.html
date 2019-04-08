@@ -4,52 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <title>Data Lovers - World Bank Data</title>
   </head>
   <body>
-    <header>
-      <img src="../img/logo-wb-header-es.svg" alt="Logo-Banco-Mundial">
-    </header>
-    <div id="first-screen">
+    <div class="container">
+      <header>
+        <a href="file:///C:/Users/Estefan%C3%ADa%20Telis/Documents/GitHub/LIM009-data-lovers/src/index.html">
+          <img src="../img/logo-wb-header-es.svg" alt="Logo-Banco-Mundial">
+        </a>
+      </header>
+    </div>
+    <div id="first-screen" class="container first-screen">
       <main>
-        <h1>Los principales indicadores socioeconómicos de Perú en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+        <h1>Los principales indicadores socioeconómicos de Perú en <br><span class="underline-text">UN SÓLO LUGAR</span></h1>
       </main>
     </div>
-    <aside id="sidebar-container" class="sidebar-container">
-      <h3>Selecciona la categoría que deseas ver:</h3>
-      <div>
-        <label for="select-indicator-code"><strong>Categorías:</strong></label>
-        <select name="select-indicator-code" id="select-indicator-code"></select>
-        <button id="btn-search">Buscar</button>
-      </div>
-      <div class="select-sort" id="select-sort">
-        <label for="select-sort-order"><strong>Ordenar:</strong></label> 
-        <select name="select-sort-order" id="select-sort-order">
-          <option value="--">Seleccionar</option>
-          <option value="ascendant">Ordenar A-Z</option>
-          <option value="descendant">Ordenar Z-A</option>
-        </select>
-      </div>
-    </aside>
-    <div id="second-screen" class="second-screen">
+    <div class="container sidebar-container">
+      <aside id="sidebar-container">
+        <h3 class="sidebar">Selecciona la categoría que deseas ver:</h3>
+        <div>
+          <label for="select-indicator-code"><strong class="sidebar">Categorías:</strong></label><br>
+          <select name="select-indicator-code" id="select-indicator-code" class="sidebar"></select><br>
+          <button id="btn-search" class="button sidebar">Buscar</button>
+        </div>
+        <div class="select-sort sidebar" id="select-sort">
+          <label for="select-sort-order"><strong class="sidebar">Ordenar:</strong></label><br>
+          <select name="select-sort-order" id="select-sort-order" class="sidebar">
+            <option value="--">Seleccionar</option>
+            <option value="ascendant">Ordenar A-Z</option>
+            <option value="descendant">Ordenar Z-A</option>
+          </select>
+        </div>
+      </aside>
+    </div>
+    <div id="second-screen" class="container second-screen">
       <div id="show-info">
         <h2 id="show-info-title">Show info title</h2>
-        <p id="show-info-data"></p>
+        <p id="show-info-data" class="show-info-data"></p>
       </div>
-      <button id="back-btn-1">Volver</button>
+      <button id="back-btn-1" class="button">Volver</button>
     </div>
-    <div id="third-screen" class="third-screen">
+    <div id="third-screen" class="container third-screen">
       <h2 id="show-selected-indicator-name">Show selected indicator name</h2>
-      <table id="show-indicator-name-keys-values"></table>
-      <h4 id="source-data">Source Data</h4>
+      <table id="show-indicator-name-keys-values" class="table"></table>
+      <h4 id="source-data">Sin datos para mostrar.</h4>
       <p id="show-average-result"></p>
-      <button id="back-btn-2">Volver</button>
+      <button id="back-btn-2" class="button">Volver</button>
     </div>
-    <footer>
-      <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
-      <p><a href="#">Statistics Inc.</a></p>
-    </footer>
+    <div class="container footer-container">
+      <footer>
+        <p><a href="#" class="footer">¿Cómo usar esta web?</a></p>
+        <p><a href="#" class="footer">Statistics Inc.</a></p>
+      </footer>
+    </div>
     <script src="./data/worldbank/worldbank.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
