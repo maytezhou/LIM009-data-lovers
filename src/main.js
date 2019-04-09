@@ -65,15 +65,15 @@ btnSearch.addEventListener('click', () => {
       <ul><a href="#"<li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list hover-underline-animation">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}</li></a></ul>
       `;
   }
-  selectSort.addEventListener('change', (e) => {
+  selectSort.addEventListener('change', (element) => {
     const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-    let orderValueSelected = e.target.value;
+    let orderValueSelected = element.target.value;
     let arrSortedIndicators = worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory, orderValueSelected);
     showInfoData.innerHTML = '';
-    for (let k = 0; k < arrSortedIndicators.length; k++) {
+    for (let kk = 0; kk < arrSortedIndicators.length; kk++) {
       showInfoData.innerHTML += 
       `
-      <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="hover-underline-animation list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}</li></a></ul>
+      <ul><a href="#"><li id="${arrSortedIndicators[kk].indicatorCode}" class="hover-underline-animation list">${arrSortedIndicators[kk].indicatorName} en ${arrSortedIndicators[kk].countryName}</li></a></ul>
       `;
     }
   });
@@ -86,21 +86,20 @@ backBtn1.addEventListener('click', () => {
 });
 
 // MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
-showInfoData.addEventListener('click', (e) => {
+showInfoData.addEventListener('click', (ab) => {
   document.getElementById('second-screen').style.display = 'none';
   document.getElementById('select-sort').style.display = 'none';
   document.getElementById('third-screen').style.display = 'block';
   const dataSource = window.WORLDBANK.PER.dataSource;
   const lastUpdated = window.WORLDBANK.PER.lastUpdated;
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-  let indicatorIdSelectedByUser = e.target.id;
-  const oneIndicator=worldBank.filterByIndicatorNameSelectedByUser(filteredIndicatorNamesByCategory,indicatorIdSelectedByUser)
-  const indicatorDataKeys=worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator,indicatorIdSelectedByUser);
-  const arrOfValuesFiltered=worldBank.getPorcentageValuesOfOneIndicatorSelectedByUser(oneIndicator,indicatorDataKeys);
-  
+  let indicatorIdSelectedByUser = ab.target.id;
+  const oneIndicator = worldBank.filterByIndicatorNameSelectedByUser(filteredIndicatorNamesByCategory, indicatorIdSelectedByUser);
+  const indicatorDataKeys = worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator, indicatorIdSelectedByUser);
+  const arrOfValuesFiltered = worldBank.getPorcentageValuesOfOneIndicatorSelectedByUser(oneIndicator, indicatorDataKeys);
   showSelectedIndicatorName.innerHTML =
   `
-  ${e.target.innerText}
+  ${ab.target.innerText}
   `;
   showIndicatorNameKeysValues.innerHTML =
       `
@@ -109,28 +108,26 @@ showInfoData.addEventListener('click', (e) => {
           <th>Porcentaje</th>
         </tr>
       `;
-      for ( let j = 0; j <indicatorDataKeys.length; j++){
-        if (oneIndicator[0].data[indicatorDataKeys[j]] !== ''){
-        showIndicatorNameKeysValues.innerHTML += 
+  for (let j = 0; j < indicatorDataKeys.length; j++) {
+    if (oneIndicator[0].data[indicatorDataKeys[j]] !== '') {
+      showIndicatorNameKeysValues.innerHTML += 
         `
-          <tr>
-            <td><strong>${indicatorDataKeys[j]}</strong></td>
-            <td>${oneIndicator[0].data[indicatorDataKeys[j]].toFixed(2)}</td>
-          </tr>
-        `
-        }
-      };
-      document.getElementById('source-data').innerHTML =
-      `
-      Fuente: ${dataSource}. Última actualización: ${lastUpdated}
-      `
-      const averageResult = worldBank.getAverage(arrOfValuesFiltered);
-      showAverageResult.innerHTML =
-      `
-      El promedio de <em>${e.target.innerText}</em> es de: <strong>${averageResult}.</strong>
-      `
-          
-        
+        <tr>
+        <td><strong>${indicatorDataKeys[j]}</strong></td>
+        <td>${oneIndicator[0].data[indicatorDataKeys[j]].toFixed(2)}</td>
+        </tr>
+        `;
+    }
+  }
+  document.getElementById('source-data').innerHTML =
+    `
+    Fuente: ${dataSource}. Última actualización: ${lastUpdated}
+    `;
+  const averageResult = worldBank.getAverage(arrOfValuesFiltered);
+  showAverageResult.innerHTML =
+    `
+    El promedio de <em>${ab.target.innerText}</em> es de: <strong>${averageResult}.</strong>
+    `;    
 });
 
 backBtn2.addEventListener('click', () => {
