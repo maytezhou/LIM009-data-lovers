@@ -1,28 +1,16 @@
-const objectDataWorldBank=window.WORLDBANK;
-const arrDataWorldBankMexico=window.WORLDBANK.MEX.indicators;//[{},{},{}...]
-//console.log(arrDataWorldBankMexico);
-const arrDataWorldBankChile=window.WORLDBANK.CHL.indicators;//[{},{},{}...]
-//console.log(arrDataWorldBankChile);
-const arrDataWorldBankBrasil=window.WORLDBANK.BRA.indicators;//[{},{},{}...]
-//console.log(arrDataWorldBankBrasil);
 const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;//[{},{},{}...]
-const firstScreen=document.getElementById("first-screen");
-const secondScreen=document.getElementById("second-screen");
-const thirdScreen=document.getElementById("third-screen");
-secondScreen.style.display='none';
-thirdScreen.style.display='none';
-
-const showInfoData = document.getElementById('show-info-data');
-const showFilteredCategory = document.getElementById('show-filtered-category');
-const filterOptionsSection=document.getElementById("filter-options-section");
-const showFilteredIndicatorNames = document.getElementById('show-filtered-indicator-names');
+console.log(arrDataWorldBankPeru);
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
-const selectCountryName = document.getElementById('select-country-name');
 const btnSearch = document.getElementById('btn-search');
+const selectSort = document.getElementById('select-sort');
+const showInfoTitle = document.getElementById('show-info-title'); 
+const showInfoData = document.getElementById('show-info-data');
+const backBtn1 = document.getElementById('back-btn-1');
+const backBtn2 = document.getElementById('back-btn-2');
 const showSelectedIndicatorName = document.getElementById('show-selected-indicator-name');
 const showIndicatorNameKeysValues = document.getElementById('show-indicator-name-keys-values');
+const showAverageResult = document.getElementById('show-average-result');
 const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(worldBank.getInitialsIndicatorCodeValues(arrDataWorldBankPeru));
-// console.log(arrUniqueInitialsCode);//["","",""...]
 
 //Creo un {} nuevo donde explico lo que significa cada Inicial
 const initialsDescription = {
@@ -38,173 +26,128 @@ const initialsDescription = {
   "DT." : 'Deuda Extena'
 };
 
-//Funcion que no he usado aún-Quizas me pueda servir 
-const obtainingOneIndicatorById=(arrOb,indicatorId)=>{//[{},{}] y indicatorId
-  let str="";
-  for(let i=0;i<arrOb.length;i++){
-    if(arrOb[i].indicatorCode===indicatorId){
-      str=arrOb[i].data;//{}
-  }
-
-}
-return str;// imrprimir {} 
-};
-
-
-
-//Utilizo el {} creado anteriormente para crear [{},{},{}..] c/u de los {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
-//Creando {} o creando Nueva Data
 // INDICATOR CODES + DESCRIPTION
 const arrIndicatorsInitialsAndDescription = [];
 for(let i = 0; i < arrUniqueInitialsCode.length; i++){//["",""...]
-  //  console.log(arrUniqueInitialsCode[i]);
     arrIndicatorsInitialsAndDescription.push({
        indicador :   arrUniqueInitialsCode[i],//Initials of each Indicator
        descripcion : initialsDescription[arrUniqueInitialsCode[i]]//Description
     });
-};
-// console.log(arrIndicatorsInitialsAndDescription);//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion
+}
 
 //Funcion para Imprimir en el Dom una opcion de selecion con c/u de las descripciones de las Iniciales de los Indicadores.
 const printIndicatorCodesInitialsDescription = (array, domElement) => {//[{},{},{}..] c/u de {} representa un Indicador y tiene 2 Keys indicador (2 inciales), y descripcion y DOM element
-  let string = '<option value="Todos">Todos</option>';
+  let string = '<option>Seleccionar</option>';
   for(let i = 0; i < array.length; i++){
       string += `<option value=${array[i].indicador}>${array[i].descripcion}</option>`
   }
   domElement.innerHTML = string;
  }
  printIndicatorCodesInitialsDescription(arrIndicatorsInitialsAndDescription,selectIndicatorCodeElement);
- 
 
-
-
-
-
-
-
-const showTitle=document.getElementById("show-title");
-const orderSelector=document.getElementById("order-selectors");
-const showAverageResult=document.getElementById("show-average-result");
-
- // FILTER BUTTON es un  boton dentro de la primera pantalla
+// SEARCH BUTTON
 btnSearch.addEventListener('click', () => {
-  firstScreen.style.display='none';
-  secondScreen.style.display='block';
   const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);//[{},{},{}..] Array de Indicators By Category
-  console.log(filteredIndicatorsByCategory);//[{},{}..]Array  de Indicadores filtered by category
-  console.log(selectIndicatorCodeElement.value);//sector elegido por el usuario
-  let titleOfIndicatorsList='';
-  let indicatorsList='';
-  
-  for (let i = 0; i<filteredIndicatorsByCategory.length; i++) {
-    titleOfIndicatorsList=
+  document.getElementById('first-screen').style.display = "none";
+  document.getElementById('second-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "block";
+  document.getElementById('third-screen').style.display = "none";
+  showInfoTitle.innerHTML = '';
+  for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
+    showInfoTitle.innerHTML =
     `
-    <h2>Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}</h2>
+    Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}
     `
   }
-  
-    for (let j = 0;j <filteredIndicatorsByCategory.length; j++){
-      indicatorsList+=
-        `
-        <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}.</li></a></ul>
-        `
-    }
-    showTitle.innerHTML=titleOfIndicatorsList;
-    showInfoData.innerHTML=indicatorsList;
-    
-   orderSelector.addEventListener('change',(e)=>{
+  showInfoData.innerHTML = '';
+  for (let j = 0; j < filteredIndicatorsByCategory.length; j++){
+    showInfoData.innerHTML +=
+      `
+      <ul><a href="#"><li id="${filteredIndicatorsByCategory[j].indicatorCode}" class="list">${filteredIndicatorsByCategory[j].indicatorName} en ${filteredIndicatorsByCategory[j].countryName}</li></a></ul>
+      `
+  }
+  selectSort.addEventListener('change',(e)=>{
     const filteredIndicatorsByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
-    let orderValueSelected=e.target.value;
-    console.log(e.target.value);
-    console.log(orderValueSelected);
-    let arrSortedIndicators=worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected);
-    console.log(worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected));
-    showInfoData.innerHTML='';
-    let indicatorsListOrderedByAlphabet='';
-    for(let k=0;k<arrSortedIndicators.length;k++){
-      indicatorsListOrderedByAlphabet+= `
-      <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}.</li></a></ul>
+    let orderValueSelected = e.target.value;
+    let arrSortedIndicators = worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory,orderValueSelected);
+    showInfoData.innerHTML = '';
+    for (let k = 0; k < arrSortedIndicators.length; k++ ) {
+      showInfoData.innerHTML += 
+      `
+      <ul><a href="#"><li id="${arrSortedIndicators[k].indicatorCode}" class="list">${arrSortedIndicators[k].indicatorName} en ${arrSortedIndicators[k].countryName}</li></a></ul>
       `
     }
-    showInfoData.innerHTML=indicatorsListOrderedByAlphabet;
-   
-    
-}
-
-);
-
-
+  });
 });
 
+backBtn1.addEventListener('click', () => {
+  document.getElementById('second-screen').style.display = "none";
+  document.getElementById('first-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "none";
+});
 
-// NUEVA FUNCION PRIN COUNTRYNAMES
-/*
- const printCountryNamesSelector=(obj1,domElement)=>{
-  const countryNames=worldBank.uniqueCountryNames(obj1);
-  const countryCodes=worldBank.uniqueCountryCodes(obj1);
-  for(){}
-
-
-
- }
- console.log(worldBank.uniqueCountryNames(objectDataWorldBank));
- console.log(worldBank.uniqueCountryCodes(objectDataWorldBank));*/
-
-
-
-
-
-// MOSTRAR  LA LISTA CON LOS NOMBRES DE INDICADORES FILTRADOS POR CATEGORIA  EN LA SEGUNDA PANTALLA
-//ShowInfoData es un div dentro de la segunda pantalla
+// MOSTRAR NOMBRE DE CATEGORÍA SELECCIONADO EN LA SEGUNDA PANTALLA
 showInfoData.addEventListener('click', (e) =>{
-  secondScreen.style.display='none';
-  thirdScreen.style.display='block';
-  console.log(e.target); 
-  showSelectedIndicatorName.innerHTML =
-  `
-  <h2>${e.target.innerText}</h2>
-  `
+  document.getElementById('second-screen').style.display = "none";
+  document.getElementById('third-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "none";
+  const dataSource = window.WORLDBANK.PER.dataSource;
+  const lastUpdated = window.WORLDBANK.PER.lastUpdated;
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = e.target.id;
-  console.log(indicatorIdSelectedByUser);
-  let indicatorsValuePercentage=[];
+  console.log(worldBank.filterByIndicatorNameSelectedByUser(filteredIndicatorNamesByCategory,indicatorIdSelectedByUser));
+  const oneIndicator=worldBank.filterByIndicatorNameSelectedByUser(filteredIndicatorNamesByCategory,indicatorIdSelectedByUser)
+  console.log(worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator,indicatorIdSelectedByUser));
+  const arrOfYearsOfOneIndicator=worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator,indicatorIdSelectedByUser);
+  console.log(worldBank.getPorcentageValuesOfOneIndicatorSelectedByUser(oneIndicator,arrOfYearsOfOneIndicator));
+  const arrOfValuesFiltered=worldBank.getPorcentageValuesOfOneIndicatorSelectedByUser(oneIndicator,arrOfYearsOfOneIndicator);
+  worldBank.getAverage(arrOfValuesFiltered);
+  console.log(worldBank.getAverage(arrOfValuesFiltered));
+  showSelectedIndicatorName.innerHTML =
+  `
+  ${e.target.innerText}
+  `
   for (let i = 0; i < filteredIndicatorNamesByCategory.length; i++) {
     if (filteredIndicatorNamesByCategory[i].indicatorCode === indicatorIdSelectedByUser) {
-      console.log(filteredIndicatorNamesByCategory[i]);
       let indicatorDataKeys = Object.keys(filteredIndicatorNamesByCategory[i].data);
-      console.log(indicatorDataKeys);
+      showIndicatorNameKeysValues.innerHTML =
+      `
+        <tr>
+          <th>Año</th>
+          <th>Porcentaje</th>
+        </tr>
+      `
+      let indicatorsValuePercentage = [];    
       for ( let j = 0; j <indicatorDataKeys.length; j++){
-       if(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]!=''){  
-         indicatorsValuePercentage.push(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
+        if (filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]] != ''){
+          indicatorsValuePercentage.push(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
           showIndicatorNameKeysValues.innerHTML += 
-          `
-          <table>
-            <tr>
-              <th>Año</th>
-              <th>Porcentaje</th>
-            </tr>
-            <tr>
-              <td>${indicatorDataKeys[j]}</td>
-              <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]}</td>
-            </tr>
-          </table>
-          `
-          console.log(indicatorDataKeys[j]);
-          console.log(filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]]);
-
+        `
+          <tr>
+            <td><strong>${indicatorDataKeys[j]}</strong></td>
+            <td>${filteredIndicatorNamesByCategory[i].data[indicatorDataKeys[j]].toFixed(2)}</td>
+          </tr>
+        `
+        document.getElementById('source-data').innerHTML =
+        `
+        Fuente: ${dataSource}. Última actualización: ${lastUpdated}
+        `
+        const averageResult = worldBank.getAverage(indicatorsValuePercentage);
+        showAverageResult.innerHTML =
+        `
+        El promedio de <em>${e.target.innerText}</em> es de: <strong>${averageResult}.</strong>
+        `
         }
-      
       }
     }
-  };
-  
-  console.log(indicatorsValuePercentage);
-  const averageResult=worldBank.getAverage(indicatorsValuePercentage);
-  console.log(worldBank.getAverage(indicatorsValuePercentage));
-  showAverageResult.innerHTML+= `<p>${averageResult.toFixed(3)}</p>`
-
+  }
 });
 
+backBtn2.addEventListener('click', () => {
+  document.getElementById('third-screen').style.display = "none";
+  document.getElementById('second-screen').style.display = "block";
+  document.getElementById('select-sort').style.display = "block";
+});
 
 
   

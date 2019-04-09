@@ -9,54 +9,46 @@
   </head>
   <body>
     <header>
-        <img src="" alt="">Logo de la empresa.</img>
+      <img src="img/logo-wb-header-es.svg" alt="Logo-Banco-Mundial">
     </header>
-    <main id="first-screen">
-        <h1>Los principales indicadores socioeconómicos de Latinoamérica en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
-        <section>
-            <h3>Selecciona el país o categoría de la data que quieres ver.</h3>
-            <h3>También puedes usar una palabra clave.</h3>
-            <section id="filter-options-section">
-                <label for="select-country-name"><strong>Pais:</strong></label></br>
-                <select name="select-country-name" id="select-country-name">
-                    <option value="Todos">Todos</option>
-                </select></br>
-                <label for="select-indicator-code"><strong>Categorías:</strong></label></br> 
-                <select name="select-indicator-code" id="select-indicator-code">
-                    <option value="Todos">Todos</option>
-                </select></br>
-                <input type="text" placeholder="Palabra clave" name="search-keyword"></br>
-                <button id="btn-search">Buscar</button>
-            </section>
-            <section>
-                <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
-            </section>
-        </section>
-    </main>
-    <article id="second-screen">
-        <div id="order-selectors">
-             <select name="select-order" id="select-order">
-                <option value="--">Ordena por</option>
-                <option value="ascendant">A-Z</option>
-                <option value="descendant">Z-A</option>
-            </select></br> 
-        </div>
-        <div id="show-title"></div>
-      <div id="show-info-data"></div>
-      <button>Volver</button>
-    </article>
-    <article id="third-screen">
-      <section id="show-selected-indicator-name">
-        <h2>${nombre del indicador}</h2>
-      </section>
-      <div id="show-average-result"></div>
-      <section id="show-indicator-name-keys-values">
-      </section>
-      <button>Volver</button>
-      
-    </article >
+    <div id="first-screen">
+      <main>
+        <h1>Los principales indicadores socioeconómicos de Perú en <span style="text-decoration: underline">UN SÓLO LUGAR.</span></h1>
+      </main>
+    </div>
+    <aside id="sidebar-container" class="sidebar-container">
+      <h3>Selecciona la categoría que deseas ver:</h3>
+      <div>
+        <label for="select-indicator-code"><strong>Categorías:</strong></label>
+        <select name="select-indicator-code" id="select-indicator-code"></select>
+        <button id="btn-search">Buscar</button>
+      </div>
+      <div class="select-sort" id="select-sort">
+        <label for="select-sort-order"><strong>Ordenar:</strong></label> 
+        <select name="select-sort-order" id="select-sort-order">
+          <option value="--">Seleccionar</option>
+          <option value="ascendant">Ordenar A-Z</option>
+          <option value="descendant">Ordenar Z-A</option>
+        </select>
+      </div>
+    </aside>
+    <div id="second-screen" class="second-screen">
+      <div id="show-info">
+        <h2 id="show-info-title">Show info title</h2>
+        <p id="show-info-data"></p>
+      </div>
+      <button id="back-btn-1">Volver</button>
+    </div>
+    <div id="third-screen" class="third-screen">
+      <h2 id="show-selected-indicator-name">Show selected indicator name</h2>
+      <table id="show-indicator-name-keys-values"></table>
+      <h4 id="source-data">Source Data</h4>
+      <p id="show-average-result"></p>
+      <button id="back-btn-2">Volver</button>
+    </div>
     <footer>
-        <p><a href="#">Statistics Inc.</a></p>
+      <p><a href="#" style="text-decoration: none">¿Cómo usar esta web?</a></p>
+      <p><a href="#">Statistics Inc.</a></p>
     </footer>
     <script src="./data/worldbank/worldbank.js"></script>
     <script src="data.js"></script>
