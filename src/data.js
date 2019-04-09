@@ -7,7 +7,7 @@ window.worldBank = {
     }
     return newArrayStrings;
   },
-   
+
   getUniqueInitialsIndicatorCodeValues: (array) => {
     const newArrayUniqueValues = [];
     for (let i = 0; i < array.length; i++) {
@@ -15,7 +15,6 @@ window.worldBank = {
         newArrayUniqueValues.push(array[i]);
       }
     }
-    
     return newArrayUniqueValues;
   },
 
@@ -35,8 +34,7 @@ window.worldBank = {
       arrObject.sort(function(ab, bc) {
         return ab.indicatorName.localeCompare(bc.indicatorName);
       });
-    }
-    else if (userSortOrder === 'descendant') {
+    } else if (userSortOrder === 'descendant') {
       arrObject.sort(function(bc, ab) {
         return ab.indicatorName.localeCompare(bc.indicatorName);
       });
