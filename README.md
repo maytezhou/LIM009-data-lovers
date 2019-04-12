@@ -128,7 +128,7 @@ En cuanto a la elección de colores, buscamos entre varias páginas web (Banco M
 del color azul. Al momento de leer un poco sobre la psicología de este color, notamos que el azul está fuertemente ligado a la confianza, factor importante para instituciones financieras. 
 Tomando en cuenta que uno de los temas importantes para nuestros usuarios es la confianza, decidimos usar el color azul.
 
-[Aquí puedes ver el diseño en Zeplin.](https://zpl.io/agQ96Y9)
+[Aquí puedes ver el diseño en Zeplin.](https://scene.zeplin.io/project/5caf72a9a4d3efa265396c23)
 
 ## Planificación - SCRUM
 
