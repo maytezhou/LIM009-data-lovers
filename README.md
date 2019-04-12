@@ -3,7 +3,7 @@
 clasificada por categorías: Laboral, Protección Social, Índice de capital Humano, Salud, Género, Educación, Estadísticas Militares, Población, Inversión y Deuda Externa.
 
 ## Proceso de diseño UX
-*
+
 * **Descubrimiento**
 
 
@@ -118,7 +118,7 @@ nuestro prototipo, ahora sí, de alta fidelidad.
 ![Prototipo desktop en Figma - Segunda pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma05.png)
 
 
-![Prototipo desktop en Figma - Tercera pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma06.png)
+![Prototipo desktop en Figma - Tercera pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma06.jpg)
 
 
 
