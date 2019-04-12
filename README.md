@@ -4,7 +4,7 @@ clasificada por categorías: Laboral, Protección Social, Índice de capital Hum
 
 ## Proceso de diseño UX
 *
-**Descubrimiento**
+* **Descubrimiento**
 
 
 
@@ -112,12 +112,23 @@ Esto nos permitió iterar ([Imágenes - Test de Usabilidad](https://github.com/f
 nuestro prototipo, ahora sí, de alta fidelidad.
 
 
+![Prototipo desktop en Figma - Primera pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma04.png)
 
-![Prototipo en Figma](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma07.png)
+
+![Prototipo desktop en Figma - Segunda pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma05.png)
+
+
+![Prototipo desktop en Figma - Tercera pantalla](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma06.png)
+
+
+
+![Prototipo mobile en Figma](https://github.com/frankynztein/LIM009-data-lovers/blob/master/img/Prototipo/Figma07.png)
 
 En cuanto a la elección de colores, buscamos entre varias páginas web (Banco Mundial, Banco Continental, Banco de Crédito del Perú) y nos fijamos en que todas coincidían en el uso 
 del color azul. Al momento de leer un poco sobre la psicología de este color, notamos que el azul está fuertemente ligado a la confianza, factor importante para instituciones financieras. 
 Tomando en cuenta que uno de los temas importantes para nuestros usuarios es la confianza, decidimos usar el color azul.
+
+[Aquí puedes ver el diseño en Zeplin.](https://zpl.io/agQ96Y9)
 
 ## Planificación - SCRUM
 
