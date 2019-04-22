@@ -2,7 +2,7 @@ const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
 const selectSort = document.getElementById('select-sort');
-const showInfoTitle = document.getElementById('show-info-title'); 
+const showInfoTitle = document.getElementById('show-info-title');
 const showInfoData = document.getElementById('show-info-data');
 const backBtn1 = document.getElementById('back-btn-1');
 const backBtn2 = document.getElementById('back-btn-2');
@@ -15,13 +15,13 @@ const arrUniqueInitialsCode = worldBank.getUniqueInitialsIndicatorCodeValues(wor
 const initialsDescription = {
   'SL.': 'Laboral',
   'per': 'Protección Social',
-  'HD.': 'Índice de Capital Humano', 
-  'SH.': 'Salud', 
-  'SG.': 'Género', 
-  'SE.': 'Educación', 
-  'MS.': 'Estadisticas Militares', 
-  'SP.': 'Población', 
-  'IC.': 'Inversion', 
+  'HD.': 'Índice de Capital Humano',
+  'SH.': 'Salud',
+  'SG.': 'Género',
+  'SE.': 'Educación',
+  'MS.': 'Estadisticas Militares',
+  'SP.': 'Población',
+  'IC.': 'Inversion',
   'DT.': 'Deuda Extena'
 };
 
@@ -54,7 +54,7 @@ btnSearch.addEventListener('click', () => {
   showInfoTitle.innerHTML = '';
   for (let i = 0; i < filteredIndicatorsByCategory.length; i++) {
     showInfoTitle.innerHTML =
-    `
+      `
     Indicadores de ${filteredIndicatorsByCategory[i].countryName} según categoría : ${initialsDescription[selectIndicatorCodeElement.value]}
     `;
   }
@@ -71,8 +71,8 @@ btnSearch.addEventListener('click', () => {
     let arrSortedIndicators = worldBank.orderIndicatorNameOfAnObjectByAlphabet(filteredIndicatorsByCategory, orderValueSelected);
     showInfoData.innerHTML = '';
     for (let kk = 0; kk < arrSortedIndicators.length; kk++) {
-      showInfoData.innerHTML += 
-      `
+      showInfoData.innerHTML +=
+        `
       <ul><a href="#"><li id="${arrSortedIndicators[kk].indicatorCode}" class="hover-underline-animation list">${arrSortedIndicators[kk].indicatorName} en ${arrSortedIndicators[kk].countryName}</li></a></ul>
       `;
     }
@@ -95,14 +95,14 @@ showInfoData.addEventListener('click', (ab) => {
   const filteredIndicatorNamesByCategory = worldBank.filterBySector(arrDataWorldBankPeru, selectIndicatorCodeElement.value);
   let indicatorIdSelectedByUser = ab.target.id;
   const oneIndicator = worldBank.filterByIndicatorNameSelectedByUser(filteredIndicatorNamesByCategory, indicatorIdSelectedByUser);
-  const indicatorDataKeys = worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator, indicatorIdSelectedByUser);
+  const indicatorDataKeys = worldBank.getYearsValueOfOneIndicatorSelectedByUser(oneIndicator);
   const arrOfValuesFiltered = worldBank.getPorcentageValuesOfOneIndicatorSelectedByUser(oneIndicator, indicatorDataKeys);
   showSelectedIndicatorName.innerHTML =
-  `
+    `
   ${ab.target.innerText}
   `;
   showIndicatorNameKeysValues.innerHTML =
-      `
+    `
         <tr>
           <th>Año</th>
           <th>Porcentaje</th>
@@ -110,7 +110,7 @@ showInfoData.addEventListener('click', (ab) => {
       `;
   for (let j = 0; j < indicatorDataKeys.length; j++) {
     if (oneIndicator[0].data[indicatorDataKeys[j]] !== '') {
-      showIndicatorNameKeysValues.innerHTML += 
+      showIndicatorNameKeysValues.innerHTML +=
         `
         <tr>
         <td><strong>${indicatorDataKeys[j]}</strong></td>
@@ -127,7 +127,7 @@ showInfoData.addEventListener('click', (ab) => {
   showAverageResult.innerHTML =
     `
     El promedio de <em>${ab.target.innerText}</em> es de: <strong>${averageResult}.</strong>
-    `;    
+    `;
 });
 
 backBtn2.addEventListener('click', () => {

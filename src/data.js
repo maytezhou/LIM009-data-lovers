@@ -1,80 +1,63 @@
 window.worldBank = {
-  getInitialsIndicatorCodeValues: (array) => {
-    const newArrayStrings = [];
-    for (let i = 0; i < array.length; i++) {
-      const string = array[i].indicatorCode.slice(0, 3);
-      newArrayStrings.push(string);
-    }
-    return newArrayStrings;
+  getInitialsIndicatorCodeValues: (array) => { //  [{},{}]
+    const arrOfStr = array.map((indicador) => {
+      return indicador.indicatorCode.slice(0, 3);
+    });
+    return arrOfStr; // ["","",""]
   },
 
-  getUniqueInitialsIndicatorCodeValues: (array) => {
+  getUniqueInitialsIndicatorCodeValues: (array) => { //  ["",""]
     const newArrayUniqueValues = [];
-    for (let i = 0; i < array.length; i++) {
-      if (newArrayUniqueValues.indexOf(array[i]) === -1) {
-        newArrayUniqueValues.push(array[i]);
+    array.forEach((ele) => {
+      if (newArrayUniqueValues.indexOf(ele) === -1) {
+        newArrayUniqueValues.push(ele);
       }
-    }
-    return newArrayUniqueValues;
+    });
+    return newArrayUniqueValues; //  ["",""]
   },
 
-  filterBySector: (arrayObj, initials) => {
-    let str = [];
-    for (let i = 0; i < arrayObj.length; i++) {
-      arrayObj[i];
-      if (arrayObj[i]['indicatorCode'].startsWith(initials)) {
-        str.push(arrayObj[i]);
-      }
-    }
-    return str;
+  filterBySector: (arrayObj, initials) => { // [{},{},{}]  and  initials of IndicatorCode of each Indicator
+    const arrOfIndicatorsFilteredByInitials = arrayObj.filter((indicator) => {
+      return indicator.indicatorCode.startsWith(initials);
+    });
+    return arrOfIndicatorsFilteredByInitials; //  [{},{},{}] array of Indicators filtered by Sector
   },
 
   orderIndicatorNameOfAnObjectByAlphabet: (arrObject, userSortOrder) => {
     if (userSortOrder === 'ascendant') {
-      arrObject.sort(function(ab, bc) {
+      arrObject.sort((ab, bc) => {
         return ab.indicatorName.localeCompare(bc.indicatorName);
       });
-    } else if (userSortOrder === 'descendant') {
-      arrObject.sort(function(bc, ab) {
+    } else {
+      arrObject.sort((bc, ab) => {
         return ab.indicatorName.localeCompare(bc.indicatorName);
       });
     }
     return arrObject;
   },
   filterByIndicatorNameSelectedByUser: (arrayObj3, indicatorName1SelectedByUser) => { //  [{},{}...] y  IndicatorName o IndicatorId selected by user 
-    let oneIndicator = [];
-    for (let i = 0; i < arrayObj3.length; i++) {
-      arrayObj3[i];
-      if (arrayObj3[i]['indicatorCode'] === indicatorName1SelectedByUser) {
-        oneIndicator.push(arrayObj3[i]);
-      }
-    }
-    return oneIndicator; //  [{}];
+    const arrOfOneIndicatorSelectedByUser = arrayObj3.filter((indicator) => {
+      return indicator.indicatorCode === indicatorName1SelectedByUser;
+    });
+    return arrOfOneIndicatorSelectedByUser; //  [{}]
   },
-  
-  getYearsValueOfOneIndicatorSelectedByUser: (arrayOfOneObj2, indicatorNameSelectedByUser) => { //  [{}] y domElementSelected IndicatorName selected by User
-    let arrOfArrIndicatorDataKeys;
-    if (arrayOfOneObj2[0].indicatorCode === indicatorNameSelectedByUser) {
-      arrOfArrIndicatorDataKeys = (Object.keys(arrayOfOneObj2[0].data));
-    }
-    return arrOfArrIndicatorDataKeys; //  array Of Years of one indicator
+
+  getYearsValueOfOneIndicatorSelectedByUser: (arrayOfOneObj2selectedByUser) => { //  [{}] 
+    const arrOfYearsOfIndicatorSelectedByUser = Object.keys(arrayOfOneObj2selectedByUser[0].data);
+    return arrOfYearsOfIndicatorSelectedByUser; //  array Of Years of one indicator [1960,1961,...] 
   },
   getPorcentageValuesOfOneIndicatorSelectedByUser: (objOneIndicator, arrOfYears) => { // [{}]  y  [1960,1961,...] 
     let indicatorsValuePercentageOfOneIndicator = [];
-    for (let i = 0; i < arrOfYears.length; i++) {
-      if (objOneIndicator[0].data[arrOfYears[i]] !== '') {
-        indicatorsValuePercentageOfOneIndicator.push(objOneIndicator[0].data[arrOfYears[i]]);
+    arrOfYears.forEach((oneYear) => {
+      if (objOneIndicator[0].data[oneYear] !== '') {
+        indicatorsValuePercentageOfOneIndicator.push(objOneIndicator[0].data[oneYear]);
       }
-    }
-    return indicatorsValuePercentageOfOneIndicator ; //  [porcentage,num,num]
+    });
+    return indicatorsValuePercentageOfOneIndicator; //  [porcentage,num,num]
   },
-
-  getAverage: (arrOfNum) => {
-    let sumTotal = 0;
-    for (let i = 0; i < arrOfNum.length; i++) {
-      sumTotal += arrOfNum[i];
-    }
-    return ((sumTotal) / (arrOfNum.length)).toFixed(2);
+  getAverage: (arrOfNum) => { // [num,num]
+    const totalSum = arrOfNum.reduce((acc, value) => acc + value, 0);
+    return ((totalSum) / (arrOfNum.length)).toFixed(2);
   }
 };
 
