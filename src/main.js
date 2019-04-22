@@ -1,3 +1,11 @@
+const url="./data/worldbank/worldbank.json";
+const getJason=()=>{
+  fetch(url)
+  .then(response=>response.json())
+  .then(data=>console.log(data.PER.indicators))
+  .catch(err=>console.log(err))
+};
+getJason();
 const arrDataWorldBankPeru = window.WORLDBANK.PER.indicators;
 const selectIndicatorCodeElement = document.getElementById('select-indicator-code');
 const btnSearch = document.getElementById('btn-search');
